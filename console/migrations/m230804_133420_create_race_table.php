@@ -20,6 +20,7 @@ class m230804_133420_create_race_table extends Migration
             'id' => $this->int(8)->primaryKey(),
             'name' => $this->string(255),
             'description' => $this->text(),
+            'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),

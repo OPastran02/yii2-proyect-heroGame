@@ -27,6 +27,7 @@ class m230804_202316_create_guilds_players_table extends Migration
             'steel' => $this->integer(10),
             'food' => $this->integer(10),
             'gold' => $this->integer(10),
+            'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),

@@ -34,6 +34,7 @@ class m230804_144848_create_accesories_table extends Migration
             'boost_wooding' => $this->integer(8),
             'power_points' => $this->integer(8),
             'avatar' => $this->string(8),
+            'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),

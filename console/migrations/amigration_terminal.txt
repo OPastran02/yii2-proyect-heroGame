@@ -24,17 +24,11 @@ php yii migrate/create create_worlds_table --fields="id:integer(11):primaryKey,r
 
 php yii migrate/create create_rewards_table --fields="id:integer(11):primaryKey,worlds_id:integer(11):foreignKey(worlds),item_id:integer(11):foreignKey(worlds),quantity:integer(10),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
 
+php yii migrate/create create_players_worlds_table --fields="id:integer(11):primaryKey,player_id:string(36):foreignKey(player),worlds_id:integer(11):foreignKey(worlds),avatar:string(8),stars:integer(1),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
 
-php yii migrate/create create_guilds_players_table --fields="
-id:integer(11):primaryKey,
-guild_id:string(36):foreignKey(guilds),
-player_id:string(36):foreignKey(player),
-title:string(255),
-wood:integer(10),
-steel:integer(10),
-food:integer(10),
-gold:integer(10),
-created_at:integer(11),
-updated_at:integer(11),
-created_by:string(36):foreignKey(user),
-updated_by:string(36):foreignKey(user)"
+php yii migrate/create create_players_table --fields="id:string(36):primaryKey():foreignKey(user),phrase:string(255),title:string(255),coins:integer(10),diamonds:integer(10),crystals:integer(10),experience:integer(10),level:integer(10),loginDays:integer(10),avatar:string(10),isActive:integer(1),lastLogin:integer(11),playerType:integer(1),adsViewed:integer(2),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_availableHeroes_table --fields="id:string(36):primaryKey,name:string(255),description:text,world:text,avatar:string(8),avatarBlock:string(8),race_id:int(2),rarity_id:int(2),nature_id:int(2),type_id:int(2),attack_min:int(10):notNull,attack_max:int(10):notNull,b_attack_min:int(10):notNull,b_Battack_max:int(10):notNull,defense_min:int(10):notNull,defense_max:int(10):notNull,b_defense_min:int(10):notNull,b_defense_max:int(10):notNull,hp_min:int(10):notNull,hp_max:int(10):notNull,b_hp_min:int(10):notNull,b_hp_max:int(10):notNull,sp_attack_min:int(10):notNull,sp_attack_max:int(10):notNull,b_sp_attack_min:int(10):notNull,b_sp_attack_max:int(10):notNull,sp_defense_min:int(10):notNull,sp_defense_max:int(10):notNull,b_sp_defense_min:int(10):notNull,b_sp_defense_max:int(10):notNull,speed_min:int(10):notNull,speed_max:int(10):notNull,b_speed_min:int(10):notNull,b_speed_max:int(10):notNull,farming_min:int(10):notNull,farming_max:int(10):notNull,b_farming_min:int(10):notNull,b_farming_max:int(10):notNull,steeling_min:int(10):notNull,steeling_max:int(10):notNull,b_steeling_min:int(10):notNull,b_steeling_max:int(10):notNull,wooding_min:int(10):notNull,wooding_max:int(10):notNull,b_wooding_min:int(10):notNull,b_wooding_max:int(10):notNull,available:int(10):notNull,created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+
+php yii migrate/create create_boxRatios_table --fields="id:string(36):primaryKey,name:string(255),description:text,race_id:int(2),booster:string(255),modifiers:int(2),crystals:int(2),diamonds:int(2),coins:int(2),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"

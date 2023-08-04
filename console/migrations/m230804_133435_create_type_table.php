@@ -22,6 +22,7 @@ class m230804_133435_create_type_table extends Migration
             'horoscope' => $this->string(15),
             'description' => $this->text(),
             'avatar' => $this->string(8),
+            'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),

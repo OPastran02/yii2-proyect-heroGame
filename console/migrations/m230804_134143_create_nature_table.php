@@ -30,6 +30,7 @@ class m230804_134143_create_nature_table extends Migration
             'boost_steeling' => $this->integer(15),
             'boost_wooding' => $this->integer(15),
             'avatar' => $this->string(8),
+            'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),

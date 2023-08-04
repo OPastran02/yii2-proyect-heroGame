@@ -30,6 +30,7 @@ class m230804_151228_create_guilds_table extends Migration
             'castle_id' => $this->string(36),
             'quantity' => $this->integer(4),
             'avatar' => $this->string(8),
+            'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),

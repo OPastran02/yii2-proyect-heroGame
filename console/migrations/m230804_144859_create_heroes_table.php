@@ -45,6 +45,7 @@ class m230804_144859_create_heroes_table extends Migration
             'accesories_id' => $this->integer(11),
             'accesories_id1' => $this->integer(11),
             'accesories_id2' => $this->integer(11),
+            'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),

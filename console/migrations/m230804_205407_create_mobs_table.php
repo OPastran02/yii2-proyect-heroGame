@@ -28,6 +28,7 @@ class m230804_205407_create_mobs_table extends Migration
             'sp_attack' => $this->integer(10),
             'sp_defense' => $this->integer(10),
             'speed' => $this->integer(10),
+            'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),

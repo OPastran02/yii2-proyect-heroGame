@@ -23,6 +23,7 @@ class m230804_210129_create_worlds_table extends Migration
             'chapter' => $this->integer(10),
             'description' => $this->text(),
             'avatar' => $this->string(8),
+            'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
