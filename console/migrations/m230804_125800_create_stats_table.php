@@ -6,10 +6,11 @@ use yii\db\Migration;
  * Handles the creation of table `{{%stats}}`.
  * Has foreign keys to the tables:
  *
+ * - `{{%heroes}}`
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230803_223338_create_stats_table extends Migration
+class m230804_125800_create_stats_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -17,7 +18,7 @@ class m230803_223338_create_stats_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%stats}}', [
-            'id' => $this->uuid()->notNull(), 
+            'id' => $this->string(36)->primaryKey(),
             'attack' => $this->int(10)->notNull(),
             'defense' => $this->int(10)->notNull(),
             'hp' => $this->int(10)->notNull(),
@@ -38,12 +39,26 @@ class m230803_223338_create_stats_table extends Migration
             'woodingBst' => $this->int(3)->notNull(),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
-            'created_by' => $this->string(50),
-            'updated_by' => $this->string(50),
+            'created_by' => $this->string(36),
+            'updated_by' => $this->string(36),
         ]);
 
-        // Add primary key constraint to the `id` column (as it's the primary key)
-        $this->addPrimaryKey('pk-stats-id', '{{%stats}}', 'id');
+        // creates index for column `id`
+        $this->createIndex(
+            '{{%idx-stats-id}}',
+            '{{%stats}}',
+            'id'
+        );
+
+        // add foreign key for table `{{%heroes}}`
+        $this->addForeignKey(
+            '{{%fk-stats-id}}',
+            '{{%stats}}',
+            'id',
+            '{{%heroes}}',
+            'id',
+            'CASCADE'
+        );
 
         // creates index for column `created_by`
         $this->createIndex(
@@ -85,6 +100,18 @@ class m230803_223338_create_stats_table extends Migration
      */
     public function safeDown()
     {
+        // drops foreign key for table `{{%heroes}}`
+        $this->dropForeignKey(
+            '{{%fk-stats-id}}',
+            '{{%stats}}'
+        );
+
+        // drops index for column `id`
+        $this->dropIndex(
+            '{{%idx-stats-id}}',
+            '{{%stats}}'
+        );
+
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
             '{{%fk-stats-created_by}}',
@@ -108,9 +135,6 @@ class m230803_223338_create_stats_table extends Migration
             '{{%idx-stats-updated_by}}',
             '{{%stats}}'
         );
-
-        // Drop the primary key constraint
-        $this->dropPrimaryKey('pk-stats-id', '{{%stats}}');
 
         $this->dropTable('{{%stats}}');
     }

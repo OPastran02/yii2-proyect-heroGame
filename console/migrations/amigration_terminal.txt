@@ -1,0 +1,32 @@
+php yii migrate/create create_stats_table --fields="
+id:string(36):notNull:foreignKey(heroes),
+attack:int(10):notNull,
+defense:int(10):notNull,
+hp:int(10):notNull,
+sp_attack:int(10):notNull,
+sp_defense:int(10):notNull,
+speed:int(10):notNull,
+farming:int(10):notNull,
+steeling:int(10):notNull,
+wooding:int(10):notNull,
+attackBst:int(3):notNull,
+defenseBst:int(3):notNull,
+hpBst:int(3):notNull,
+sp_attackBst:int(3):notNull,
+sp_defenseBst:int(3):notNull,
+speedBst:int(3):notNull,
+farmingBst:int(3):notNull,
+steelingBst:int(3):notNull,
+woodingBst:int(3):notNull,
+created_at:integer(11),
+updated_at:integer(11),
+created_by:string(36):foreignKey(user),
+updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_race_table --fields="id:int(8):primaryKey,name:string(255):primaryKey,description:text(),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_rarity_table --fields="id:int(8):primaryKey,name:string(255):primaryKey,description:text(),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_type_table --fields="id:int(8):primaryKey,name:string(255):primaryKey,horoscope:string(15),description:text(),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_nature_table --fields="id:int(8):primaryKey,name:string(255),description:text(),boost_attack:integer(15),boost_defense:integer(15),boost_hp:integer(15),boost_sp_attack:integer(15),boost_sp_defense:integer(15),boost_speed:integer(15),boost_farming:integer(15),boost_steeling:integer(15),boost_wooding:integer(15),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
