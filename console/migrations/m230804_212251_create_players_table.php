@@ -18,7 +18,7 @@ class m230804_212251_create_players_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%players}}', [
-            'id' => $this->string(36)->primaryKey()(),
+            'id' => $this->string(36)->notNull()->append('PRIMARY KEY'),
             'phrase' => $this->string(255),
             'title' => $this->string(255),
             'coins' => $this->integer(10),

@@ -18,7 +18,7 @@ class m230804_205633_create_waves_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%waves}}', [
-            'id' => $this->integer(11)->primaryKey(),
+            'id' => $this->primaryKey(),
             'mundo_id' => $this->integer(11),
             'wave' => $this->integer(10),
             'available' => $this->smallInteger()->notNull()->defaultValue(1),

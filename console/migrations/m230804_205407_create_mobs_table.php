@@ -18,8 +18,8 @@ class m230804_205407_create_mobs_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%mobs}}', [
-            'id' => $this->integer(11)->primaryKey(),
-            'wave_id' => $this->string(36),
+            'id' => $this->primaryKey(),
+            'wave_id' => $this->string(11),
             'order' => $this->integer(10),
             'name' => $this->string(255),
             'attack' => $this->integer(10),

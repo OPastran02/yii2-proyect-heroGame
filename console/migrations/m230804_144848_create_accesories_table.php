@@ -18,7 +18,7 @@ class m230804_144848_create_accesories_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%accesories}}', [
-            'id' => $this->integer(11)->primaryKey(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'description' => $this->text(),
             'rarity_id' => $this->integer(8),
@@ -28,7 +28,7 @@ class m230804_144848_create_accesories_table extends Migration
             'boost_hp' => $this->integer(8),
             'boost_sp_attack' => $this->integer(8),
             'boost_sp_defense' => $this->integer(8),
-            'boost_speed'=> $this->integer(8),,
+            'boost_speed'=> $this->integer(8),
             'boost_farming' => $this->integer(8),
             'boost_steeling' => $this->integer(8),
             'boost_wooding' => $this->integer(8),

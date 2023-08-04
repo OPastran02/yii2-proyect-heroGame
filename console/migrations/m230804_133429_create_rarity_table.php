@@ -17,7 +17,7 @@ class m230804_133429_create_rarity_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%rarity}}', [
-            'id' => $this->int(8)->primaryKey(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'description' => $this->text(),
             'avatar' => $this->string(8),

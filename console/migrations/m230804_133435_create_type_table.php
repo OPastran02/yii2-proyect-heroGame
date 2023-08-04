@@ -17,7 +17,7 @@ class m230804_133435_create_type_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%type}}', [
-            'id' => $this->int(8)->primaryKey(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'horoscope' => $this->string(15),
             'description' => $this->text(),

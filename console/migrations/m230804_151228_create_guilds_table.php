@@ -18,7 +18,7 @@ class m230804_151228_create_guilds_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%guilds}}', [
-            'id' => $this->integer(11)->primaryKey(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'description' => $this->text(),
             'experience' => $this->integer(20),

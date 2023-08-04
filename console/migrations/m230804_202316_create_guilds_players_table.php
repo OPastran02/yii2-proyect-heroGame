@@ -19,7 +19,7 @@ class m230804_202316_create_guilds_players_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%guilds_players}}', [
-            'id' => $this->integer(11)->primaryKey(),
+            'id' => $this->primaryKey(),
             'guild_id' => $this->string(36),
             'player_id' => $this->string(36),
             'title' => $this->string(255),

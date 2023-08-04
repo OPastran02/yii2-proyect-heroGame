@@ -19,7 +19,7 @@ class m230804_210630_create_players_worlds_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%players_worlds}}', [
-            'id' => $this->integer(11)->primaryKey(),
+            'id' => $this->primaryKey(),
             'player_id' => $this->string(36),
             'worlds_id' => $this->integer(11),
             'avatar' => $this->string(8),

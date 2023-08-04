@@ -17,15 +17,15 @@ class m230804_221347_create_boxRatios_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%boxRatios}}', [
-            'id' => $this->string(36)->primaryKey(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'description' => $this->text(),
-            'race_id' => $this->int(2),
+            'race_id' => $this->integer(2),
             'booster' => $this->string(255),
-            'modifiers' => $this->int(2),
-            'crystals' => $this->int(2),
-            'diamonds' => $this->int(2),
-            'coins' => $this->int(2),
+            'modifiers' => $this->integer(2),
+            'crystals' => $this->integer(2),
+            'diamonds' => $this->integer(2),
+            'coins' => $this->integer(2),
             'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),

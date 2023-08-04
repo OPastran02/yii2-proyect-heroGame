@@ -17,7 +17,7 @@ class m230804_134143_create_nature_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%nature}}', [
-            'id' => $this->int(8)->primaryKey(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'description' => $this->text(),
             'boost_attack' => $this->integer(15),

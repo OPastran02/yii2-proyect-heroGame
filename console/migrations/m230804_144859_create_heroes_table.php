@@ -26,7 +26,7 @@ class m230804_144859_create_heroes_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%heroes}}', [
-            'id' => $this->string(36)->primaryKey(),
+            'id' => $this->string(36)->notNull()->append('PRIMARY KEY'),
             'player_id' => $this->string(36),
             'name' => $this->string(255),
             'description' => $this->text(),

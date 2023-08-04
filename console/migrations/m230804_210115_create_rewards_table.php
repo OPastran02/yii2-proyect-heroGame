@@ -19,7 +19,7 @@ class m230804_210115_create_rewards_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%rewards}}', [
-            'id' => $this->integer(11)->primaryKey(),
+            'id' => $this->primaryKey(),
             'worlds_id' => $this->integer(11),
             'item_id' => $this->integer(11),
             'quantity' => $this->integer(10),

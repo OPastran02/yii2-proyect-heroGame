@@ -17,7 +17,7 @@ class m230804_133420_create_race_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%race}}', [
-            'id' => $this->int(8)->primaryKey(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'description' => $this->text(),
             'available' => $this->smallInteger()->notNull()->defaultValue(1),
