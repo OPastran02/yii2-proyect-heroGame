@@ -211,11 +211,9 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-        /**
-     * Removes password reset token
-     */
     public function getDisplayName()
     {
-        return $this->username;
+        return $this->username; // Add any other fields you want to display
     }
+
 }

@@ -13,3 +13,28 @@ php yii migrate/create create_heroes_table --fields="id:string(36):primaryKey,pl
 php yii migrate/create create_accesories_table --fields="id:integer(11):primaryKey,name:string(255),description:text,rarity_id:integer(8):foreignKey(rarity),orderInGeneralTeam:integer(1),boost_attack:integer(8),boost_defense:integer(8),boost_hp:integer(8),boost_sp_attack:integer(8),boost_sp_defense:integer(8),boost_speedinteger(8),boost_farming:integer(8),boost_steeling:integer(8),boost_wooding:integer(8),power_points:integer(8),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
 
 php yii migrate/create create_guilds_table --fields="id:integer(11):primaryKey,name:string(255),description:text,experience:integer(20),level:integer(5),wood:integer(10),steel:integer(10),food:integer(10),gold:integer(10),castle_id:string(36):foreignKey(castle),quantity:integer(4),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_guilds_players_table --fields="id:integer(11):primaryKey,guild_id:string(36):foreignKey(guilds),player_id:string(36):foreignKey(player),title:string(255),wood:integer(10),steel:integer(10),food:integer(10),gold:integer(10),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_mobs_table --fields="id:integer(11):primaryKey,wave_id:string(36):foreignKey(waves),order:integer(10),name:string(255),attack:integer(10),defense:integer(10),hp:integer(10),sp_attack:integer(10),sp_defense:integer(10),speed:integer(10),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_waves_table --fields="id:integer(11):primaryKey,mundo_id:integer(11):foreignKey(worlds),wave:integer(10),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_worlds_table --fields="id:integer(11):primaryKey,race_id:string(36):foreignKey(race),chapter:integer(10),description:text,avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+php yii migrate/create create_rewards_table --fields="id:integer(11):primaryKey,worlds_id:integer(11):foreignKey(worlds),item_id:integer(11):foreignKey(worlds),quantity:integer(10),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+
+
+php yii migrate/create create_guilds_players_table --fields="
+id:integer(11):primaryKey,
+guild_id:string(36):foreignKey(guilds),
+player_id:string(36):foreignKey(player),
+title:string(255),
+wood:integer(10),
+steel:integer(10),
+food:integer(10),
+gold:integer(10),
+created_at:integer(11),
+updated_at:integer(11),
+created_by:string(36):foreignKey(user),
+updated_by:string(36):foreignKey(user)"
