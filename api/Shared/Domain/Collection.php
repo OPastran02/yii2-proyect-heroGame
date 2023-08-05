@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Shared\Domain; // <1>
+namespace App\Shared\Domain;
 
 use ArrayIterator;
 use Countable;

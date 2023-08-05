@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Shared\Domain;
+namespace App\Shared\Domain;
 
 //clase que genera un log para poder ver los errores en el dominio
 interface Logger

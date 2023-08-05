@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Shared\Domain;
+namespace App\Shared\Domain;
 
 //clase para monitorear los errores en el dominio
 interface Monitoring

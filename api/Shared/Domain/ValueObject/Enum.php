@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Shared\Domain;
+namespace App\Shared\Domain\ValueObject;
 
-use App\Core\Shared\Domain\Utils;
+use App\Shared\Domain\Utils;
 use ReflectionClass;
 use Stringable;
 use function in_array;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Shared\Domain;
+namespace App\Shared\Domain\ValueObject\Primitives;
 
 //clase abstracta que toma un string y lo convierte en un valor 
 abstract class StringValueObject
