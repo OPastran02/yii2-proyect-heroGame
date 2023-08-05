@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Shared\Domain\Bus\Event;
+namespace App\Shared\Domain\Bus\Event;
 
 use api\core\shared\Domain\Utils;
 use api\core\shared\Domain\ValueObject\UUID;

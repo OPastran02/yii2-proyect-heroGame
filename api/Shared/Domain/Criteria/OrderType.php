@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Shared\Domain\Criteria;
+namespace App\Shared\Domain\Criteria;
 
-use App\Core\Shared\Domain\ValueObject\Enum;
+use App\Shared\Domain\ValueObject\Enum;
 use InvalidArgumentException;
 
 /**

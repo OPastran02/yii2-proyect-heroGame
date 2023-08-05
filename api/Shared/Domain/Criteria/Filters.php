@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Shared\Domain\Criteria;
+namespace App\Shared\Domain\Criteria;
 
-use App\Core\Shared\Domain\Collection;
+use App\Shared\Domain\Collection;
 use function Lambdish\Phunctional\reduce;
 
 final class Filters extends Collection

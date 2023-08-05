@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Shared\Domain\Aggregate;
+namespace App\Shared\Domain\Aggregate;
 
 use App\Core\Shared\Domain\Bus\Event\DomainEvent;
 
