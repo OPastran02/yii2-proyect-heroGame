@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Shared\Domain;
 
-abstact class IntValueObject
+abstract class IntValueObject
 {
     public function __construct(private int $value)
     {
