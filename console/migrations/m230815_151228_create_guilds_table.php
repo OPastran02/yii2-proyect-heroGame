@@ -3,51 +3,54 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%nature}}`.
+ * Handles the creation of table `{{%guilds}}`.
  * Has foreign keys to the tables:
  *
+ * - `{{%castle}}`
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_134143_create_nature_table extends Migration
+class m230815_151228_create_guilds_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%nature}}', [
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
+        $this->createTable('{{%guilds}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'description' => $this->text(),
-            'boost_attack' => $this->integer(15),
-            'boost_defense' => $this->integer(15),
-            'boost_hp' => $this->integer(15),
-            'boost_sp_attack' => $this->integer(15),
-            'boost_sp_defense' => $this->integer(15),
-            'boost_speed' => $this->integer(15),
-            'boost_farming' => $this->integer(15),
-            'boost_steeling' => $this->integer(15),
-            'boost_wooding' => $this->integer(15),
+            'experience' => $this->integer(20),
+            'level' => $this->integer(5),
+            'wood' => $this->integer(10),
+            'steel' => $this->integer(10),
+            'food' => $this->integer(10),
+            'gold' => $this->integer(10),
+            'castle_id' => $this->string(36),
+            'quantity' => $this->integer(4),
             'avatar' => $this->string(8),
             'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
+
 
         // creates index for column `created_by`
         $this->createIndex(
-            '{{%idx-nature-created_by}}',
-            '{{%nature}}',
+            '{{%idx-guilds-created_by}}',
+            '{{%guilds}}',
             'created_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-nature-created_by}}',
-            '{{%nature}}',
+            '{{%fk-guilds-created_by}}',
+            '{{%guilds}}',
             'created_by',
             '{{%user}}',
             'id',
@@ -56,15 +59,15 @@ class m230804_134143_create_nature_table extends Migration
 
         // creates index for column `updated_by`
         $this->createIndex(
-            '{{%idx-nature-updated_by}}',
-            '{{%nature}}',
+            '{{%idx-guilds-updated_by}}',
+            '{{%guilds}}',
             'updated_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-nature-updated_by}}',
-            '{{%nature}}',
+            '{{%fk-guilds-updated_by}}',
+            '{{%guilds}}',
             'updated_by',
             '{{%user}}',
             'id',
@@ -77,30 +80,31 @@ class m230804_134143_create_nature_table extends Migration
      */
     public function safeDown()
     {
+
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-nature-created_by}}',
-            '{{%nature}}'
+            '{{%fk-guilds-created_by}}',
+            '{{%guilds}}'
         );
 
         // drops index for column `created_by`
         $this->dropIndex(
-            '{{%idx-nature-created_by}}',
-            '{{%nature}}'
+            '{{%idx-guilds-created_by}}',
+            '{{%guilds}}'
         );
 
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-nature-updated_by}}',
-            '{{%nature}}'
+            '{{%fk-guilds-updated_by}}',
+            '{{%guilds}}'
         );
 
         // drops index for column `updated_by`
         $this->dropIndex(
-            '{{%idx-nature-updated_by}}',
-            '{{%nature}}'
+            '{{%idx-guilds-updated_by}}',
+            '{{%guilds}}'
         );
 
-        $this->dropTable('{{%nature}}');
+        $this->dropTable('{{%guilds}}');
     }
 }

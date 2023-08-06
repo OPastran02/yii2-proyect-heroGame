@@ -10,13 +10,15 @@ use yii\db\Migration;
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_205633_create_waves_table extends Migration
+class m230813_205633_create_waves_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         $this->createTable('{{%waves}}', [
             'id' => $this->primaryKey(),
             'mundo_id' => $this->integer(11),
@@ -24,7 +26,7 @@ class m230804_205633_create_waves_table extends Migration
             'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `mundo_id`
         $this->createIndex(

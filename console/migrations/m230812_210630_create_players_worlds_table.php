@@ -11,13 +11,15 @@ use yii\db\Migration;
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_210630_create_players_worlds_table extends Migration
+class m230812_210630_create_players_worlds_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         $this->createTable('{{%players_worlds}}', [
             'id' => $this->primaryKey(),
             'player_id' => $this->string(36),
@@ -29,7 +31,7 @@ class m230804_210630_create_players_worlds_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `player_id`
         $this->createIndex(
@@ -38,12 +40,12 @@ class m230804_210630_create_players_worlds_table extends Migration
             'player_id'
         );
 
-        // add foreign key for table `{{%player}}`
+        // add foreign key for table `{{%players}}`
         $this->addForeignKey(
             '{{%fk-players_worlds-player_id}}',
             '{{%players_worlds}}',
             'player_id',
-            '{{%player}}',
+            '{{%players}}',
             'id',
             'CASCADE'
         );
@@ -105,7 +107,7 @@ class m230804_210630_create_players_worlds_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `{{%player}}`
+        // drops foreign key for table `{{%players}}`
         $this->dropForeignKey(
             '{{%fk-players_worlds-player_id}}',
             '{{%players_worlds}}'

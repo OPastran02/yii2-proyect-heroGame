@@ -3,68 +3,68 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%guilds}}`.
+ * Handles the creation of table `{{%mobs}}`.
  * Has foreign keys to the tables:
  *
- * - `{{%castle}}`
+ * - `{{%waves}}`
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_151228_create_guilds_table extends Migration
+class m230814_205407_create_mobs_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%guilds}}', [
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
+        $this->createTable('{{%mobs}}', [
             'id' => $this->primaryKey(),
+            'wave_id' => $this->integer(8),
+            'order' => $this->integer(10),
             'name' => $this->string(255),
-            'description' => $this->text(),
-            'experience' => $this->integer(20),
-            'level' => $this->integer(5),
-            'wood' => $this->integer(10),
-            'steel' => $this->integer(10),
-            'food' => $this->integer(10),
-            'gold' => $this->integer(10),
-            'castle_id' => $this->string(36),
-            'quantity' => $this->integer(4),
-            'avatar' => $this->string(8),
+            'attack' => $this->integer(10),
+            'defense' => $this->integer(10),
+            'hp' => $this->integer(10),
+            'sp_attack' => $this->integer(10),
+            'sp_defense' => $this->integer(10),
+            'speed' => $this->integer(10),
             'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
-        // creates index for column `castle_id`
+        // creates index for column `wave_id`
         $this->createIndex(
-            '{{%idx-guilds-castle_id}}',
-            '{{%guilds}}',
-            'castle_id'
+            '{{%idx-mobs-wave_id}}',
+            '{{%mobs}}',
+            'wave_id'
         );
 
-        // add foreign key for table `{{%castle}}`
+        // add foreign key for table `{{%waves}}`
         $this->addForeignKey(
-            '{{%fk-guilds-castle_id}}',
-            '{{%guilds}}',
-            'castle_id',
-            '{{%castle}}',
+            '{{%fk-mobs-wave_id}}',
+            '{{%mobs}}',
+            'wave_id',
+            '{{%waves}}',
             'id',
             'CASCADE'
         );
 
         // creates index for column `created_by`
         $this->createIndex(
-            '{{%idx-guilds-created_by}}',
-            '{{%guilds}}',
+            '{{%idx-mobs-created_by}}',
+            '{{%mobs}}',
             'created_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-guilds-created_by}}',
-            '{{%guilds}}',
+            '{{%fk-mobs-created_by}}',
+            '{{%mobs}}',
             'created_by',
             '{{%user}}',
             'id',
@@ -73,15 +73,15 @@ class m230804_151228_create_guilds_table extends Migration
 
         // creates index for column `updated_by`
         $this->createIndex(
-            '{{%idx-guilds-updated_by}}',
-            '{{%guilds}}',
+            '{{%idx-mobs-updated_by}}',
+            '{{%mobs}}',
             'updated_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-guilds-updated_by}}',
-            '{{%guilds}}',
+            '{{%fk-mobs-updated_by}}',
+            '{{%mobs}}',
             'updated_by',
             '{{%user}}',
             'id',
@@ -94,42 +94,42 @@ class m230804_151228_create_guilds_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `{{%castle}}`
+        // drops foreign key for table `{{%waves}}`
         $this->dropForeignKey(
-            '{{%fk-guilds-castle_id}}',
-            '{{%guilds}}'
+            '{{%fk-mobs-wave_id}}',
+            '{{%mobs}}'
         );
 
-        // drops index for column `castle_id`
+        // drops index for column `wave_id`
         $this->dropIndex(
-            '{{%idx-guilds-castle_id}}',
-            '{{%guilds}}'
+            '{{%idx-mobs-wave_id}}',
+            '{{%mobs}}'
         );
 
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-guilds-created_by}}',
-            '{{%guilds}}'
+            '{{%fk-mobs-created_by}}',
+            '{{%mobs}}'
         );
 
         // drops index for column `created_by`
         $this->dropIndex(
-            '{{%idx-guilds-created_by}}',
-            '{{%guilds}}'
+            '{{%idx-mobs-created_by}}',
+            '{{%mobs}}'
         );
 
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-guilds-updated_by}}',
-            '{{%guilds}}'
+            '{{%fk-mobs-updated_by}}',
+            '{{%mobs}}'
         );
 
         // drops index for column `updated_by`
         $this->dropIndex(
-            '{{%idx-guilds-updated_by}}',
-            '{{%guilds}}'
+            '{{%idx-mobs-updated_by}}',
+            '{{%mobs}}'
         );
 
-        $this->dropTable('{{%guilds}}');
+        $this->dropTable('{{%mobs}}');
     }
 }

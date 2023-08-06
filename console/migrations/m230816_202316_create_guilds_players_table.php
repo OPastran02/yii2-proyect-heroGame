@@ -11,16 +11,18 @@ use yii\db\Migration;
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_202316_create_guilds_players_table extends Migration
+class m230816_202316_create_guilds_players_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         $this->createTable('{{%guilds_players}}', [
             'id' => $this->primaryKey(),
-            'guild_id' => $this->string(36),
+            'guild_id' => $this->integer(11),
             'player_id' => $this->string(36),
             'title' => $this->string(255),
             'wood' => $this->integer(10),
@@ -32,7 +34,7 @@ class m230804_202316_create_guilds_players_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `guild_id`
         $this->createIndex(
@@ -58,12 +60,12 @@ class m230804_202316_create_guilds_players_table extends Migration
             'player_id'
         );
 
-        // add foreign key for table `{{%player}}`
+        // add foreign key for table `{{%players}}`
         $this->addForeignKey(
             '{{%fk-guilds_players-player_id}}',
             '{{%guilds_players}}',
             'player_id',
-            '{{%player}}',
+            '{{%players}}',
             'id',
             'CASCADE'
         );
@@ -120,7 +122,7 @@ class m230804_202316_create_guilds_players_table extends Migration
             '{{%guilds_players}}'
         );
 
-        // drops foreign key for table `{{%player}}`
+        // drops foreign key for table `{{%players}}`
         $this->dropForeignKey(
             '{{%fk-guilds_players-player_id}}',
             '{{%guilds_players}}'

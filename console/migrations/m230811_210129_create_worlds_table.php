@@ -3,66 +3,63 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%mobs}}`.
+ * Handles the creation of table `{{%worlds}}`.
  * Has foreign keys to the tables:
  *
- * - `{{%waves}}`
+ * - `{{%race}}`
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_205407_create_mobs_table extends Migration
+class m230811_210129_create_worlds_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%mobs}}', [
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
+        $this->createTable('{{%worlds}}', [
             'id' => $this->primaryKey(),
-            'wave_id' => $this->string(11),
-            'order' => $this->integer(10),
-            'name' => $this->string(255),
-            'attack' => $this->integer(10),
-            'defense' => $this->integer(10),
-            'hp' => $this->integer(10),
-            'sp_attack' => $this->integer(10),
-            'sp_defense' => $this->integer(10),
-            'speed' => $this->integer(10),
+            'race_id' => $this->integer(8),
+            'chapter' => $this->integer(10),
+            'description' => $this->text(),
+            'avatar' => $this->string(8),
             'available' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
-        // creates index for column `wave_id`
+        // creates index for column `race_id`
         $this->createIndex(
-            '{{%idx-mobs-wave_id}}',
-            '{{%mobs}}',
-            'wave_id'
+            '{{%idx-worlds-race_id}}',
+            '{{%worlds}}',
+            'race_id'
         );
 
-        // add foreign key for table `{{%waves}}`
+        // add foreign key for table `{{%race}}`
         $this->addForeignKey(
-            '{{%fk-mobs-wave_id}}',
-            '{{%mobs}}',
-            'wave_id',
-            '{{%waves}}',
+            '{{%fk-worlds-race_id}}',
+            '{{%worlds}}',
+            'race_id',
+            '{{%race}}',
             'id',
             'CASCADE'
         );
 
         // creates index for column `created_by`
         $this->createIndex(
-            '{{%idx-mobs-created_by}}',
-            '{{%mobs}}',
+            '{{%idx-worlds-created_by}}',
+            '{{%worlds}}',
             'created_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-mobs-created_by}}',
-            '{{%mobs}}',
+            '{{%fk-worlds-created_by}}',
+            '{{%worlds}}',
             'created_by',
             '{{%user}}',
             'id',
@@ -71,15 +68,15 @@ class m230804_205407_create_mobs_table extends Migration
 
         // creates index for column `updated_by`
         $this->createIndex(
-            '{{%idx-mobs-updated_by}}',
-            '{{%mobs}}',
+            '{{%idx-worlds-updated_by}}',
+            '{{%worlds}}',
             'updated_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-mobs-updated_by}}',
-            '{{%mobs}}',
+            '{{%fk-worlds-updated_by}}',
+            '{{%worlds}}',
             'updated_by',
             '{{%user}}',
             'id',
@@ -92,42 +89,42 @@ class m230804_205407_create_mobs_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `{{%waves}}`
+        // drops foreign key for table `{{%race}}`
         $this->dropForeignKey(
-            '{{%fk-mobs-wave_id}}',
-            '{{%mobs}}'
+            '{{%fk-worlds-race_id}}',
+            '{{%worlds}}'
         );
 
-        // drops index for column `wave_id`
+        // drops index for column `race_id`
         $this->dropIndex(
-            '{{%idx-mobs-wave_id}}',
-            '{{%mobs}}'
+            '{{%idx-worlds-race_id}}',
+            '{{%worlds}}'
         );
 
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-mobs-created_by}}',
-            '{{%mobs}}'
+            '{{%fk-worlds-created_by}}',
+            '{{%worlds}}'
         );
 
         // drops index for column `created_by`
         $this->dropIndex(
-            '{{%idx-mobs-created_by}}',
-            '{{%mobs}}'
+            '{{%idx-worlds-created_by}}',
+            '{{%worlds}}'
         );
 
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-mobs-updated_by}}',
-            '{{%mobs}}'
+            '{{%fk-worlds-updated_by}}',
+            '{{%worlds}}'
         );
 
         // drops index for column `updated_by`
         $this->dropIndex(
-            '{{%idx-mobs-updated_by}}',
-            '{{%mobs}}'
+            '{{%idx-worlds-updated_by}}',
+            '{{%worlds}}'
         );
 
-        $this->dropTable('{{%mobs}}');
+        $this->dropTable('{{%worlds}}');
     }
 }

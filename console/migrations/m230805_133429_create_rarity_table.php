@@ -3,23 +3,24 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%type}}`.
+ * Handles the creation of table `{{%rarity}}`.
  * Has foreign keys to the tables:
  *
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_133435_create_type_table extends Migration
+class m230805_133429_create_rarity_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%type}}', [
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
+        $this->createTable('{{%rarity}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(255),
-            'horoscope' => $this->string(15),
             'description' => $this->text(),
             'avatar' => $this->string(8),
             'available' => $this->smallInteger()->notNull()->defaultValue(1),
@@ -27,19 +28,19 @@ class m230804_133435_create_type_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `created_by`
         $this->createIndex(
-            '{{%idx-type-created_by}}',
-            '{{%type}}',
+            '{{%idx-rarity-created_by}}',
+            '{{%rarity}}',
             'created_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-type-created_by}}',
-            '{{%type}}',
+            '{{%fk-rarity-created_by}}',
+            '{{%rarity}}',
             'created_by',
             '{{%user}}',
             'id',
@@ -48,15 +49,15 @@ class m230804_133435_create_type_table extends Migration
 
         // creates index for column `updated_by`
         $this->createIndex(
-            '{{%idx-type-updated_by}}',
-            '{{%type}}',
+            '{{%idx-rarity-updated_by}}',
+            '{{%rarity}}',
             'updated_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-type-updated_by}}',
-            '{{%type}}',
+            '{{%fk-rarity-updated_by}}',
+            '{{%rarity}}',
             'updated_by',
             '{{%user}}',
             'id',
@@ -71,28 +72,28 @@ class m230804_133435_create_type_table extends Migration
     {
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-type-created_by}}',
-            '{{%type}}'
+            '{{%fk-rarity-created_by}}',
+            '{{%rarity}}'
         );
 
         // drops index for column `created_by`
         $this->dropIndex(
-            '{{%idx-type-created_by}}',
-            '{{%type}}'
+            '{{%idx-rarity-created_by}}',
+            '{{%rarity}}'
         );
 
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-type-updated_by}}',
-            '{{%type}}'
+            '{{%fk-rarity-updated_by}}',
+            '{{%rarity}}'
         );
 
         // drops index for column `updated_by`
         $this->dropIndex(
-            '{{%idx-type-updated_by}}',
-            '{{%type}}'
+            '{{%idx-rarity-updated_by}}',
+            '{{%rarity}}'
         );
 
-        $this->dropTable('{{%type}}');
+        $this->dropTable('{{%rarity}}');
     }
 }

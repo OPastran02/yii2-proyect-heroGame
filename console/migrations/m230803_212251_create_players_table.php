@@ -10,13 +10,15 @@ use yii\db\Migration;
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_212251_create_players_table extends Migration
+class m230803_212251_create_players_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         $this->createTable('{{%players}}', [
             'id' => $this->string(36)->notNull()->append('PRIMARY KEY'),
             'phrase' => $this->string(255),
@@ -37,7 +39,7 @@ class m230804_212251_create_players_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `id`
         $this->createIndex(

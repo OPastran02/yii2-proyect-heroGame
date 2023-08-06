@@ -11,13 +11,15 @@ use yii\db\Migration;
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_210115_create_rewards_table extends Migration
+class m230817_210115_create_rewards_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         $this->createTable('{{%rewards}}', [
             'id' => $this->primaryKey(),
             'worlds_id' => $this->integer(11),
@@ -28,7 +30,7 @@ class m230804_210115_create_rewards_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `worlds_id`
         $this->createIndex(
@@ -45,13 +47,6 @@ class m230804_210115_create_rewards_table extends Migration
             '{{%worlds}}',
             'id',
             'CASCADE'
-        );
-
-        // creates index for column `item_id`
-        $this->createIndex(
-            '{{%idx-rewards-item_id}}',
-            '{{%rewards}}',
-            'item_id'
         );
 
         // add foreign key for table `{{%worlds}}`
@@ -119,12 +114,6 @@ class m230804_210115_create_rewards_table extends Migration
         // drops foreign key for table `{{%worlds}}`
         $this->dropForeignKey(
             '{{%fk-rewards-item_id}}',
-            '{{%rewards}}'
-        );
-
-        // drops index for column `item_id`
-        $this->dropIndex(
-            '{{%idx-rewards-item_id}}',
             '{{%rewards}}'
         );
 

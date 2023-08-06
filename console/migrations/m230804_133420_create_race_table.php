@@ -16,6 +16,8 @@ class m230804_133420_create_race_table extends Migration
      */
     public function safeUp()
     {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         $this->createTable('{{%race}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(255),
@@ -25,7 +27,7 @@ class m230804_133420_create_race_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `created_by`
         $this->createIndex(

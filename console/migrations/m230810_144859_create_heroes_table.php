@@ -18,13 +18,15 @@ use yii\db\Migration;
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_144859_create_heroes_table extends Migration
+class m230810_144859_create_heroes_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         $this->createTable('{{%heroes}}', [
             'id' => $this->string(36)->notNull()->append('PRIMARY KEY'),
             'player_id' => $this->string(36),
@@ -33,8 +35,8 @@ class m230804_144859_create_heroes_table extends Migration
             'rarity_id' => $this->integer(8),
             'nature_id' => $this->integer(8),
             'type_id' => $this->integer(8),
-            'stats_id' => $this->integer(36),
-            'race_id' => $this->integer(36),
+            'stats_id' => $this->string(36),
+            'race_id' => $this->integer(8),
             'experience' => $this->integer(11),
             'level' => $this->integer(11),
             'placement_id' => $this->integer(11),
@@ -50,7 +52,7 @@ class m230804_144859_create_heroes_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `player_id`
         $this->createIndex(
@@ -59,12 +61,12 @@ class m230804_144859_create_heroes_table extends Migration
             'player_id'
         );
 
-        // add foreign key for table `{{%player}}`
+        // add foreign key for table `{{%players}}`
         $this->addForeignKey(
             '{{%fk-heroes-player_id}}',
             '{{%heroes}}',
             'player_id',
-            '{{%player}}',
+            '{{%players}}',
             'id',
             'CASCADE'
         );
@@ -245,7 +247,7 @@ class m230804_144859_create_heroes_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `{{%player}}`
+        // drops foreign key for table `{{%players}}`
         $this->dropForeignKey(
             '{{%fk-heroes-player_id}}',
             '{{%heroes}}'

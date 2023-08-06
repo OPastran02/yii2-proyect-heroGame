@@ -10,13 +10,15 @@ use yii\db\Migration;
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_125800_create_stats_table extends Migration
+class m230809_125800_create_stats_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         $this->createTable('{{%stats}}', [
             'id' => $this->string(36)->notNull()->append('PRIMARY KEY'),
             'attack' => $this->integer(10)->notNull(),
@@ -41,24 +43,7 @@ class m230804_125800_create_stats_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
-
-        // creates index for column `id`
-        $this->createIndex(
-            '{{%idx-stats-id}}',
-            '{{%stats}}',
-            'id'
-        );
-
-        // add foreign key for table `{{%heroes}}`
-        $this->addForeignKey(
-            '{{%fk-stats-id}}',
-            '{{%stats}}',
-            'id',
-            '{{%heroes}}',
-            'id',
-            'CASCADE'
-        );
+        ], $tableOptions);
 
         // creates index for column `created_by`
         $this->createIndex(

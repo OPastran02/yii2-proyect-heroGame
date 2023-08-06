@@ -10,13 +10,15 @@ use yii\db\Migration;
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_144848_create_accesories_table extends Migration
+class m230808_144848_create_accesories_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
         $this->createTable('{{%accesories}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(255),
@@ -39,7 +41,7 @@ class m230804_144848_create_accesories_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
+        ], $tableOptions);
 
         // creates index for column `rarity_id`
         $this->createIndex(

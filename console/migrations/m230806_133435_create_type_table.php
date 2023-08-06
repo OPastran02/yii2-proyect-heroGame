@@ -3,24 +3,25 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%worlds}}`.
+ * Handles the creation of table `{{%type}}`.
  * Has foreign keys to the tables:
  *
- * - `{{%race}}`
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m230804_210129_create_worlds_table extends Migration
+class m230806_133435_create_type_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%worlds}}', [
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
+        $this->createTable('{{%type}}', [
             'id' => $this->primaryKey(),
-            'race_id' => $this->string(11),
-            'chapter' => $this->integer(10),
+            'name' => $this->string(255),
+            'horoscope' => $this->string(15),
             'description' => $this->text(),
             'avatar' => $this->string(8),
             'available' => $this->smallInteger()->notNull()->defaultValue(1),
@@ -28,36 +29,19 @@ class m230804_210129_create_worlds_table extends Migration
             'updated_at' => $this->integer(11),
             'created_by' => $this->string(36),
             'updated_by' => $this->string(36),
-        ]);
-
-        // creates index for column `race_id`
-        $this->createIndex(
-            '{{%idx-worlds-race_id}}',
-            '{{%worlds}}',
-            'race_id'
-        );
-
-        // add foreign key for table `{{%race}}`
-        $this->addForeignKey(
-            '{{%fk-worlds-race_id}}',
-            '{{%worlds}}',
-            'race_id',
-            '{{%race}}',
-            'id',
-            'CASCADE'
-        );
+        ], $tableOptions);
 
         // creates index for column `created_by`
         $this->createIndex(
-            '{{%idx-worlds-created_by}}',
-            '{{%worlds}}',
+            '{{%idx-type-created_by}}',
+            '{{%type}}',
             'created_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-worlds-created_by}}',
-            '{{%worlds}}',
+            '{{%fk-type-created_by}}',
+            '{{%type}}',
             'created_by',
             '{{%user}}',
             'id',
@@ -66,15 +50,15 @@ class m230804_210129_create_worlds_table extends Migration
 
         // creates index for column `updated_by`
         $this->createIndex(
-            '{{%idx-worlds-updated_by}}',
-            '{{%worlds}}',
+            '{{%idx-type-updated_by}}',
+            '{{%type}}',
             'updated_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-worlds-updated_by}}',
-            '{{%worlds}}',
+            '{{%fk-type-updated_by}}',
+            '{{%type}}',
             'updated_by',
             '{{%user}}',
             'id',
@@ -87,42 +71,30 @@ class m230804_210129_create_worlds_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `{{%race}}`
-        $this->dropForeignKey(
-            '{{%fk-worlds-race_id}}',
-            '{{%worlds}}'
-        );
-
-        // drops index for column `race_id`
-        $this->dropIndex(
-            '{{%idx-worlds-race_id}}',
-            '{{%worlds}}'
-        );
-
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-worlds-created_by}}',
-            '{{%worlds}}'
+            '{{%fk-type-created_by}}',
+            '{{%type}}'
         );
 
         // drops index for column `created_by`
         $this->dropIndex(
-            '{{%idx-worlds-created_by}}',
-            '{{%worlds}}'
+            '{{%idx-type-created_by}}',
+            '{{%type}}'
         );
 
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-worlds-updated_by}}',
-            '{{%worlds}}'
+            '{{%fk-type-updated_by}}',
+            '{{%type}}'
         );
 
         // drops index for column `updated_by`
         $this->dropIndex(
-            '{{%idx-worlds-updated_by}}',
-            '{{%worlds}}'
+            '{{%idx-type-updated_by}}',
+            '{{%type}}'
         );
 
-        $this->dropTable('{{%worlds}}');
+        $this->dropTable('{{%type}}');
     }
 }
