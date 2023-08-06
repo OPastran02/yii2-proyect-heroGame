@@ -8,8 +8,7 @@ interface AvailableHeroRepository
 {
     public function save(AvailableHero $availableHeroes): void;
 
-    public function search(AvailableHeroesId $id): ?AvailableHero;
+    public function findbyId(AvailableHeroesId $id): ?AvailableHero;
     
-    public function searchByCriteria(Criteria $criteria): array;
-
+    public function searchByrarity(FkId $rarity_id): array;
 }
