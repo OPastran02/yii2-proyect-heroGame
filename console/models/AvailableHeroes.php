@@ -58,6 +58,9 @@ use Yii;
  * @property int|null $updated_at
  * @property string|null $created_by
  * @property string|null $updated_by
+ *
+ * @property User $createdBy
+ * @property User $updatedBy
  */
 class AvailableHeroes extends \yii\db\ActiveRecord
 {
@@ -81,6 +84,8 @@ class AvailableHeroes extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 255],
             [['avatar', 'avatarBlock'], 'string', 'max' => 8],
             [['created_by', 'updated_by'], 'string', 'max' => 36],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
@@ -142,5 +147,25 @@ class AvailableHeroes extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
         ];
+    }
+
+    /**
+     * Gets query for [[CreatedBy]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::class, ['id' => 'created_by']);
+    }
+
+    /**
+     * Gets query for [[UpdatedBy]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::class, ['id' => 'updated_by']);
     }
 }
