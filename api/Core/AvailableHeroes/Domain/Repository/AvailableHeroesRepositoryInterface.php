@@ -10,7 +10,7 @@ interface AvailableHeroesRepositoryInterface
     
     public function getByrarity(FkId $rarity_id): array;
 
-    public function delete(AvailableHero $availableHeroes): void;
+    public function delete(AvailableHeroesId $id): void;
 
     public function save(AvailableHero $availableHeroes): void;
 }
