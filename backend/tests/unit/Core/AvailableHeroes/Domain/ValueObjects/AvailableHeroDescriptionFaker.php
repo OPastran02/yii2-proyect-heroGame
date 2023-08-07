@@ -2,8 +2,8 @@
 
 namespace backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects;
 
-use App\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
-use backend\tests\unit\Core\Shared\Domain\wordFaker;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
+use backend\tests\unit\Shared\Domain\WordFaker;
 
 final class AvailableHeroDescriptionFaker
 {
@@ -14,6 +14,6 @@ final class AvailableHeroDescriptionFaker
 
     public static function random(): AvailableHeroDescription
     {
-        return new AvailableHeroDescription($value ?? wordFaker::create());
+        return new AvailableHeroDescription($value ?? WordFaker::create());
     }
 }

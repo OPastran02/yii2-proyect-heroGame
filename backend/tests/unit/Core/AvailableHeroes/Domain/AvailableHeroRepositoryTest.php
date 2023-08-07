@@ -53,19 +53,28 @@ class AvailableHeroRepositoryTest extends TestCase
         $rarityValue = mt_rand(1, 99); // Genera un número aleatorio entre 1 y 99
         $rarityId = new FkId($rarityValue);
         $availableHeroes = $this->repository->getByRarity($rarityId);
-        $this->assertInstanceOf(AvailableHeroes::class, $availableHeroes);
+        // Comprueba que $availableHeroes es un objeto
+        $this->assertIsObject($availableHeroes);
+        // Comprueba que cada elemento en $availableHeroes es una instancia de AvailableHero
+        foreach ($availableHeroes as $availableHero) {
+            $this->assertInstanceOf(AvailableHero::class, $availableHero);
+        }
     }
 
     public function testDelete()
     {
         // Create an AvailableHeroesId for the test
         $id = AvailableHeroIdFaker::random();
+        
+        // Get the AvailableHero object from the repository
+        $availableHero = $this->repository->getById($id);
+    
+        // Check if the AvailableHero exists
+        $this->assertNotNull($availableHero, 'The AvailableHero does not exist.');
 
         // Call the method to be tested
         $this->repository->delete($id);
         $this->expectNotToPerformAssertions();
-        $this->repository->save($availableHero);
-        // You may want to add further assertions to check if the deletion was successful
     }
 
     public function testSave()
