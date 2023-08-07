@@ -2,8 +2,8 @@
 
 namespace backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects;
 
-use App\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
-use backend\tests\unit\Core\Shared\Domain\IntegerFaker;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
+use backend\tests\unit\Shared\Domain\IntegerFaker;
 
 final class AvailableHeroIdFaker
 {

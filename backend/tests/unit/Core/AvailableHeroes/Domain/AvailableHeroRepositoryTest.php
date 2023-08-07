@@ -5,22 +5,30 @@ declare(strict_types=1);
 namespace backend\tests\unit\Core\AvailableHeroes\Domain;
 
 use PHPUnit\Framework\TestCase;
-use App\Core\AvailableHeroes\Domain\AvailableHero;
-use App\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
-use App\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
-use App\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
-use App\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
-use App\Shared\Domain\ValueObjects\Avatar;
-use App\Shared\Domain\ValueObjects\Boost;
-use App\Shared\Domain\ValueObjects\DateTimeImmutableValueObject;
-use App\Shared\Domain\ValueObjects\FkId;
-use App\Shared\Domain\ValueObjects\Stats;
+use api\Core\AvailableHeroes\Domain\AvailableHero;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
+use api\Shared\Domain\ValueObject\Avatar;
+use api\Shared\Domain\ValueObject\Boost;
+use api\Shared\Domain\ValueObject\DateTimeImmutableValueObject;
+use api\Shared\Domain\ValueObject\FkId;
+use api\Shared\Domain\ValueObject\Stats;
+use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroIdFaker;
+use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescriptionFaker;
+use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroNameFaker;
+use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorldFaker;
+use backend\tests\unit\Shared\Domain\ValueObject\FkIdFaker;
+use backend\tests\unit\Shared\Domain\ValueObject\AvatarFaker;
+use backend\tests\unit\Shared\Domain\ValueObject\BoostFaker;
+use backend\tests\unit\Shared\Domain\ValueObject\StatsFaker;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroRepositoryACtiveRecord as AvailableHeroRepository;
 
 
 class AvailableHeroRepositoryTest extends TestCase
 {
-    private AvailableHeroRepositoryTest $repository;
+    private AvailableHeroRepository $repository;
 
     protected function setUp(): void
     {
