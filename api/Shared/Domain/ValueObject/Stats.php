@@ -2,17 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\ValueObject;
+namespace api\Shared\Domain\ValueObject;
 
-final class Stats
+use api\Shared\Domain\ValueObject\Primitives\IntValueObject;
+final class Stats extends IntValueObject
 {
+
+    protected int $value;
+
     private const MIN_VALUE = 0;
     private const MAX_VALUE = 4000000;    
 
-    public function __construct(private int $value)
+    public function __construct( int $value)
     {
         parent::__construct($value);
         $this->ensureIsBetweenAcceptedValues($value);
+        $this->value = $value;
     }
 
     public function ensureIsBetweenAcceptedValues(int $value): void

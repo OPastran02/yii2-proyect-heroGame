@@ -2,8 +2,8 @@
 
 namespace backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects;
 
-use App\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
-use backend\tests\unit\Core\Shared\Domain\wordFaker;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
+use backend\tests\unit\Shared\Domain\wordFaker;
 
 final class AvailableHeroWorldFaker
 {

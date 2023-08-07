@@ -10,18 +10,16 @@ use DateTimeImmutable;
 
 abstract class DomainEvent
 {
-    private string $eventId;
-    private string $occurredOn;
-    private string $aggregateId,
-
+    private readonly string $eventId;
+    private readonly string $occurredOn;
+    
     public function __construct(
-        private string $aggregateId,
-        private string $eventId = null,
-        private string $occurredOn = null
+        private readonly string $aggregateId,
+        string $eventId = null,
+        string $occurredOn = null
     ) {
-        $this->aggregateId = $aggregateId;
-        $this->eventId = $eventId ?? UUID::random()->value();
-        $this->occurredOn = $occurredOn ?? Utils::dateToString(new DateTimeImmutable());
+        $this->eventId = $eventId ?: UUID::random()->value();
+        $this->occurredOn = $occurredOn ?: Utils::dateToString(new DateTimeImmutable());
     }
 
     //convierte los objetos en primitivos
@@ -32,9 +30,9 @@ abstract class DomainEvent
         string $occurredOn
     ): self;
 
-    abstract public function toPrimitives(): array;
-
     abstract public static function eventName(): string;
+
+    abstract public function toPrimitives(): array;
 
     public function aggregateId(): string
     {

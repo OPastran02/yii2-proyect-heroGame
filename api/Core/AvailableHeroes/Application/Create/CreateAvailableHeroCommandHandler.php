@@ -124,6 +124,6 @@ final class CreateAvailableHeroCommandHandler implements Command
             $updated_at,
             $created_by,
             $updated_by,
-        )
+        );
     }
 }

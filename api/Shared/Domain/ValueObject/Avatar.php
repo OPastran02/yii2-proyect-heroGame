@@ -2,16 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\ValueObject;
+namespace api\Shared\Domain\ValueObject;
+
+use api\Shared\Domain\ValueObject\Primitives\StringValueObject;
 
 final class Avatar extends StringValueObject
 {
+    protected string $value;
+
     private const MIN_LENGTH = 1;
     private const MAX_LENGTH = 8;
-    public function __construct(private string $value)
+    public function __construct(string $value)
     {        
         parent::__construct($value);
         $this->ensureLengthIsBetweenAcceptedValues($value);
+        $this->value = $value;
     }
 
     private function ensureLengthIsBetweenAcceptedValues(string $value): void

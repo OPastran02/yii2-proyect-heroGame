@@ -13,6 +13,8 @@ use api\Shared\Domain\ValueObject\Boost;
 use api\Shared\Domain\ValueObject\Stats;
 use api\Shared\Domain\ValueObject\FkId;
 use api\Shared\Domain\Aggregate\AggregateRoot;
+use DateTimeImmutable;
+
 
 final class AvailableHero extends AggregateRoot
 {
@@ -22,7 +24,7 @@ final class AvailableHero extends AggregateRoot
         private AvailableHeroDescription $description,
         private AvailableHeroWorld $world,
         private Avatar $avatar,
-        private Avatar $avatarBlock,
+        private Avatar $avatarBlock,//
         private FkId $race_id,
         private FkId $rarity_id,
         private FkId $nature_id,
@@ -30,35 +32,35 @@ final class AvailableHero extends AggregateRoot
         private Stats $attack_min,
         private Stats $attack_max,
         private Boost $b_attack_min,
-        private Boost $b_attack_max,
+        private Boost $b_attack_max,//
         private Stats $defense_min,
         private Stats $defense_max,
         private Boost $b_defense_min,
-        private Boost $b_defense_max,
+        private Boost $b_defense_max,//
         private Stats $hp_min,
         private Stats $hp_max,
         private Boost $b_hp_min,
-        private Boost $b_hp_max,
+        private Boost $b_hp_max,//
         private Stats $sp_attack_min,
         private Stats $sp_attack_max,
         private Boost $b_sp_attack_min,
-        private Boost $b_sp_attack_max,
+        private Boost $b_sp_attack_max,//
         private Stats $sp_defense_min,
         private Stats $sp_defense_max,
         private Boost $b_sp_defense_min,
-        private Boost $b_sp_defense_max,
+        private Boost $b_sp_defense_max,//
         private Stats $speed_min,
         private Stats $speed_max,
         private Boost $b_speed_min,
-        private Boost $b_speed_max,
+        private Boost $b_speed_max,//
         private Stats $farming_min,
         private Stats $farming_max,
         private Boost $b_farming_min,
-        private Boost $b_farming_max,
+        private Boost $b_farming_max,//
         private Stats $steeling_min,
         private Stats $steeling_max,
         private Boost $b_steeling_min,
-        private Boost $b_steeling_max,
+        private Boost $b_steeling_max,//
         private Stats $wooding_min,
         private Stats $wooding_max,
         private Boost $b_wooding_min,
@@ -224,8 +226,8 @@ final class AvailableHero extends AggregateRoot
                 $wooding_max->value(),
                 $b_wooding_min->value(),
                 $b_wooding_max->value(),
-                $created_at->value(),
-                $updated_at->value(),
+                $created_at,
+                $updated_at,
                 $created_by->value(),
                 $updated_by->value()
                 )

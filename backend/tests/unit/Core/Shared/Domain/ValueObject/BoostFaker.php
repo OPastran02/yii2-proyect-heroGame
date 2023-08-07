@@ -1,8 +1,8 @@
 <?php
 
 namespace backend\tests\unit\Core\Shared\Domain\ValueObject;
-use App\Shared\Domain\ValueObjects\Boost;
-use backend\tests\unit\Core\Shared\Domain\IntegerFaker;
+use api\Shared\Domain\ValueObject\Boost;
+use backend\tests\unit\Shared\Domain\IntegerFaker;
 
 final class BoostFaker
 {
@@ -13,6 +13,7 @@ final class BoostFaker
 
     public static function random(): Boost
     {
-        return new Boost($value ?? IntegerFaker::create());
+        $randomValue = mt_rand(0, 50);
+        return new Boost($randomValue);
     }
 }

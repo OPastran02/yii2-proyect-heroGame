@@ -14,6 +14,7 @@ final class AvatarFaker
 
     public static function random(): Avatar
     {
-        return new Avatar($value ?? wordFaker::create());
+        $randomValue = substr(wordFaker::create(), 0, 8);
+        return new Avatar($randomValue);    
     }
 }

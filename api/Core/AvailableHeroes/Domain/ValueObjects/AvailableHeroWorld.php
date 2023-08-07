@@ -3,17 +3,18 @@
 declare(strict_types=1);
 
 namespace api\Core\AvailableHeroes\Domain\ValueObjects;
-
+use api\Shared\Domain\ValueObject\Primitives\StringValueObject;
 final class AvailableHeroWorld extends StringValueObject
 {
+    protected string $value;
 
     private const MIN_LENGTH = 1;
     private const MAX_LENGTH = 255;
-    public function __construct(private string $world)
+    public function __construct(string $value)
     {
         parent::__construct($value);
         $this->ensureIsValidName($value);
-        $this->ensureLengthIsBetweenAcceptedValues($world);
+        $this->value = $value;
     }
 
     private function ensureIsValidName(string $value): void
@@ -25,20 +26,8 @@ final class AvailableHeroWorld extends StringValueObject
         }
     }
 
-    public function ensureIsBetweenAcceptedValues(string $world): void
-    {
-        if (!in_array($world, AvailableHeroWorld::availableWorlds())) {
-            throw new DomainException(
-                sprintf(
-                    'The world value (%s) is invalid',
-                    $world
-                )
-            );
-        }
-    }
-
     public function value(): string
     {
-        return $this->world;
+        return $this->value;
     }
 }

@@ -2,10 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\ValueObject;
+namespace api\Shared\Domain\ValueObject;
+use api\Shared\Domain\ValueObject\Primitives\IntValueObject;
 
-final class Boost extends IntegerValueObject
+final class Boost extends IntValueObject
 {
+    protected int $value;
+
     private const MIN_VALUE = 0;
     private const MAX_VALUE = 50;
 
@@ -13,6 +16,7 @@ final class Boost extends IntegerValueObject
     {
         parent::__construct($value);
         $this->ensureIsBetweenAcceptedValues($value);
+        $this->value = $value;
     }
 
     public function ensureIsBetweenAcceptedValues(int $value): void

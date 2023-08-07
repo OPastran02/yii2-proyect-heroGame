@@ -12,7 +12,6 @@ use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
 use api\Shared\Domain\ValueObject\Avatar;
 use api\Shared\Domain\ValueObject\Boost;
-use api\Shared\Domain\ValueObject\DateTimeImmutableValueObject;
 use api\Shared\Domain\ValueObject\FkId;
 use api\Shared\Domain\ValueObject\Stats;
 use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroIdFaker;
@@ -24,6 +23,7 @@ use backend\tests\unit\Core\Shared\Domain\ValueObject\AvatarFaker;
 use backend\tests\unit\Core\Shared\Domain\ValueObject\BoostFaker;
 use backend\tests\unit\Core\Shared\Domain\ValueObject\StatsFaker;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroRepositoryACtiveRecord as AvailableHeroRepository;
+use DateTimeImmutable;
 
 
 class AvailableHeroRepositoryTest extends TestCase
@@ -86,7 +86,7 @@ class AvailableHeroRepositoryTest extends TestCase
             AvailableHeroDescriptionFaker::random(),
             AvailableHeroWorldFaker::random(),
             AvatarFaker::random(),
-            AvatarFaker::random(),
+            AvatarFaker::random(),//
             FkIdFaker::random(),
             FkIdFaker::random(),
             FkIdFaker::random(),
@@ -94,33 +94,41 @@ class AvailableHeroRepositoryTest extends TestCase
             StatsFaker::random(),
             StatsFaker::random(),
             BoostFaker::random(),
-            BoostFaker::random(),
+            BoostFaker::random(),//
             StatsFaker::random(),
             StatsFaker::random(),
             BoostFaker::random(),
-            BoostFaker::random(),
+            BoostFaker::random(),//
             StatsFaker::random(),
             StatsFaker::random(),
             BoostFaker::random(),
-            BoostFaker::random(),
+            BoostFaker::random(),//
             StatsFaker::random(),
             StatsFaker::random(),
             BoostFaker::random(),
-            BoostFaker::random(),
+            BoostFaker::random(),//
             StatsFaker::random(),
             StatsFaker::random(),
             BoostFaker::random(),
-            BoostFaker::random(),
+            BoostFaker::random(),//
             StatsFaker::random(),
             StatsFaker::random(),
             BoostFaker::random(),
-            BoostFaker::random(),
+            BoostFaker::random(),//
             StatsFaker::random(),
             StatsFaker::random(),
             BoostFaker::random(),
+            BoostFaker::random(),//
+            StatsFaker::random(),
+            StatsFaker::random(),
             BoostFaker::random(),
-            DateTimeImmutableValueObject::random(),
-            DateTimeImmutableValueObject::random(),
+            BoostFaker::random(),//
+            StatsFaker::random(),
+            StatsFaker::random(),
+            BoostFaker::random(),
+            BoostFaker::random(),//
+            new DateTimeImmutable(),
+            new DateTimeImmutable(),
             FkIdFaker::random(),
             FkIdFaker::random(),
         );

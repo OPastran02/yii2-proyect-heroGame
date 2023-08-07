@@ -12,7 +12,7 @@ final class AvailableHeroFinder
 
     public function __invoke(AvailableHeroId $id): AvailableHeroes
     {
-        $availableHero = $this->repository->search($id)
+        $availableHero = $this->repository->search($id);
         if ($availableHero === null){
             throw new AvailableHeroNotExists($id);
         }
