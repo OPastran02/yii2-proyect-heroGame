@@ -35,6 +35,12 @@
         "symfony/browser-kit": "^6.0 || >=2.7 <=4.2.4",
         "yiisoft/yii2-codeception": "^2.0"
     },
+    "autoload": {  
+        "classmap": [  
+            "vendor/yiisoft/yii2/BaseYii.php",  
+            "vendor/yiisoft/yii2/yii.php" 
+        ]
+    },
     "autoload-dev": {
         "psr-4": {
             "common\\tests\\": ["common/tests/", "common/tests/_support"],

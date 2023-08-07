@@ -1,9 +1,9 @@
 <?php
 
-namespace backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects;
+namespace backend\tests\unit\Core\Shared\Domain\ValueObject;
 
-use App\Shared\Domain\ValueObjects\Avatar;
-use backend\tests\unit\Core\Shared\Domain\wordFaker;
+use api\Shared\Domain\ValueObject\Avatar;
+use backend\tests\unit\Shared\Domain\wordFaker;
 
 final class AvatarFaker
 {

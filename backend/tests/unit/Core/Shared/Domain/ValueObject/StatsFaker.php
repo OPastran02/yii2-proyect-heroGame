@@ -1,9 +1,9 @@
 <?php
 
-namespace backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects;
+namespace backend\tests\unit\Core\Shared\Domain\ValueObject;
 
-use App\Shared\Domain\ValueObjects\Stats;
-use backend\tests\unit\Core\Shared\Domain\IntegerFaker;
+use api\Shared\Domain\ValueObject\Stats;
+use backend\tests\unit\Shared\Domain\IntegerFaker;
 
 final class StatsFaker
 {

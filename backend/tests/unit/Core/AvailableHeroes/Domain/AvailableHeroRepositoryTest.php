@@ -19,10 +19,10 @@ use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroIdF
 use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescriptionFaker;
 use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroNameFaker;
 use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorldFaker;
-use backend\tests\unit\Shared\Domain\ValueObject\FkIdFaker;
-use backend\tests\unit\Shared\Domain\ValueObject\AvatarFaker;
-use backend\tests\unit\Shared\Domain\ValueObject\BoostFaker;
-use backend\tests\unit\Shared\Domain\ValueObject\StatsFaker;
+use backend\tests\unit\Core\Shared\Domain\FkIdFaker;
+use backend\tests\unit\Core\Shared\Domain\AvatarFaker;
+use backend\tests\unit\Core\Shared\Domain\BoostFaker;
+use backend\tests\unit\Core\Shared\Domain\StatsFaker;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroRepositoryACtiveRecord as AvailableHeroRepository;
 
 
@@ -51,8 +51,6 @@ class AvailableHeroRepositoryTest extends TestCase
     public function testGetByRarity()
     {
         $rarityId = FkIdFaker::random();
-
-
         $availableHeroes = $this->repository->getByRarity($rarityId);
         $this->assertIsArray($availableHeroes);
     }

@@ -1,9 +1,8 @@
 <?php
 
-namespace backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects;
-
-use App\Shared\Domain\ValueObjects\FkId;
-use backend\tests\unit\Core\Shared\Domain\IntegerFaker;
+namespace backend\tests\unit\Core\Shared\Domain\ValueObject;
+use api\Shared\Domain\ValueObject\FkId;
+use backend\tests\unit\Shared\Domain\IntegerFaker;
 
 final class FkIdFaker
 {

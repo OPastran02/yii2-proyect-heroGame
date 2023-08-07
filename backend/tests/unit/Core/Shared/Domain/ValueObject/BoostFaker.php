@@ -1,7 +1,6 @@
 <?php
 
-namespace backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects;
-
+namespace backend\tests\unit\Core\Shared\Domain\ValueObject;
 use App\Shared\Domain\ValueObjects\Boost;
 use backend\tests\unit\Core\Shared\Domain\IntegerFaker;
 
