@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace api\Core\AvailableHeroes\Domain;
 
 use api\Shared\Domain\Bus\Event\DomainEvent;
-use DateTimeImmutable;
+use DateTime;
 
 final class AvailableHeroCreatedDomainEvent extends DomainEvent
 {
@@ -57,14 +57,14 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
         private readonly int $wooding_max,
         private readonly int $b_wooding_min,
         private readonly int $b_wooding_max,
-        private readonly DateTimeInmutable $created_at,
-        private readonly DateTimeInmutable $updated_at,
-        private readonly string $created_by,
-        private readonly string $updated_by,
+        private readonly DateTime $created_at,
+        private readonly DateTime $updated_at,
+        private readonly int $created_by,
+        private readonly int $updated_by,
         string $eventId = null,
         string $occurredOn = null
     ) {
-        parent::__construct($aggregateId, $eventId, $occurredOn);
+        parent::__construct($id, $eventId, $occurredOn);
     }
 
     public static function eventName(): string

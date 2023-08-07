@@ -9,6 +9,7 @@ use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
 use console\models\AvailableHeroes as AvailableHeroModel;
 use Yii;
+use DateTime;
 
 class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryInterface
 {
@@ -48,8 +49,8 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
         $wooding = new Stats($availableHeroModel->wooding_min, $availableHeroModel->wooding_max);
         $b_wooding = new Boost($availableHeroModel->b_wooding_min, $availableHeroModel->b_wooding_max);
         $available = $availableHeroModel->available;
-        $created_at = new DateTimeImmutableValueObject($availableHeroModel->created_at);
-        $updated_at = new DateTimeImmutableValueObject($availableHeroModel->updated_at);
+        $created_at = new DateTime($availableHeroModel->created_at);
+        $updated_at = new DateTime($availableHeroModel->updated_at);
         $created_by = $availableHeroModel->created_by;
         $updated_by = $availableHeroModel->updated_by;
     

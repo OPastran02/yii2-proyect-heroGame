@@ -23,7 +23,7 @@ use backend\tests\unit\Core\Shared\Domain\ValueObject\AvatarFaker;
 use backend\tests\unit\Core\Shared\Domain\ValueObject\BoostFaker;
 use backend\tests\unit\Core\Shared\Domain\ValueObject\StatsFaker;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroRepositoryACtiveRecord as AvailableHeroRepository;
-use DateTimeImmutable;
+use DateTime;
 
 
 class AvailableHeroRepositoryTest extends TestCase
@@ -127,8 +127,8 @@ class AvailableHeroRepositoryTest extends TestCase
             StatsFaker::random(),
             BoostFaker::random(),
             BoostFaker::random(),//
-            new DateTimeImmutable(),
-            new DateTimeImmutable(),
+            new DateTime(),
+            new DateTime(),
             FkIdFaker::random(),
             FkIdFaker::random(),
         );

@@ -13,7 +13,7 @@ use api\Shared\Domain\ValueObject\Boost;
 use api\Shared\Domain\ValueObject\Stats;
 use api\Shared\Domain\ValueObject\FkId;
 use api\Shared\Domain\Aggregate\AggregateRoot;
-use DateTimeImmutable;
+use DateTime;
 
 
 final class AvailableHero extends AggregateRoot
@@ -65,8 +65,8 @@ final class AvailableHero extends AggregateRoot
         private Stats $wooding_max,
         private Boost $b_wooding_min,
         private Boost $b_wooding_max,
-        private readonly DateTimeImmutable $created_at,
-        private readonly DateTimeImmutable $updated_at,
+        private readonly DateTime $created_at,
+        private readonly DateTime $updated_at,
         private readonly FkId $created_by,
         private readonly FkId $updated_by
     ){
@@ -120,8 +120,8 @@ final class AvailableHero extends AggregateRoot
         Stats $wooding_max,
         Boost $b_wooding_min,
         Boost $b_wooding_max,
-        DateTimeImmutable $created_at,
-        DateTimeImmutable $updated_at,
+        DateTime $created_at,
+        DateTime $updated_at,
         FkId $created_by,
         FkId $updated_by
     ): self {
