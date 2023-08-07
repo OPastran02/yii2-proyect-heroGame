@@ -8,10 +8,10 @@ final class IntegerFaker
 {
     public static function create(): int
     {
-        return self::between(1);
+        return self::between(1,99);
     }
 
-    public static function between(int $min, $max = PHP_INT_MAX): int
+    public static function between(int $min, $max): int
     {
         return FakerCreator::random()->numberBetween($min, $max);
     }

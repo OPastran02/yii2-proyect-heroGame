@@ -13,6 +13,6 @@ final class FkIdFaker
 
     public static function random(): FkId
     {
-        return new FkId($value ?? IntegerFaker::create());
+        return new FkId($value ?? IntegerFaker::between(1,99));
     }
 }

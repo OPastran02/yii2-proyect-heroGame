@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace api\Shared\Domain\ValueObject;
 
+use api\Shared\Domain\ValueObject\Primitives\intvalueObject;
+use Error;
+
 final class FkId extends intvalueObject
 {
     private const MIN_VALUE = 1;
@@ -18,7 +21,7 @@ final class FkId extends intvalueObject
     public function ensureIsBetweenAcceptedValues(int $value): void
     {
         if ($value < self::MIN_VALUE || $value > self::MAX_VALUE) {
-            throw new DomainException(
+            throw new Error(
                 sprintf(
                     'The value (%s) must be between %s and %s',
                     $value,
