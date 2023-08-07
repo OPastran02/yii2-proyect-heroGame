@@ -2,15 +2,15 @@
 
 namespace api\Core\AvailableHeroes\Infrastructure\Persistence;
 
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
 use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
-use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
 use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
 use console\models\AvailableHeroes as AvailableHeroModel;
 
 class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryInterface
 {
-    public function getbyId(AvailableHeroId $id): AvailableHero
+    public function getbyId(AvailableHeroId $id): ?AvailableHero
     {
         $availableHero = AvailableHeroModel::findOne($id);
         return $availableHero->toDomain();
