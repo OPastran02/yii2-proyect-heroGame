@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Domain;
+namespace api\Core\AvailableHeroes\Domain;
 
 final class AvailableHeroFinder
 {

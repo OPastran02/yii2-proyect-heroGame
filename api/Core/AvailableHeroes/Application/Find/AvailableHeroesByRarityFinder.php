@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Application\Find;
+namespace api\Core\AvailableHeroes\Application\Find;
 
-use App\Core\AvailableHeroes\Domain\AvailableHero;
-use App\Core\AvailableHeroes\Domain\AvailableHeroRepository;
-use App\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
-use App\Core\AvailableHeroes\Domain\Exceptions\AvailableHeroNotFound;
+use api\Core\AvailableHeroes\Domain\AvailableHero;
+use api\Core\AvailableHeroes\Domain\AvailableHeroesRepositoryInterface as AvailableHeroRepository;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
+use api\Core\AvailableHeroes\Domain\Exceptions\AvailableHeroesNotFound;
 
 final class AvailableHeroesByRarityFinder
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Domain\ValueObjects;
+namespace api\Core\AvailableHeroes\Domain\ValueObjects;
 
 final class AvailableHeroWorld extends StringValueObject
 {

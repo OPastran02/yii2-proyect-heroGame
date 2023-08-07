@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Application\Create;
+namespace api\Core\AvailableHeroes\Application\Create;
 
-use App\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
-use App\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
-use App\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
-use App\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
-use App\Shared\Domain\ValueObjects\Avatar;
-use App\Shared\Domain\ValueObjects\Boost;
-use App\Shared\Domain\ValueObjects\Stats;
-use App\Shared\Domain\ValueObjects\FkId;
-use App\Shared\Domain\Bus\command\CommandHandler;
+use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
+use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
+use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
+use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
+use api\Shared\Domain\ValueObject\Avatar;
+use api\Shared\Domain\ValueObject\Boost;
+use api\Shared\Domain\ValueObject\Stats;
+use api\Shared\Domain\ValueObject\FkId;
+use api\Shared\Domain\Bus\command\CommandHandler;
 
 final class CreateAvailableHeroCommandHandler implements Command
 {

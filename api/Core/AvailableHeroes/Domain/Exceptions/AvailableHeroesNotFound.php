@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Domain;
+namespace api\Core\AvailableHeroes\Domain\Exceptions;
 
-use App\Shared\Domain○\DomainError;
+use api\Shared\Domain\DomainError;
 
-final class AvailableHeroesNotFound extend DomainError
+final class AvailableHeroesNotFound extends DomainError
 {
     public function __construct (private AvailableHeroId $id)
     {

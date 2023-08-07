@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Domain\ValueObjects;
+namespace api\Core\AvailableHeroes\Domain\ValueObjects;
+
+use api\Shared\Domain\ValueObject\Primitives\IntValueObject;
 
 final class AvailableHeroId extends IntValueObject
 {

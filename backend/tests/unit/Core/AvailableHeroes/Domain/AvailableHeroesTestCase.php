@@ -167,6 +167,5 @@ final class AvailableHeroesTestCase
             FkIdFaker::random(),
             FkIdFaker::random(),
         );
-
-
+    }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Domain;
+namespace api\Core\AvailableHeroes\Domain;
 
-use App\Shared\Domain\Collection;
+use api\Shared\Domain\Collection;
 
 final class AvailableHeroes extends Collection
 {

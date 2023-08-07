@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\ValueObject\Primitives;
+namespace api\Shared\Domain\ValueObject\Primitives;
 
 abstract class IntValueObject
 {

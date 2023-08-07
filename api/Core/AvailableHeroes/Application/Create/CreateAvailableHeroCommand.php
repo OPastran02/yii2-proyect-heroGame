@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Application\Create;
+namespace api\Core\AvailableHeroes\Application\Create;
 
-use App\Shared\Domain\Bus\Command\Command;
+use api\Shared\Domain\Bus\Command\Command;
 
 final class CreateAvailableHeroCommand implements Command
 {

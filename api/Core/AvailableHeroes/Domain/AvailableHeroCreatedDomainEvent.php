@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Domain;
+namespace api\Core\AvailableHeroes\Domain;
 
-use App\Shared\Domain\Bus\Event\DomainEvent;
+use api\Shared\Domain\Bus\Event\DomainEvent;
 
 final class AvailableHeroCreatedDomainEvent extends DomainEvent
 {

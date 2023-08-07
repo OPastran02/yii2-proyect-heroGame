@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Core\AvailableHeroes\Domain;
+namespace api\Core\AvailableHeroes\Domain;
 
-use App\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
-use App\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
-use App\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
-use App\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
-use App\shared\Domain\ValueObjects\Avatar;
-use App\shared\Domain\ValueObjects\Boost;
-use App\shared\Domain\ValueObjects\Stats;
-use App\shared\Domain\ValueObjects\FkId;
-use App\shared\Domain\Aggregate\AggregateRoot;
+use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
+use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
+use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
+use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
+use api\Shared\Domain\ValueObject\Avatar;
+use api\Shared\Domain\ValueObject\Boost;
+use api\Shared\Domain\ValueObject\Stats;
+use api\Shared\Domain\ValueObject\FkId;
+use api\Shared\Domain\Aggregate\AggregateRoot;
 
 final class AvailableHero extends AggregateRoot
 {

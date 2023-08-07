@@ -1,16 +1,16 @@
 <?php   
 
-namespace App\Core\AvailableHeroes\Domain;
+namespace api\Core\AvailableHeroes\Domain\Repository;
 
-use App\Shared\Domain\Criteria\Criteria;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
 
 interface AvailableHeroesRepositoryInterface
 {
-    public function getbyId(AvailableHeroesId $id): ?AvailableHero;
+    public function getbyId(AvailableHeroId $id): ?AvailableHero;
     
     public function getByrarity(FkId $rarity_id): array;
 
-    public function delete(AvailableHeroesId $id): void;
+    public function delete(AvailableHeroId $id): void;  
 
     public function save(AvailableHero $availableHeroes): void;
 }
