@@ -9,6 +9,8 @@ use Error;
 
 final class FkId extends intvalueObject
 {
+    protected int $value;
+
     private const MIN_VALUE = 1;
     private const MAX_VALUE = 99;
 
@@ -16,6 +18,7 @@ final class FkId extends intvalueObject
     {
         parent::__construct($value);
         $this->ensureIsBetweenAcceptedValues($value);
+        $this->value = $value;
     }
 
     public function ensureIsBetweenAcceptedValues(int $value): void

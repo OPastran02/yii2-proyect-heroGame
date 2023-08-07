@@ -50,9 +50,10 @@ class AvailableHeroRepositoryTest extends TestCase
 
     public function testGetByRarity()
     {
-        $rarityId = FkIdFaker::random();
+        $rarityValue = mt_rand(1, 99); // Genera un número aleatorio entre 1 y 99
+        $rarityId = new FkId($rarityValue);
         $availableHeroes = $this->repository->getByRarity($rarityId);
-        $this->assertIsArray($availableHeroes);
+        $this->assertInstanceOf(AvailableHeroes::class, $availableHeroes);
     }
 
     public function testDelete()
