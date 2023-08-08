@@ -9,7 +9,7 @@ use DomainException;
 //clase final que toma dos Seconds y genera un intervalo de tiempo
 final class SecondsInterval
 {
-    public funcion __construct(private Seconds $start, private Seconds $end)
+    public function __construct(private Seconds $start, private Seconds $end)
     {
         $this->ensureStartIsLessThanEnd();
     }

@@ -13,6 +13,7 @@ use api\Shared\Domain\ValueObject\Boost;
 use api\Shared\Domain\ValueObject\Stats;
 use api\Shared\Domain\ValueObject\FkId;
 use api\Shared\Domain\Bus\command\CommandHandler;
+use DateTime;
 
 final class CreateAvailableHeroCommandHandler implements Command
 {
@@ -68,8 +69,9 @@ final class CreateAvailableHeroCommandHandler implements Command
         $wooding_max       = new Stats($command->wooding_max());            
         $b_wooding_min     = new Boost($command->b_wooding_min());              
         $b_wooding_max     = new Boost($command->b_wooding_max());              
-        $created_at        = new DateTimeImmutable($command->created_at());               
-        $updated_at        = new DateTimeImmutable($command->updated_at());               
+        $available         = $command->available();
+        $created_at        = new DateTime($command->created_at());               
+        $updated_at        = new DateTime($command->updated_at());               
         $created_by        = new FkId($command->created_by());          
         $updated_by        = new FkId($command->updated_by());          
     
@@ -120,6 +122,7 @@ final class CreateAvailableHeroCommandHandler implements Command
             $wooding_max,
             $b_wooding_min,
             $b_wooding_max,
+            $available,
             $created_at,
             $updated_at,
             $created_by,

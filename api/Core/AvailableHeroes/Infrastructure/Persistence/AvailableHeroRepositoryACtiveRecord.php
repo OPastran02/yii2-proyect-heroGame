@@ -8,6 +8,8 @@ use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
 use console\models\AvailableHeroes as AvailableHeroModel;
+use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroMapper;    
+
 use Yii;
 use DateTime;
 
@@ -103,9 +105,9 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
         $availableHero->delete();
     }
 
-    public function save(AvailableHero $available): void
+    public function save(AvailableHero $availableHero): void
     {
-        $availableHero = $available->toModel();
-        $availableHero->save();
+        $model = AvailableHeroMapper::toModel($availableHero);
+        $model->save();
     }
 }

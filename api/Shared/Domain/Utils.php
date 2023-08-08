@@ -2,9 +2,9 @@
 
 declare(strict_types=1); 
 
-namespace App\Shared\Domain;
+namespace api\Shared\Domain;
 
-use DateTimeImmutable;
+use DateTime;
 use DateTimeInterface;
 use ReflectionClass;
 use RuntimeException;
@@ -14,9 +14,9 @@ use function Lambdish\Phunctional\filter;
 //clase utils que contiene funciones que se pueden usar en cualquier parte del proyecto
 final class Utils{
 
-    public static function dateTimeFrom(string $date): DateTimeInterface
+    public static function dateTimeFrom(string $date): DateTime
     {
-        return new DateTimeImmutable($date);
+        return new DateTime($date);
     }
 
     public static function stringToCamelCase(string $text): string
@@ -54,9 +54,9 @@ final class Utils{
         return $date->format(DateTimeInterface::ATOM);
     }
 
-    public static function stringToDate(string $date): DateTimeImmutable
+    public static function stringToDate(string $date): DateTime
     {
-        return new DateTimeImmutable($date);
+        return new DateTime($date);
     }
 
     public static function jsonEncode(array $data): string

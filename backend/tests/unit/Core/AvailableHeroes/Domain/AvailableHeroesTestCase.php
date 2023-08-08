@@ -12,8 +12,7 @@ use App\Core\AvailableHeroes\Domain\Avatar;
 use App\Core\AvailableHeroes\Domain\Boost;
 use App\Core\AvailableHeroes\Domain\Stats;
 use App\Shared\Domain\ValueObjects\FkId;
-use App\Shared\Domain\ValueObjects\DateTimeImmutableValueObject;
-use App\Shared\Domain\ValueObjects\DateTimeValueObject;
+use DateTime;
 
 final class AvailableHeroesTestCase
 {
@@ -64,8 +63,9 @@ final class AvailableHeroesTestCase
         ?Stats                           $wooding_max = null,
         ?Boost                           $b_wooding_min = null,
         ?Boost                           $b_wooding_max = null,
-        ?DateTimeImmutableValueObject    $created_at = null,
-        ?DateTimeImmutableValueObject    $updated_at = null,
+        ?bool                            $available = null, 
+        ?DateTime                        $created_at = null,
+        ?DateTime                        $updated_at = null,
         ?FkId                            $created_by = null,
         ?FkId                            $updated_by = null,
     ): AvailableHero{
@@ -115,8 +115,9 @@ final class AvailableHeroesTestCase
         $wooding_max            = $wooding_max ?? StatsFaker::random();
         $b_wooding_min          = $b_wooding_min ?? BoostFaker::random();
         $b_wooding_max          = $b_wooding_max ?? BoostFaker::random();
-        $created_at             = $created_at ?? DateTimeImmutableValueObject::random();
-        $updated_at             = $updated_at ?? DateTimeImmutableValueObject::random();
+        $available              = $available ?? true;
+        $created_at             = $created_at ?? DateTime::random();
+        $updated_at             = $updated_at ?? DateTime::random();
         $created_by             = $created_by ?? FkIdFaker::random();
         $updated_by             = $updated_by ?? FkIdFaker::random();
     }
@@ -162,8 +163,9 @@ final class AvailableHeroesTestCase
             StatsFaker::random(),
             BoostFaker::random(),
             BoostFaker::random(),
-            DateTimeImmutableValueObject::random(),
-            DateTimeImmutableValueObject::random(),
+            true,
+            DateTime::random(),
+            DateTime::random(),
             FkIdFaker::random(),
             FkIdFaker::random(),
         );

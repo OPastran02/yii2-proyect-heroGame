@@ -13,6 +13,7 @@ use api\Shared\Domain\ValueObject\Boost;
 use api\Shared\Domain\ValueObject\Stats;
 use api\Shared\Domain\ValueObject\FkId;
 use api\Shared\Domain\Bus\Event\EventBus;
+use DateTime;
 
 final class AvailableHeroesCreator
 {
@@ -67,8 +68,8 @@ final class AvailableHeroesCreator
         Stats $wooding_max,
         Boost $b_wooding_min,
         Boost $b_wooding_max,
-        DateTimeImmutable $created_at,
-        DateTimeImmutable $updated_at,
+        DateTime $created_at,
+        DateTime $updated_at,
         FkId $created_by,
         FkId $updated_by
     ){

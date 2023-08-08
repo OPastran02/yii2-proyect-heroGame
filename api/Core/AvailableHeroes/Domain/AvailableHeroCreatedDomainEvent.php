@@ -57,6 +57,7 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
         private readonly int $wooding_max,
         private readonly int $b_wooding_min,
         private readonly int $b_wooding_max,
+        private readonly bool $available,
         private readonly DateTime $created_at,
         private readonly DateTime $updated_at,
         private readonly int $created_by,
@@ -73,7 +74,7 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
     }
 
     public static function fromPrimitives(
-        string $aggregateId,
+        int $aggregateId,
         array $body,
         string $eventId,
         string $occurredOn
@@ -125,6 +126,7 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
             $body['wooding_max'],
             $body['b_wooding_min'],
             $body['b_wooding_max'],
+            $body['available'],
             $body['created_at'],
             $body['updated_at'],
             $body['created_by'],
@@ -182,6 +184,7 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
             'wooding_max'        =>  $this->wooding_max,                 
             'b_wooding_min'      =>  $this->b_wooding_min,                 
             'b_wooding_max'      =>  $this->b_wooding_max,                 
+            'available'          =>  $this->available,
             'created_at'         =>  $this->created_at,                 
             'updated_at'         =>  $this->updated_at,                 
             'created_by'         =>  $this->created_by,                 
@@ -407,6 +410,11 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
     public function bWoodingMax(): string
     {
         return $this->bWoodingMax;
+    }
+
+    public function available(): string
+    {
+        return $this->available;
     }
 
     public function createdAt(): string

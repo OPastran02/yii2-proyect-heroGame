@@ -65,6 +65,7 @@ final class AvailableHero extends AggregateRoot
         private Stats $wooding_max,
         private Boost $b_wooding_min,
         private Boost $b_wooding_max,
+        private bool $available,
         private readonly DateTime $created_at,
         private readonly DateTime $updated_at,
         private readonly FkId $created_by,
@@ -120,6 +121,7 @@ final class AvailableHero extends AggregateRoot
         Stats $wooding_max,
         Boost $b_wooding_min,
         Boost $b_wooding_max,
+        bool $available,
         DateTime $created_at,
         DateTime $updated_at,
         FkId $created_by,
@@ -172,6 +174,7 @@ final class AvailableHero extends AggregateRoot
             $wooding_max,
             $b_wooding_min,
             $b_wooding_max,
+            $available,
             $created_at,
             $updated_at,
             $created_by,
@@ -226,6 +229,7 @@ final class AvailableHero extends AggregateRoot
                 $wooding_max->value(),
                 $b_wooding_min->value(),
                 $b_wooding_max->value(),
+                $available,
                 $created_at,
                 $updated_at,
                 $created_by->value(),
@@ -466,12 +470,17 @@ final class AvailableHero extends AggregateRoot
         return $this->b_wooding_max;
     }
 
-    public function createdAt(): DateTimeImmutable
+    public function available(): bool
+    {
+        return $this->available;
+    }
+
+    public function createdAt(): DateTime
     {
         return $this->created_at;
     }
 
-    public function updatedAt(): DateTimeImmutable
+    public function updatedAt(): DateTime
     {
         return $this->updated_at;
     }

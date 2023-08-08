@@ -6,7 +6,7 @@ namespace App\Shared\Infrastructure;
 
 use App\Shared\Domain\RandomNumberGenerator;
 
-final class RandomGenerator(): int
+final class RandomGenerator
 {
     public function generate($min, $max): int
     {

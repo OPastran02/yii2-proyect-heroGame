@@ -127,6 +127,7 @@ class AvailableHeroRepositoryTest extends TestCase
             StatsFaker::random(),
             BoostFaker::random(),
             BoostFaker::random(),//
+            true,
             new DateTime(),
             new DateTime(),
             FkIdFaker::random(),
