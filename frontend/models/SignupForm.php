@@ -5,7 +5,7 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use common\models\User;
-
+use api\Shared\Domain\ValueObject\UUID;
 /**
  * Signup form
  */
@@ -50,6 +50,7 @@ class SignupForm extends Model
         }
         
         $user = new User();
+        $user->id = UUID::random()->value();
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);

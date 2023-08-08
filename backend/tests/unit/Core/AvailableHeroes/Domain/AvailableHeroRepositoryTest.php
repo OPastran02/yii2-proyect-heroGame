@@ -14,6 +14,7 @@ use api\Shared\Domain\ValueObject\Avatar;
 use api\Shared\Domain\ValueObject\Boost;
 use api\Shared\Domain\ValueObject\FkId;
 use api\Shared\Domain\ValueObject\Stats;
+use api\Shared\Domain\ValueObject\UUID;
 use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroIdFaker;
 use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescriptionFaker;
 use backend\tests\unit\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroNameFaker;
@@ -40,11 +41,11 @@ class AvailableHeroRepositoryTest extends TestCase
     
     public function testGetById()
     {
-        $id = AvailableHeroIdFaker::random();
+        $id = new AvailableHeroId(1);
 
         $availableHero = $this->repository->getById($id);
         $this->assertInstanceOf(AvailableHero::class, $availableHero);
-        $this->assertEquals($id, $availableHero->getId());
+        $this->assertEquals($id, $availableHero->id());
     }
 
 
@@ -64,7 +65,7 @@ class AvailableHeroRepositoryTest extends TestCase
     public function testDelete()
     {
         // Create an AvailableHeroesId for the test
-        $id = AvailableHeroIdFaker::random();
+        $id = new AvailableHeroId(1);
         
         // Get the AvailableHero object from the repository
         $availableHero = $this->repository->getById($id);
@@ -81,7 +82,7 @@ class AvailableHeroRepositoryTest extends TestCase
     {
         // Create an AvailableHero for the test
         $availableHero = AvailableHero::create(
-            AvailableHeroIdFaker::random(),
+            new AvailableHeroId(2),
             AvailableHeroNameFaker::random(),
             AvailableHeroDescriptionFaker::random(),
             AvailableHeroWorldFaker::random(),
@@ -130,8 +131,8 @@ class AvailableHeroRepositoryTest extends TestCase
             true,
             new DateTime(),
             new DateTime(),
-            FkIdFaker::random(),
-            FkIdFaker::random(),
+            new UUID('9168bf67-d4a4-49a1-9ffc-4c4418f88bbf'),
+            new UUID('9168bf67-d4a4-49a1-9ffc-4c4418f88bbf')
         );
 
         // Call the method to be tested
@@ -139,14 +140,14 @@ class AvailableHeroRepositoryTest extends TestCase
 
             // Assertions
         $this->assertInstanceOf(AvailableHero::class, $availableHero);
-        $this->assertNotEmpty($availableHero->getId());
+        $this->assertNotEmpty($availableHero->id());
 
         // Get the AvailableHero by ID from the repository
-        $retrievedAvailableHero = $this->repository->getbyId($availableHero->getId());
+        $retrievedAvailableHero = $this->repository->getbyId($availableHero->id());
 
         // More assertions
         $this->assertInstanceOf(AvailableHero::class, $retrievedAvailableHero);
-        $this->assertEquals($availableHero->getId(), $retrievedAvailableHero->getId());
+        $this->assertEquals($availableHero->id(), $retrievedAvailableHero->id());
         // Add more assertions as needed to verify the saved AvailableHero
     }
 }

@@ -7,11 +7,12 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use api\Shared\Domain\ValueObject\UUID;
 
 /**
  * User model
  *
- * @property integer $id
+ * @property string $id
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token

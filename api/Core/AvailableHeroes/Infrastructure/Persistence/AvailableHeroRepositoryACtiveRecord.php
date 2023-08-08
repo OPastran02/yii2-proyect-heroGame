@@ -2,13 +2,22 @@
 
 namespace api\Core\AvailableHeroes\Infrastructure\Persistence;
 
-use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
-use api\Shared\Domain\ValueObject\FkId;
+
 use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
 use console\models\AvailableHeroes as AvailableHeroModel;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroMapper;    
+
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
+use api\Shared\Domain\ValueObject\Avatar;
+use api\Shared\Domain\ValueObject\FkId;
+use api\Shared\Domain\ValueObject\Stats;
+use api\Shared\Domain\ValueObject\Boost;
+use api\Shared\Domain\ValueObject\UUID;
 
 use Yii;
 use DateTime;
@@ -32,29 +41,47 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
         $rarity_id = new FkId($availableHeroModel->rarity_id);
         $nature_id = new FkId($availableHeroModel->nature_id);
         $type_id = new FkId($availableHeroModel->type_id);
-        $attack = new Stats($availableHeroModel->attack_min, $availableHeroModel->attack_max);
-        $b_attack = new Boost($availableHeroModel->b_attack_min, $availableHeroModel->b_Battack_max);
-        $defense = new Stats($availableHeroModel->defense_min, $availableHeroModel->defense_max);
-        $b_defense = new Boost($availableHeroModel->b_defense_min, $availableHeroModel->b_defense_max);
-        $hp = new Stats($availableHeroModel->hp_min, $availableHeroModel->hp_max);
-        $b_hp = new Boost($availableHeroModel->b_hp_min, $availableHeroModel->b_hp_max);
-        $sp_attack = new Stats($availableHeroModel->sp_attack_min, $availableHeroModel->sp_attack_max);
-        $b_sp_attack = new Boost($availableHeroModel->b_sp_attack_min, $availableHeroModel->b_sp_attack_max);
-        $sp_defense = new Stats($availableHeroModel->sp_defense_min, $availableHeroModel->sp_defense_max);
-        $b_sp_defense = new Boost($availableHeroModel->b_sp_defense_min, $availableHeroModel->b_sp_defense_max);
-        $speed = new Stats($availableHeroModel->speed_min, $availableHeroModel->speed_max);
-        $b_speed = new Boost($availableHeroModel->b_speed_min, $availableHeroModel->b_speed_max);
-        $farming = new Stats($availableHeroModel->farming_min, $availableHeroModel->farming_max);
-        $b_farming = new Boost($availableHeroModel->b_farming_min, $availableHeroModel->b_farming_max);
-        $steeling = new Stats($availableHeroModel->steeling_min, $availableHeroModel->steeling_max);
-        $b_steeling = new Boost($availableHeroModel->b_steeling_min, $availableHeroModel->b_steeling_max);
-        $wooding = new Stats($availableHeroModel->wooding_min, $availableHeroModel->wooding_max);
-        $b_wooding = new Boost($availableHeroModel->b_wooding_min, $availableHeroModel->b_wooding_max);
+        $attack_min = new Stats($availableHeroModel->attack_min);
+        $attack_max = new Stats($availableHeroModel->attack_max); 
+        $b_attack_min = new Boost($availableHeroModel->b_attack_min);
+        $b_Battack_max = new Boost($availableHeroModel->b_Battack_max);
+        $defense_min = new Stats($availableHeroModel->defense_min);
+        $defense_max = new Stats($availableHeroModel->defense_max);
+        $b_defense_min = new Boost($availableHeroModel->b_defense_min);
+        $b_defense_max = new Boost($availableHeroModel->b_defense_max);
+        $hp_min = new Stats($availableHeroModel->hp_min);
+        $hp_max = new Stats($availableHeroModel->hp_max);
+        $b_hp_min = new Boost($availableHeroModel->b_hp_min);
+        $b_hp_max = new Boost($availableHeroModel->b_hp_max);
+        $sp_attack_min = new Stats($availableHeroModel->sp_attack_min);
+        $sp_attack_max = new Stats($availableHeroModel->sp_attack_max);
+        $b_sp_attack_min = new Boost($availableHeroModel->b_sp_attack_min);
+        $b_sp_attack_max = new Boost($availableHeroModel->b_sp_attack_max);
+        $sp_defense_min = new Stats($availableHeroModel->sp_defense_min);
+        $sp_defense_max = new Stats($availableHeroModel->sp_defense_max);
+        $b_sp_defense_min = new Boost($availableHeroModel->b_sp_defense_min);
+        $b_sp_defense_max = new Boost($availableHeroModel->b_sp_defense_max);
+        $speed_min = new Stats($availableHeroModel->speed_min);
+        $speed_max = new Stats($availableHeroModel->speed_max);
+        $b_speed_min = new Boost($availableHeroModel->b_speed_min);
+        $b_speed_max = new Boost($availableHeroModel->b_speed_max);
+        $farming_min = new Stats($availableHeroModel->farming_min);
+        $farming_max = new Stats($availableHeroModel->farming_max);
+        $b_farming_min = new Boost($availableHeroModel->b_farming_min);
+        $b_farming_max = new Boost($availableHeroModel->b_farming_max);
+        $steeling_min = new Stats($availableHeroModel->steeling_min);
+        $steeling_max = new Stats($availableHeroModel->steeling_max);
+        $b_steeling_min = new Boost($availableHeroModel->b_steeling_min);
+        $b_steeling_max = new Boost($availableHeroModel->b_steeling_max);
+        $wooding_min = new Stats($availableHeroModel->wooding_min);
+        $wooding_max = new Stats($availableHeroModel->wooding_max);
+        $b_wooding_min = new Boost($availableHeroModel->b_wooding_min);
+        $b_wooding_max = new Boost($availableHeroModel->b_wooding_max);
         $available = $availableHeroModel->available;
-        $created_at = new DateTime($availableHeroModel->created_at);
-        $updated_at = new DateTime($availableHeroModel->updated_at);
-        $created_by = $availableHeroModel->created_by;
-        $updated_by = $availableHeroModel->updated_by;
+        $created_at = DateTime::createFromFormat('U', $availableHeroModel->created_at);
+        $updated_at = DateTime::createFromFormat('U', $availableHeroModel->updated_at);
+        $created_by = new UUID($availableHeroModel->created_by);
+        $updated_by = new UUID($availableHeroModel->updated_by);
     
         return new AvailableHero(
             $id,
@@ -67,24 +94,42 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
             $rarity_id,
             $nature_id,
             $type_id,
-            $attack,
-            $b_attack,
-            $defense,
-            $b_defense,
-            $hp,
-            $b_hp,
-            $sp_attack,
-            $b_sp_attack,
-            $sp_defense,
-            $b_sp_defense,
-            $speed,
-            $b_speed,
-            $farming,
-            $b_farming,
-            $steeling,
-            $b_steeling,
-            $wooding,
-            $b_wooding,
+            $attack_min,
+            $attack_max,
+            $b_attack_min,
+            $b_Battack_max,
+            $defense_min,
+            $defense_max,
+            $b_defense_min,
+            $b_defense_max,
+            $hp_min,
+            $hp_max,
+            $b_hp_min,
+            $b_hp_max,
+            $sp_attack_min,
+            $sp_attack_max,
+            $b_sp_attack_min,
+            $b_sp_attack_max,
+            $sp_defense_min,
+            $sp_defense_max,
+            $b_sp_defense_min,
+            $b_sp_defense_max,
+            $speed_min,
+            $speed_max,
+            $b_speed_min,
+            $b_speed_max,
+            $farming_min,
+            $farming_max,
+            $b_farming_min,
+            $b_farming_max,
+            $steeling_min,
+            $steeling_max,
+            $b_steeling_min,
+            $b_steeling_max,
+            $wooding_min,
+            $wooding_max,
+            $b_wooding_min,
+            $b_wooding_max,
             $available,
             $created_at,
             $updated_at,

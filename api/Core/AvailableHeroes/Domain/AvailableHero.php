@@ -12,6 +12,7 @@ use api\Shared\Domain\ValueObject\Avatar;
 use api\Shared\Domain\ValueObject\Boost;
 use api\Shared\Domain\ValueObject\Stats;
 use api\Shared\Domain\ValueObject\FkId;
+use api\Shared\Domain\ValueObject\UUID;
 use api\Shared\Domain\Aggregate\AggregateRoot;
 use DateTime;
 
@@ -32,7 +33,7 @@ final class AvailableHero extends AggregateRoot
         private Stats $attack_min,
         private Stats $attack_max,
         private Boost $b_attack_min,
-        private Boost $b_attack_max,//
+        private Boost $b_Battack_max,//
         private Stats $defense_min,
         private Stats $defense_max,
         private Boost $b_defense_min,
@@ -68,8 +69,8 @@ final class AvailableHero extends AggregateRoot
         private bool $available,
         private readonly DateTime $created_at,
         private readonly DateTime $updated_at,
-        private readonly FkId $created_by,
-        private readonly FkId $updated_by
+        private readonly UUID $created_by,
+        private readonly UUID $updated_by
     ){
     
     }
@@ -88,7 +89,7 @@ final class AvailableHero extends AggregateRoot
         Stats $attack_min,
         Stats $attack_max,
         Boost $b_attack_min,
-        Boost $b_attack_max,
+        Boost $b_Battack_max,
         Stats $defense_min,
         Stats $defense_max,
         Boost $b_defense_min,
@@ -124,8 +125,8 @@ final class AvailableHero extends AggregateRoot
         bool $available,
         DateTime $created_at,
         DateTime $updated_at,
-        FkId $created_by,
-        FkId $updated_by
+        UUID $created_by,
+        UUID $updated_by
     ): self {
         $availableHero = new self(
             $id,
@@ -141,7 +142,7 @@ final class AvailableHero extends AggregateRoot
             $attack_min,
             $attack_max,
             $b_attack_min,
-            $b_attack_max,
+            $b_Battack_max,
             $defense_min,
             $defense_max,
             $b_defense_min,
@@ -196,7 +197,7 @@ final class AvailableHero extends AggregateRoot
                 $attack_min->value(),
                 $attack_max->value(),
                 $b_attack_min->value(),
-                $b_attack_max->value(),
+                $b_Battack_max->value(),
                 $defense_min->value(),
                 $defense_max->value(),
                 $b_defense_min->value(),
@@ -307,7 +308,7 @@ final class AvailableHero extends AggregateRoot
 
     public function bAttackMax(): Boost
     {
-        return $this->b_attack_max;
+        return $this->b_Battack_max;
     }
 
     public function defenseMin(): Stats
@@ -485,12 +486,12 @@ final class AvailableHero extends AggregateRoot
         return $this->updated_at;
     }
 
-    public function createdBy(): FkId
+    public function createdBy(): UUID
     {
         return $this->created_by;
     }
 
-    public function updatedBy(): FkId
+    public function updatedBy(): UUID
     {
         return $this->updated_by;
     }

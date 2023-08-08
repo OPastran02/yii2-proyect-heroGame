@@ -60,8 +60,8 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
         private readonly bool $available,
         private readonly DateTime $created_at,
         private readonly DateTime $updated_at,
-        private readonly int $created_by,
-        private readonly int $updated_by,
+        private readonly string $created_by,
+        private readonly string $updated_by,
         string $eventId = null,
         string $occurredOn = null
     ) {
