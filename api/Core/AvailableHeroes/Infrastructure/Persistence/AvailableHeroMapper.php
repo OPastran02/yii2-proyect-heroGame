@@ -7,12 +7,15 @@ namespace api\Core\AvailableHeroes\Infrastructure\Persistence;
 use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use console\models\AvailableHeroes as AvailableHeroModel;
-
+use common\models\User;
 
 final class AvailableHeroMapper
 {
     public static function toModel(AvailableHero $availableHero): AvailableHeroModel
     {
+        $user=User::findId($availableHero->createdBy()->value());
+
+        
         $model = new AvailableHeroModel();
         $model->id = $availableHero->id()->value();
         $model->name = $availableHero->name()->value();
@@ -60,11 +63,12 @@ final class AvailableHeroMapper
         $model->wooding_max = $availableHero->woodingMax()->value();
         $model->b_wooding_min = $availableHero->bWoodingMin()->value();
         $model->b_wooding_max = $availableHero->bWoodingMax()->value();
-        $model->available = $availableHero->available();
-        $model->created_at = $availableHero->createdAt();
-        $model->updated_at = $availableHero->updatedAt();
-        $model->created_by = $availableHero->createdBy();
-        $model->updated_by = $availableHero->updatedBy();
+        $model->available = $availableHero->available() ? 1 : 0;
+        $model->created_at = (int) $availableHero->createdAt()->getTimestamp();;
+        $model->updated_at = (int) $availableHero->createdAt()->getTimestamp();;
+        $model->created_by = $availableHero->createdBy()->value();
+        $model->updated_by = $availableHero->createdBy()->value();
+        //codecept_debug($model);
 
         return $model;
     }

@@ -64,7 +64,7 @@ class AvailableHeroRepositoryTest extends TestCase
 
     public function testDelete()
     {
-      /*  // Create an AvailableHeroesId for the test
+       // Create an AvailableHeroesId for the test
         $id = new AvailableHeroId(1);
         
         // Get the AvailableHero object from the repository
@@ -75,12 +75,11 @@ class AvailableHeroRepositoryTest extends TestCase
 
         // Call the method to be tested
         $this->repository->delete($id);
-        $this->expectNotToPerformAssertions();*/
+        $this->expectNotToPerformAssertions();
     }
 
     public function testSave()
     {
-        // Create an AvailableHero for the test
         $availableHero = AvailableHero::create(
             new AvailableHeroId(2),
             AvailableHeroNameFaker::random(),
@@ -131,8 +130,8 @@ class AvailableHeroRepositoryTest extends TestCase
             true,
             new DateTime(),
             new DateTime(),
-            new UUID('9168bf67-d4a4-49a1-9ffc-4c4418f88bbf'),
-            new UUID('9168bf67-d4a4-49a1-9ffc-4c4418f88bbf')
+            new UUID('a1ef2e40-6e31-4bd9-9734-50c23e46c9ff'),
+            new UUID('a1ef2e40-6e31-4bd9-9734-50c23e46c9ff')
         );
 
         // Call the method to be tested
