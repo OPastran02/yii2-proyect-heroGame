@@ -2,6 +2,8 @@
 
 namespace console\models;
 
+use common\models\User;
+
 use Yii;
 
 /**
@@ -156,7 +158,8 @@ class AvailableHeroes extends \yii\db\ActiveRecord
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(User::class, ['id' => 'created_by']);
+        $user=$this->hasOne(User::class, ['id' => 'created_by']);
+        return $user;
     }
 
     /**
@@ -166,6 +169,7 @@ class AvailableHeroes extends \yii\db\ActiveRecord
      */
     public function getUpdatedBy()
     {
-        return $this->hasOne(User::class, ['id' => 'updated_by']);
+        $user=$this->hasOne(User::class, ['id' => 'updated_by']);
+        return $user;
     }
 }
