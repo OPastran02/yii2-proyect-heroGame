@@ -7,8 +7,7 @@ use common\fixtures\UserFixture;
 
 /**
  * Class LoginCest
- */
-/*
+**/
 class LoginCest
 {
 
@@ -21,11 +20,10 @@ class LoginCest
             ]
         ];
     }
-*/    
+
     /**
      * @param FunctionalTester $I
      */
-    /*
     public function loginUser(FunctionalTester $I)
     {
         $I->amOnRoute('/site/login');
@@ -37,4 +35,3 @@ class LoginCest
         $I->dontSeeLink('Signup');
     }
 }
-*/
