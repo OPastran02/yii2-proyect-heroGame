@@ -6,7 +6,7 @@ namespace api\Core\AvailableHeroes\Infrastructure\Persistence;
 
 use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
-use console\models\AvailableHeroes as AvailableHeroModel;
+use common\models\availablehero as AvailableHeroModel;
 use common\models\User;
 
 final class AvailableHeroMapper
