@@ -8,6 +8,7 @@ use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use common\models\availablehero as AvailableHeroModel;
 use common\models\User;
+use api\Shared\Domain\ValueObject\UUID;
 
 final class AvailableHeroMapper
 {
@@ -72,4 +73,64 @@ final class AvailableHeroMapper
 
         return $model;
     }
+
+    public static function toDomain(AvailableHeroModel $model): AvailableHero
+    {
+        $availableHero = AvailableHero::create(
+            new AvailableHeroId($model->id),
+            new AvailableHeroName($model->name),
+            new AvailableHeroDescription($model->description),
+            new AvailableHeroWorld($model->world),
+            new Avatar($model->avatar),
+            new Avatar($model->avatarBlock),
+            new FkId($model->race_id),
+            new FkId($model->rarity_id),
+            new FkId($model->nature_id),
+            new FkId($model->type_id),
+            new Stats($model->attack_min),
+            new Stats($model->attack_max),
+            new Boost($model->b_attack_min),
+            new Boost($model->b_attack_max),
+            new Stats($model->defense_min),
+            new Stats($model->defense_max),
+            new Boost($model->b_defense_min),
+            new Boost($model->b_defense_max),
+            new Stats($model->hp_min),
+            new Stats($model->hp_max),
+            new Boost($model->b_hp_min),
+            new Boost($model->b_hp_max),
+            new Stats($model->sp_attack_min),
+            new Stats($model->sp_attack_max),
+            new Boost($model->b_sp_attack_min),
+            new Boost($model->b_sp_attack_max),
+            new Stats($model->sp_defense_min),
+            new Stats($model->sp_defense_max),
+            new Boost($model->b_sp_defense_min),
+            new Boost($model->b_sp_defense_max),
+            new Stats($model->speed_min),
+            new Stats($model->speed_max),
+            new Boost($model->b_speed_min),
+            new Boost($model->b_speed_max),
+            new Stats($model->farming_min),
+            new Stats($model->farming_max),
+            new Boost($model->b_farming_min),
+            new Boost($model->b_farming_max),
+            new Stats($model->steeling_min),
+            new Stats($model->steeling_max),
+            new Boost($model->b_steeling_min),
+            new Boost($model->b_steeling_max),
+            new Stats($model->wooding_min),
+            new Stats($model->wooding_max),
+            new Boost($model->b_wooding_min),
+            new Boost($model->b_wooding_max),
+            $model->available,
+            new DateTime('@' . $model->created_at),
+            new DateTime('@' . $model->updated_at),
+            new UUID($model->created_by),
+            new UUID($model->created_by)
+        );
+
+        return $availableHero;
+    }
+
 }

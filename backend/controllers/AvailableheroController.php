@@ -3,10 +3,13 @@
 namespace backend\controllers;
 
 use common\models\availablehero;
-use backend\models\availablehero\Search\availableheroSearch;
+use backend\models\search\AvailableheroSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use api\Core\AvailableHeroes\Domain\AvailableHero as availableheroDom;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
+use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryACtiveRecord as AvailableHeroRepository;
 
 /**
  * AvailableheroController implements the CRUD actions for availablehero model.
@@ -38,7 +41,7 @@ class AvailableheroController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new availableheroSearch();
+        $searchModel = new AvailableheroSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -68,6 +71,7 @@ class AvailableheroController extends Controller
     public function actionCreate()
     {
         $model = new availablehero();
+        
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -111,7 +115,9 @@ class AvailableheroController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $availableHeroId = new AvailableHeroId($id);
+        $repository = new AvailableHeroRepository();
+        $repository->delete($availableHeroId);
 
         return $this->redirect(['index']);
     }

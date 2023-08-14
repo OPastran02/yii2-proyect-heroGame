@@ -24,9 +24,10 @@ use DateTime;
 
 class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryInterface
 {
-    public function getbyId(AvailableHeroId $id): ?AvailableHero
+    public function getbyId(int $id): ?AvailableHero
     {
-        $availableHeroModel = AvailableHeroModel::findOne($id);
+        $availableHeroId = new AvailableHeroId($id);
+        $availableHeroModel = AvailableHeroModel::findOne($availableHeroId);
         if (!$availableHeroModel) {
             return null;
         }
@@ -144,9 +145,10 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
         return new AvailableHeroes($availableHeroes);
     }
 
-    public function delete(AvailableHeroId $id): void
+    public function delete(int $id): void
     {
-        $availableHero = AvailableHeroModel::findOne($id);
+        $availableHeroId = new AvailableHeroId($id);
+        $availableHero = AvailableHeroModel::findOne($availableHeroId);
         $availableHero->delete();
     }
 

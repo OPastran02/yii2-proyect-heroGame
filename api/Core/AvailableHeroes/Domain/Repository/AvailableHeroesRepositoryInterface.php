@@ -9,11 +9,11 @@ use api\Shared\Domain\ValueObject\FkId;
 
 interface AvailableHeroesRepositoryInterface
 {
-    public function getbyId(AvailableHeroId $id): ?AvailableHero;
+    public function getbyId(int $id): ?AvailableHero;
     
     public function getByrarity(FkId $rarity_id): AvailableHeroes;
 
-    public function delete(AvailableHeroId $id): void;  
+    public function delete(int $id): void;  
 
     public function save(AvailableHero $availableHeroes): void;
 }

@@ -43,7 +43,7 @@ class AvailableHeroRepositoryTest extends TestCase
     {
         $id = new AvailableHeroId(1);
 
-        $availableHero = $this->repository->getById($id);
+        $availableHero = $this->repository->getById(1);
         $this->assertInstanceOf(AvailableHero::class, $availableHero);
         $this->assertEquals($id, $availableHero->id());
     }
@@ -68,13 +68,13 @@ class AvailableHeroRepositoryTest extends TestCase
         $id = new AvailableHeroId(1);
         
         // Get the AvailableHero object from the repository
-        $availableHero = $this->repository->getById($id);
+        $availableHero = $this->repository->getById(1);
     
         // Check if the AvailableHero exists
         $this->assertNotNull($availableHero, 'The AvailableHero does not exist.');
 
         // Call the method to be tested
-        $this->repository->delete($id);
+        $this->repository->delete(1);
         $this->expectNotToPerformAssertions();
     }
 
@@ -141,7 +141,7 @@ class AvailableHeroRepositoryTest extends TestCase
         $this->assertInstanceOf(AvailableHero::class, $availableHero);
         $this->assertNotEmpty($availableHero->id());
         // Get the AvailableHero by ID from the repository
-        $retrievedAvailableHero = $this->repository->getbyId($availableHero->id());
+        $retrievedAvailableHero = $this->repository->getbyId(2);
 
         // More assertions
         $this->assertInstanceOf(AvailableHero::class, $retrievedAvailableHero);
