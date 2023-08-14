@@ -3,11 +3,11 @@
 namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\availablehero]].
+ * This is the ActiveQuery class for [[\common\models\accesory]].
  *
- * @see \common\models\availablehero
+ * @see \common\models\accesory
  */
-class AvailableheroesQuery extends \yii\db\ActiveQuery
+class accesoryQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class AvailableheroesQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return \common\models\availablehero[]|array
+     * @return \common\models\accesory[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class AvailableheroesQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return \common\models\availablehero|array|null
+     * @return \common\models\accesory|array|null
      */
     public function one($db = null)
     {

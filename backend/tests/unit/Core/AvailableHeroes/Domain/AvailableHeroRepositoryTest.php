@@ -130,8 +130,8 @@ class AvailableHeroRepositoryTest extends TestCase
             true,
             new DateTime(),
             new DateTime(),
-            new UUID('a1ef2e40-6e31-4bd9-9734-50c23e46c9ff'),
-            new UUID('a1ef2e40-6e31-4bd9-9734-50c23e46c9ff')
+            new UUID('6cb5f86e-c021-409e-afcc-82ec6a548dfc'),
+            new UUID('6cb5f86e-c021-409e-afcc-82ec6a548dfc')
         );
 
         // Call the method to be tested
