@@ -115,9 +115,8 @@ class AvailableheroController extends Controller
      */
     public function actionDelete($id)
     {
-        $availableHeroId = new AvailableHeroId($id);
         $repository = new AvailableHeroRepository();
-        $repository->delete($availableHeroId);
+        $repository->delete($id);
 
         return $this->redirect(['index']);
     }
@@ -131,8 +130,9 @@ class AvailableheroController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = availablehero::findOne(['id' => $id])) !== null) {
-            return $model;
+        $repository = new AvailableHeroRepository();
+        if (($hero = $repository->getbyId($id)) !== null) {
+            return $hero;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
