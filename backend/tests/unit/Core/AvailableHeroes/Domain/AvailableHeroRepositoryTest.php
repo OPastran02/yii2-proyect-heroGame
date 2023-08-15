@@ -124,8 +124,8 @@ class AvailableHeroRepositoryTest extends TestCase
             new UUID('6cb5f86e-c021-409e-afcc-82ec6a548dfc')
         );
 
-        // Call the method to be tested
-        $this->repository->save($availableHero);
+        $availableHeroModel = AvailableHeroMapper::toModel($availableHero);
+        $this->controller->save($availableHeroModel);
 
             // Assertions
         $this->assertInstanceOf(AvailableHero::class, $availableHero);
