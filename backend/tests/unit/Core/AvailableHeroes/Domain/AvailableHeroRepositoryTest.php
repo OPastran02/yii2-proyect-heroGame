@@ -24,18 +24,19 @@ use backend\tests\unit\Core\Shared\Domain\ValueObject\AvatarFaker;
 use backend\tests\unit\Core\Shared\Domain\ValueObject\BoostFaker;
 use backend\tests\unit\Core\Shared\Domain\ValueObject\StatsFaker;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroRepositoryACtiveRecord as AvailableHeroRepository;
+use api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableheroController;
+
 use DateTime;
 
 
 class AvailableHeroRepositoryTest extends TestCase
 {
-    private AvailableHeroRepository $repository;
+    private AvailableheroController $controller;
 
     protected function setUp(): void
     {
         parent::setUp();
-        // Create an instance of the repository that you will use in each test
-        $this->repository = new AvailableHeroRepository();
+        $this->controller = new AvailableheroController();
     }
 
     
@@ -43,7 +44,7 @@ class AvailableHeroRepositoryTest extends TestCase
     {
         $id = new AvailableHeroId(1);
 
-        $availableHero = $this->repository->getById(1);
+        $availableHero = $this->controller->getById(1);
         $this->assertInstanceOf(AvailableHero::class, $availableHero);
         $this->assertEquals($id, $availableHero->id());
     }
@@ -51,12 +52,9 @@ class AvailableHeroRepositoryTest extends TestCase
 
     public function testGetByRarity()
     {
-        $rarityValue = mt_rand(1, 99); // Genera un número aleatorio entre 1 y 99
-        $rarityId = new FkId($rarityValue);
-        $availableHeroes = $this->repository->getByRarity($rarityId);
-        // Comprueba que $availableHeroes es un objeto
+        $rarityValue = mt_rand(1, 99);
+        $availableHeroes = $this->controller->getByRarity($rarityValue);
         $this->assertIsObject($availableHeroes);
-        // Comprueba que cada elemento en $availableHeroes es una instancia de AvailableHero
         foreach ($availableHeroes as $availableHero) {
             $this->assertInstanceOf(AvailableHero::class, $availableHero);
         }
@@ -64,17 +62,9 @@ class AvailableHeroRepositoryTest extends TestCase
 
     public function testDelete()
     {
-       // Create an AvailableHeroesId for the test
-        $id = new AvailableHeroId(1);
-        
-        // Get the AvailableHero object from the repository
-        $availableHero = $this->repository->getById(1);
-    
-        // Check if the AvailableHero exists
+        $availableHero = $this->controller->getById(1);
         $this->assertNotNull($availableHero, 'The AvailableHero does not exist.');
-
-        // Call the method to be tested
-        $this->repository->delete(1);
+        $this->controller->delete(1);
         $this->expectNotToPerformAssertions();
     }
 

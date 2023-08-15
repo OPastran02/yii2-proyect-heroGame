@@ -12,7 +12,7 @@ interface AvailableHeroesRepositoryInterface
 {
     public function getbyId(int $id): ?AvailableHero;
     
-    public function getByrarity(FkId $rarity_id): AvailableHeroes;
+    public function getByrarity(int $id): AvailableHeroes;
 
     public function delete(int $id): void;  
 

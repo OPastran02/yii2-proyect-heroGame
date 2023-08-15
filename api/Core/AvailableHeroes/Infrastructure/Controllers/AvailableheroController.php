@@ -13,7 +13,7 @@ use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryA
 use api\Core\AvailableHeroes\Application\Create\AvailableHeroesSave;
 use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetbyId;
 use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetByrarity;
-
+use common\models\AvailableHeroes as AvailableHeroesModel;
 /**
  * AvailableheroController implements the CRUD actions for availablehero model.
  */
@@ -32,62 +32,25 @@ class AvailableheroController extends Controller
         $this->AvailableHeroesGetByrarity = new AvailableHeroesGetByrarity();
     }
 
-   /**
-     * @inheritDoc
-     */
-    public function behaviors()
+    public function getbyId(int $id): ?AvailableHero
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
+        return $this->AvailableHeroesGetbyId->__invoke($id);
     }
 
-    /**
-     * Lists all availablehero models.
-     *
-     * @return string
-    */
-    public function actionIndex()
+    public function getByrarity(int $id): AvailableHeroes
     {
-        $searchModel = new AvailableheroSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->AvailableHeroesGetByrarity->__invoke($id);
     }
 
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    protected function findModel($id)
-    {
-        if (($hero = $this->AvailableHeroesGetbyId->getbyId($id)) !== null) {
-            return $hero;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function actionDelete($id)
+    public function delete(int $id): void
     {
         $repository = new AvailableHeroRepository();
         $repository->delete($id);
+    }
 
-        return $this->redirect(['index']);
+    public function save(AvailableHeroesModel $availableHeroModel){
+        $availableHero = AvailableHeroMapper::toDomain($availableHeroModel);
+        $this->AvailableHeroesSave->__invoke($availableHero);
     }
 
 }    
