@@ -1,5 +1,5 @@
 <?php   
-
+/*
 declare(strict_types=1);
 
 namespace api\Core\AvailableHeroes\Application\Create;
@@ -130,4 +130,4 @@ final class AvailableHeroesCreator
 
         $this->bus->publish(...$availableHero->pullDomainEvents());
     }
-}
+}*/

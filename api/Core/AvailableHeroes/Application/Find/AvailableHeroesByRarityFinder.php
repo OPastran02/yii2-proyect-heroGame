@@ -1,5 +1,6 @@
-<?php
 
+<?php
+/*
 declare(strict_types=1);
 
 namespace api\Core\AvailableHeroes\Application\Find;
@@ -25,4 +26,4 @@ final class AvailableHeroesByRarityFinder
 
         return $availableHeroes;
     }
-}
+}*/

@@ -1,5 +1,5 @@
 <?php
-
+/*
 declare(strict_types=1);
 
 namespace api\Core\AvailableHeroes\Application\Find;
@@ -25,4 +25,4 @@ final class AvailableHeroesbyIdFinder
 
         return $availableHero;
     }
-}
+}*/
