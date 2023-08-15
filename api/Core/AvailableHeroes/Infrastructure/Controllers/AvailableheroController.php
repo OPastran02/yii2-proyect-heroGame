@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace api\Core\AvailableHeroes\Infrastructure\Controllers;
 
 use common\models\availablehero;
 use backend\models\search\AvailableheroSearch;
@@ -9,19 +9,30 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use api\Core\AvailableHeroes\Domain\AvailableHero as availableheroDom;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
-use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryACtiveRecord as AvailableHeroRepository;
+use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryACtiveRecord;
+use api\Core\AvailableHeroes\Application\Create\AvailableHeroesSave;
+use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetbyId;
+use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetByrarity;
 
 /**
  * AvailableheroController implements the CRUD actions for availablehero model.
  */
 class AvailableheroController extends Controller
 {
-    public function __construct(AvailableHeroesRepositoryInterface $repository)
+    private $AvailableHeroesSave;
+    private $AvailableHeroesGetbyId;
+    private $AvailableHeroesGetByrarity;
+    private $availableHeroesRepository;
+
+    public function __construct()
     {
-        $this->repository = $repository;
+        $this->availableHeroesRepository = new availableHeroRepositoryACtiveRecord();
+        $this->AvailableHeroesSave = new AvailableHeroesSave();
+        $this->AvailableHeroesGetbyId = new AvailableHeroesGetbyId();
+        $this->AvailableHeroesGetByrarity = new AvailableHeroesGetByrarity();
     }
-    
-    /**
+
+   /**
      * @inheritDoc
      */
     public function behaviors()
@@ -39,6 +50,11 @@ class AvailableheroController extends Controller
         );
     }
 
+    /**
+     * Lists all availablehero models.
+     *
+     * @return string
+    */
     public function actionIndex()
     {
         $searchModel = new AvailableheroSearch();
@@ -57,37 +73,13 @@ class AvailableheroController extends Controller
         ]);
     }
 
-
-    public function actionCreate()
+    protected function findModel($id)
     {
-        $model = new availablehero();
-        
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $availableHero = AvailableHeroMapper::toDomain($model);
-                $this->repository->save($availableHero); // Usar la instancia del repositorio
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
+        if (($hero = $this->AvailableHeroesGetbyId->getbyId($id)) !== null) {
+            return $hero;
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
     public function actionDelete($id)
@@ -98,13 +90,4 @@ class AvailableheroController extends Controller
         return $this->redirect(['index']);
     }
 
-    protected function findModel($id)
-    {
-        $repository = new AvailableHeroRepository();
-        if (($hero = $repository->getbyId($id)) !== null) {
-            return $hero;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-}
+}    
