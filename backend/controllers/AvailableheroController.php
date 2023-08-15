@@ -16,6 +16,11 @@ use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryA
  */
 class AvailableheroController extends Controller
 {
+    public function __construct(AvailableHeroesRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+    
     /**
      * @inheritDoc
      */
@@ -33,6 +38,8 @@ class AvailableheroController extends Controller
             ]
         );
     }
+
+    
 
     /**
      * Lists all availablehero models.
@@ -63,18 +70,15 @@ class AvailableheroController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new availablehero model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+
     public function actionCreate()
     {
         $model = new availablehero();
         
-
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $availableHero = AvailableHeroMapper::toDomain($model);
+                $this->repository->save($availableHero); // Usar la instancia del repositorio
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -86,13 +90,6 @@ class AvailableheroController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing availablehero model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -106,13 +103,6 @@ class AvailableheroController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing availablehero model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $repository = new AvailableHeroRepository();
@@ -121,13 +111,6 @@ class AvailableheroController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the availablehero model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return availablehero the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         $repository = new AvailableHeroRepository();

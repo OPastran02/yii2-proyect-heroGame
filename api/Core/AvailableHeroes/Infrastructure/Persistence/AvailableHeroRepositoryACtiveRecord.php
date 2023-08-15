@@ -19,6 +19,7 @@ use api\Shared\Domain\ValueObject\Stats;
 use api\Shared\Domain\ValueObject\Boost;
 use api\Shared\Domain\ValueObject\UUID;
 
+
 use Yii;
 use DateTime;
 
@@ -147,9 +148,11 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
 
     public function delete(int $id): void
     {
-        $availableHeroId = new AvailableHeroId($id);
-        $availableHero = AvailableHeroModel::findOne($availableHeroId);
-        $availableHero->delete();
+        $availableHero = $this->getById($id); // Obtener el AvailableHero a través de la lógica del dominio
+        if ($availableHero) {
+            $availableHeroModel = AvailableHeroMapper::toModel($availableHero);
+            $availableHeroModel->delete();
+        }
     }
 
     public function save(AvailableHero $availableHero): void
