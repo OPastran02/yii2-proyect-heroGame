@@ -140,9 +140,9 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
         );
     }
 
-    public function getByrarity(FkId $rarity): AvailableHeroes
+    public function getByrarity(int $rarity): AvailableHeroes
     {
-        $availableHeroes = AvailableHeroModel::findAll(['rarity_id' => $rarity->value()]);
+        $availableHeroes = AvailableHeroModel::findAll(['rarity_id' => $rarity]);
         return new AvailableHeroes($availableHeroes);
     }
 

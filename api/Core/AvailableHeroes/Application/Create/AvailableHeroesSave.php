@@ -19,9 +19,11 @@ use DateTime;
 
 final class AvailableHeroesSave
 {
-    public function __construct(
-        private AvailableHeroRepository $repository
-    ){}
+    private AvailableHeroesRepositoryInterface $repository;
+    
+    public function __construct(AvailableHeroesRepositoryInterface $repository){
+        $this->repository = $repository;
+    }
 
     public function save(
         AvailableHeroId $id,
