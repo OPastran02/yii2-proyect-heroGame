@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\Controllers;
 
 use common\models\availablehero;
 use backend\models\Search\availableheroSearch;
@@ -22,10 +22,17 @@ use api\Shared\Domain\Bus\Event\EventBus;
 use api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableHeroController as AHController;
 
 /**
- * AvailableheroController implements the CRUD actions for availablehero model.
+ * ahqcontroller implements the CRUD actions for availablehero model.
  */
-class AvailableheroController extends Controller
+class ahqcontroller extends Controller
 {
+    
+    private $repository;
+    
+    public function __construct()
+    {
+        $this->repository = new AHController(); 
+    }
 
 
     /**
@@ -69,9 +76,9 @@ class AvailableheroController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
-    {
-        $repository= new AHController();
-        $model = AvailableHeroMapper::toModel($repository->getById($id));
+    {   
+            
+        $model = AvailableHeroMapper::toModel($this->repository->getById($id));
         return $this->render('view', ['model' => $model]);
     }
 
@@ -82,11 +89,10 @@ class AvailableheroController extends Controller
      */
     public function actionCreate()
     {
-        $repository= new AHController();
         $model = new availablehero();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $repository->save($model)) {
+            if ($model->load($this->request->post()) && $this->repository->save($model)) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -127,8 +133,7 @@ class AvailableheroController extends Controller
      */
     public function actionDelete($id)
     {
-        $repository= new AHController();
-        $repository->delete($id);
+        $this->repository->delete($id);
         return $this->redirect(['index']);
     }
 
@@ -141,8 +146,8 @@ class AvailableheroController extends Controller
      */
     protected function findModel($id)
     {
-        $repository= new AHController();
-        $model = AvailableHeroMapper::toModel($repository->getById($id));
+        //return $this->AvailableHeroesGetByrarity->__invoke($id);
+        $model = AvailableHeroMapper::toModel($this->repository->getById($id));
         if ($model !== null) return $model;
         throw new NotFoundHttpException('The requested page does not exist.');
     }
