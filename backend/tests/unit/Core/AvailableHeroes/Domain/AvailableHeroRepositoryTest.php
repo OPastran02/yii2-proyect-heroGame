@@ -24,19 +24,20 @@ use backend\tests\unit\Core\Shared\Domain\ValueObject\AvatarFaker;
 use backend\tests\unit\Core\Shared\Domain\ValueObject\BoostFaker;
 use backend\tests\unit\Core\Shared\Domain\ValueObject\StatsFaker;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroRepositoryACtiveRecord as AvailableHeroRepository;
-use api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableheroController;
+use api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableHeroController;
+use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroMapper;    
 
 use DateTime;
 
 
 class AvailableHeroRepositoryTest extends TestCase
 {
-    private AvailableheroController $controller;
+    private AvailableHeroController $controller;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->controller = new AvailableheroController();
+        $this->controller = new AvailableHeroController();
     }
 
     
@@ -131,7 +132,7 @@ class AvailableHeroRepositoryTest extends TestCase
         $this->assertInstanceOf(AvailableHero::class, $availableHero);
         $this->assertNotEmpty($availableHero->id());
         // Get the AvailableHero by ID from the repository
-        $retrievedAvailableHero = $this->repository->getbyId(2);
+        $retrievedAvailableHero = $this->controller->getbyId(2);
 
         // More assertions
         $this->assertInstanceOf(AvailableHero::class, $retrievedAvailableHero);

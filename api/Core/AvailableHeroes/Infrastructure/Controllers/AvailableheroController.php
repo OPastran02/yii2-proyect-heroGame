@@ -16,11 +16,12 @@ use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetbyId;
 use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetByrarity;
 use api\Core\AvailableHeroes\Application\Delete\AvailableHeroesDelete;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
-use common\models\AvailableHeroes as AvailableHeroesModel;
-/**
- * AvailableheroController implements the CRUD actions for availablehero model.
- */
-class AvailableheroController extends Controller
+use common\models\availablehero as AvailableHeroesModel;
+use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroMapper;    
+use api\Shared\Domain\Bus\Event\EventBus;
+
+
+class AvailableHeroController
 {
 
     private $availableHeroesRepository;
@@ -49,7 +50,7 @@ class AvailableheroController extends Controller
     }
 
     public function delete(int $id): void
-    {
+    { 
         $this->AvailableHeroesDelete->__invoke($id);
     }
 

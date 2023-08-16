@@ -1,26 +1,40 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\Controllers;
 
 use common\models\availablehero;
-use backend\models\search\AvailableheroSearch;
+use backend\models\Search\availableheroSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use api\Core\AvailableHeroes\Domain\AvailableHero as availableheroDom;
+use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
-use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryACtiveRecord as AvailableHeroRepository;
+use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryACtiveRecord;
+use api\Core\AvailableHeroes\Application\Create\AvailableHeroesSave;
+use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetbyId;
+use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetByrarity;
+use api\Core\AvailableHeroes\Application\Delete\AvailableHeroesDelete;
+use api\Core\AvailableHeroes\Domain\AvailableHeroes;
+use common\models\availablehero as AvailableHeroesModel;
+use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroMapper;    
+use api\Shared\Domain\Bus\Event\EventBus;
+use api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableHeroController as AHController;
 
 /**
  * AvailableheroController implements the CRUD actions for availablehero model.
  */
 class AvailableheroController extends Controller
 {
-    public function __construct(AvailableHeroesRepositoryInterface $repository)
-    {
-        $this->repository = $repository;
-    }
     
+    private $repository;
+    
+    public function __construct()
+    {
+        $this->repository = new AHController(); 
+    }
+
+
     /**
      * @inheritDoc
      */
@@ -39,9 +53,14 @@ class AvailableheroController extends Controller
         );
     }
 
+    /**
+     * Lists all availablehero models.
+     *
+     * @return string
+     */
     public function actionIndex()
     {
-        $searchModel = new AvailableheroSearch();
+        $searchModel = new availableheroSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -50,22 +69,29 @@ class AvailableheroController extends Controller
         ]);
     }
 
+    /**
+     * Displays a single availablehero model.
+     * @param int $id ID
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+    {        
+        $model = AvailableHeroMapper::toModel($this->repository->getById($id));
+        return $this->render('view', ['model' => $model]);
     }
 
-
+    /**
+     * Creates a new availablehero model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return string|\yii\web\Response
+     */
     public function actionCreate()
     {
         $model = new availablehero();
-        
+
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $availableHero = AvailableHeroMapper::toDomain($model);
-                $this->repository->save($availableHero); // Usar la instancia del repositorio
+            if ($model->load($this->request->post()) && $this->repository->save($model)) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -77,6 +103,13 @@ class AvailableheroController extends Controller
         ]);
     }
 
+    /**
+     * Updates an existing availablehero model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -90,21 +123,31 @@ class AvailableheroController extends Controller
         ]);
     }
 
+    /**
+     * Deletes an existing availablehero model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionDelete($id)
     {
-        $repository = new AvailableHeroRepository();
-        $repository->delete($id);
-
+        $this->repository->delete($id);
         return $this->redirect(['index']);
     }
 
+    /**
+     * Finds the availablehero model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param int $id ID
+     * @return availablehero the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     protected function findModel($id)
     {
-        $repository = new AvailableHeroRepository();
-        if (($hero = $repository->getbyId($id)) !== null) {
-            return $hero;
-        }
-
+        //return $this->AvailableHeroesGetByrarity->__invoke($id);
+        $model = AvailableHeroMapper::toModel($this->repository->getById($id));
+        if ($model !== null) return $model;
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

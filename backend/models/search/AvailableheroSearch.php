@@ -1,15 +1,15 @@
 <?php
 
-namespace backend\models\search;
+namespace backend\models\Search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\availablehero;
 
 /**
- * AvailableheroSearch represents the model behind the search form of `common\models\availablehero`.
+ * availableheroSearch represents the model behind the search form of `common\models\availablehero`.
  */
-class AvailableheroSearch extends availablehero
+class availableheroSearch extends availablehero
 {
     /**
      * {@inheritdoc}

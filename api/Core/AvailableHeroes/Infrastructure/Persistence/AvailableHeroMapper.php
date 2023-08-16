@@ -8,7 +8,16 @@ use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use common\models\availablehero as AvailableHeroModel;
 use common\models\User;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
+use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
+use api\Shared\Domain\ValueObject\Avatar;
+use api\Shared\Domain\ValueObject\Boost;
+use api\Shared\Domain\ValueObject\FkId;
+use api\Shared\Domain\ValueObject\Stats;
 use api\Shared\Domain\ValueObject\UUID;
+use DateTime;
 
 final class AvailableHeroMapper
 {
@@ -90,7 +99,7 @@ final class AvailableHeroMapper
             new Stats($model->attack_min),
             new Stats($model->attack_max),
             new Boost($model->b_attack_min),
-            new Boost($model->b_attack_max),
+            new Boost($model->b_Battack_max),
             new Stats($model->defense_min),
             new Stats($model->defense_max),
             new Boost($model->b_defense_min),
@@ -123,7 +132,7 @@ final class AvailableHeroMapper
             new Stats($model->wooding_max),
             new Boost($model->b_wooding_min),
             new Boost($model->b_wooding_max),
-            $model->available,
+            (bool)$model->available,
             new DateTime('@' . $model->created_at),
             new DateTime('@' . $model->updated_at),
             new UUID($model->created_by),
