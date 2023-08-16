@@ -86,7 +86,7 @@ class AvailableheroController extends Controller
         $model = new availablehero();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $repository->save($model)) {
+            if ($model->load($this->request->post()) && $model->id = 0 && $repository->save($model)) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {

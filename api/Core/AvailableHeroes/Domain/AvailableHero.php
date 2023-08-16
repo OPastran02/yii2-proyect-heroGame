@@ -17,10 +17,10 @@ use api\Shared\Domain\Aggregate\AggregateRoot;
 use DateTime;
 
 
-final class AvailableHero extends AggregateRoot
+final class AvailableHero //extends AggregateRoot
 {
     public function __construct(
-        private readonly AvailableHeroId $id,
+        private readonly ?AvailableHeroId $id,
         private AvailableHeroName $name,
         private AvailableHeroDescription $description,
         private AvailableHeroWorld $world,
@@ -182,7 +182,7 @@ final class AvailableHero extends AggregateRoot
             $updated_by
         );
 
-        $availableHero->record(
+        /*$availableHero->record(
             new AvailableHeroCreatedDomainEvent(
                 $id->value(),
                 $name->value(),
@@ -236,7 +236,7 @@ final class AvailableHero extends AggregateRoot
                 $created_by->value(),
                 $updated_by->value()
                 )
-            );
+            );*/
         return $availableHero;
     }
 

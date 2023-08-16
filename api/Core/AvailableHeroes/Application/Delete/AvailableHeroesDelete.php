@@ -20,6 +20,7 @@ final class AvailableHeroesDelete
     public function __invoke(int $id): void
     {
         $availableHero = $this->repository->getbyId($id);
+        Var_dump($availableHero);
         if (null === $availableHero) throw new AvailableHeroNotFound($id);
         $this->repository->delete($id); 
     }

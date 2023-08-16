@@ -66,6 +66,7 @@ class AvailableHeroRepositoryTest extends TestCase
         $availableHero = $this->controller->getById(1);
         $this->assertNotNull($availableHero, 'The AvailableHero does not exist.');
         $this->controller->delete(1);
+        $this->expectNotToPerformAssertions();
     }
 
     public function testSave()
