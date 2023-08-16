@@ -17,6 +17,11 @@ return [
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
+            // Agregar el componente de registro de consultas
+            'queryLogger' => [
+                'class' => 'yii\log\DbTarget',
+                'levels' => ['info'], // Puedes ajustar los niveles de registro según tus necesidades
+            ],
         ],
     ],
 ];

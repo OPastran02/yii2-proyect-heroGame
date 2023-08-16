@@ -23,7 +23,6 @@ use api\Shared\Domain\Bus\Event\EventBus;
 
 class AvailableHeroController
 {
-
     private $availableHeroesRepository;
     private $AvailableHeroesSave;
     private $AvailableHeroesGetbyId;
@@ -40,8 +39,7 @@ class AvailableHeroController
     }
 
     public function getbyId(int $id): ?availableheroDom
-    {
-        codecept_debug("entro en id?");
+    {    
         return $this->AvailableHeroesGetbyId->__invoke($id);
     }
 
@@ -55,9 +53,11 @@ class AvailableHeroController
         $this->AvailableHeroesDelete->__invoke($id);
     }
 
-    public function save(AvailableHeroesModel $availableHeroModel){
+    public function save(AvailableHeroesModel $availableHeroModel)
+    {
         $availableHero = AvailableHeroMapper::toDomain($availableHeroModel);
         $this->AvailableHeroesSave->__invoke($availableHero);
     }
 
-}    
+}  
+

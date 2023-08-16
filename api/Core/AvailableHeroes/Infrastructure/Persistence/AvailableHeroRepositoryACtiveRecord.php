@@ -151,12 +151,26 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
 
     public function delete(int $id): void
     {
-        codecept_debug("entro en delete?");
-
+        
         $availableHero = $this->getById($id); // Obtener el AvailableHero a través de la lógica del dominio
+        
         if ($availableHero) {
             $availableHeroModel = AvailableHeroMapper::toModel($availableHero);
-            $availableHeroModel->delete();
+            if ($availableHeroModel->validate()) {
+                $deleted = $availableHeroModel->delete();
+                try {
+                    $deleted = $availableHeroModel->delete();
+                    if ($deleted) {
+                        var_dump("El modelo se eliminó exitosamente", 'app\models\availablehero');
+                    } else {
+                        var_dump("La eliminación del modelo falló: " . print_r($availableHeroModel->getErrors(), true), 'app\models\availablehero');
+                    }
+                } catch (\Exception $e) {
+                    var_dump("Error durante la eliminación del modelo: " . $e->getMessage(), 'app\models\availablehero');
+                }
+            } else {
+                // Manejar los errores de validación
+            }
         }
     }
 

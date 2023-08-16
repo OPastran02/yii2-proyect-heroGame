@@ -156,7 +156,7 @@ class availablehero extends \yii\db\ActiveRecord
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(User::class, ['id' => 'created_by']);
+        return $this->hasOne(User::class, ['id' => 'created_by'])->inverseOf('availableheroes');
     }
 
     /**
@@ -166,15 +166,15 @@ class availablehero extends \yii\db\ActiveRecord
      */
     public function getUpdatedBy()
     {
-        return $this->hasOne(User::class, ['id' => 'updated_by']);
+        return $this->hasOne(User::class, ['id' => 'updated_by'])->inverseOf('availableheroes0');
     }
 
     /**
      * {@inheritdoc}
-     * @return \common\models\query\availableheroQuery the active query used by this AR class.
+     * @return \common\models\query\AvailableheroesQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\availableheroQuery(get_called_class());
+        return new \common\models\query\AvailableheroesQuery(get_called_class());
     }
 }
