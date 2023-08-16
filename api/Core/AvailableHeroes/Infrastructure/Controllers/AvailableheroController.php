@@ -41,6 +41,7 @@ class AvailableHeroController
 
     public function getbyId(int $id): ?availableheroDom
     {
+        codecept_debug("entro en id?");
         return $this->AvailableHeroesGetbyId->__invoke($id);
     }
 

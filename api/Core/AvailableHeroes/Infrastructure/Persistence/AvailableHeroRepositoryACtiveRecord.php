@@ -27,6 +27,7 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
 {
     public function getbyId(int $id): ?AvailableHero
     {
+        codecept_debug("entro en id?");
         $availableHeroId = new AvailableHeroId($id);
         $availableHeroModel = AvailableHeroModel::findOne($availableHeroId);
         if (!$availableHeroModel) {
@@ -142,12 +143,16 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
 
     public function getByrarity(int $rarity): AvailableHeroes
     {
+        codecept_debug("entro en rarity?");
+
         $availableHeroes = AvailableHeroModel::findAll(['rarity_id' => $rarity]);
         return new AvailableHeroes($availableHeroes);
     }
 
     public function delete(int $id): void
     {
+        codecept_debug("entro en delete?");
+
         $availableHero = $this->getById($id); // Obtener el AvailableHero a través de la lógica del dominio
         if ($availableHero) {
             $availableHeroModel = AvailableHeroMapper::toModel($availableHero);
@@ -157,6 +162,8 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
 
     public function save(AvailableHero $availableHero): void
     {
+        codecept_debug("entro en save?");
+
         $model = AvailableHeroMapper::toModel($availableHero);
         $model->save();
     }
