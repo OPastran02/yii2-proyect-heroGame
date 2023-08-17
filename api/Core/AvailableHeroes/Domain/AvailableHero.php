@@ -20,7 +20,7 @@ use DateTime;
 final class AvailableHero //extends AggregateRoot
 {
     public function __construct(
-        private readonly ?AvailableHeroId $id,
+        private AvailableHeroId $id,
         private AvailableHeroName $name,
         private AvailableHeroDescription $description,
         private AvailableHeroWorld $world,
@@ -66,7 +66,7 @@ final class AvailableHero //extends AggregateRoot
         private Stats $wooding_max,
         private Boost $b_wooding_min,
         private Boost $b_wooding_max,
-        private bool $available,
+        private int $available,
         private readonly DateTime $created_at,
         private readonly DateTime $updated_at,
         private readonly UUID $created_by,
@@ -122,7 +122,7 @@ final class AvailableHero //extends AggregateRoot
         Stats $wooding_max,
         Boost $b_wooding_min,
         Boost $b_wooding_max,
-        bool $available,
+        int $available,
         DateTime $created_at,
         DateTime $updated_at,
         UUID $created_by,
@@ -471,7 +471,7 @@ final class AvailableHero //extends AggregateRoot
         return $this->b_wooding_max;
     }
 
-    public function available(): bool
+    public function available(): int
     {
         return $this->available;
     }

@@ -148,9 +148,7 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
 
     public function delete(int $id): void
     {
-        
         $availableHero = $this->getById($id); // Obtener el AvailableHero a través de la lógica del dominio
-        
         if ($availableHero) {
             $availableHeroModel = AvailableHeroMapper::toModel($availableHero);
             if ($availableHeroModel->validate()) {

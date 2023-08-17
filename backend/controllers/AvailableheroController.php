@@ -20,13 +20,20 @@ use common\models\availablehero as AvailableHeroesModel;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroMapper;    
 use api\Shared\Domain\Bus\Event\EventBus;
 use api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableHeroController as AHController;
+use Yii;
 
 /**
  * AvailableheroController implements the CRUD actions for availablehero model.
  */
 class AvailableheroController extends Controller
 {
+    public $ahController;
 
+    public function __construct($id, $module, AvailableHeroesRepositoryInterface $ahController, $config = [])
+    {
+        $this->ahController = $ahController;
+        parent::__construct($id, $module, $config);
+    }
 
     /**
      * @inheritDoc
@@ -70,8 +77,7 @@ class AvailableheroController extends Controller
      */
     public function actionView($id)
     {
-        $repository= new AHController();
-        $model = AvailableHeroMapper::toModel($repository->getById($id));
+        $model = $this->ahController->getById($id);
         return $this->render('view', ['model' => $model]);
     }
 
@@ -82,12 +88,14 @@ class AvailableheroController extends Controller
      */
     public function actionCreate()
     {
-        $repository= new AHController();
         $model = new availablehero();
-
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->id = 0 && $repository->save($model)) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->id=0;
+                $availableHeroDom = AvailableHeroMapper::toDomain($model);
+                if ($this->ahController->save($availableHeroDom)) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -107,13 +115,19 @@ class AvailableheroController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = new availablehero();
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post())) {
+                if ($this->ahController->save($model)) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+        } else {
+            $model->loadDefaultValues();
         }
 
-        return $this->render('update', [
+        return $this->render('create', [
             'model' => $model,
         ]);
     }
@@ -127,8 +141,7 @@ class AvailableheroController extends Controller
      */
     public function actionDelete($id)
     {
-        $repository= new AHController();
-        $repository->delete($id);
+        $this->ahController->delete($id);
         return $this->redirect(['index']);
     }
 
@@ -141,8 +154,7 @@ class AvailableheroController extends Controller
      */
     protected function findModel($id)
     {
-        $repository= new AHController();
-        $model = AvailableHeroMapper::toModel($repository->getById($id));
+        $model = AvailableHeroMapper::toModel($this->ahController->getById($id));
         if ($model !== null) return $model;
         throw new NotFoundHttpException('The requested page does not exist.');
     }

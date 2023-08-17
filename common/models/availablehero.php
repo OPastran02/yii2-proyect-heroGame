@@ -1,6 +1,8 @@
 <?php
 
 namespace common\models;
+use yii\db\ActiveRecord;
+use yii\db\QueryBuilder;
 
 use Yii;
 
@@ -148,10 +150,21 @@ class availablehero extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return \common\models\query\AvailableheroesQuery the active query used by this AR class.
+     * @return \common\models\query\availableheroQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\AvailableheroesQuery(get_called_class());
+        return new \common\models\query\availableheroQuery(get_called_class());
     }
+
+    public function delete()
+    {
+        $id = $this->id;
+        $sql = "DELETE FROM availableheroes WHERE id = :id";
+
+        Yii::$app->db->createCommand($sql, [':id' => $id])->execute();
+
+        parent::delete(); // Llama al método delete original para realizar la eliminación
+    }
+
 }

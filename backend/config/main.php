@@ -36,6 +36,11 @@ return [
                 ],
             ],
         ],
+        'ahController' => [
+            'class' => 'api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableHeroController',
+            // Otras configuraciones
+        ],
+    
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
