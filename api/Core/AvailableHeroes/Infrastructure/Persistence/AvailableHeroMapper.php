@@ -23,7 +23,7 @@ final class AvailableHeroMapper
 {
     public static function toModel(AvailableHero $availableHero): AvailableHeroModel
     {
-        $user=User::findId($availableHero->createdBy()->value());
+        //$user=User::findId($availableHero->createdBy()->value());
 
         
         $model = new AvailableHeroModel();

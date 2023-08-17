@@ -58,9 +58,6 @@ use Yii;
  * @property int|null $updated_at
  * @property string|null $created_by
  * @property string|null $updated_by
- *
- * @property User $createdBy
- * @property User $updatedBy
  */
 class availablehero extends \yii\db\ActiveRecord
 {
@@ -147,26 +144,6 @@ class availablehero extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
         ];
-    }
-
-    /**
-     * Gets query for [[CreatedBy]].
-     *
-     * @return \yii\db\ActiveQuery|\common\models\query\UserQuery
-     */
-    public function getCreatedBy()
-    {
-        return $this->hasOne(User::class, ['id' => 'created_by'])->inverseOf('availableheroes');
-    }
-
-    /**
-     * Gets query for [[UpdatedBy]].
-     *
-     * @return \yii\db\ActiveQuery|\common\models\query\UserQuery
-     */
-    public function getUpdatedBy()
-    {
-        return $this->hasOne(User::class, ['id' => 'updated_by'])->inverseOf('availableheroes0');
     }
 
     /**

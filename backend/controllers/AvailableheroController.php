@@ -129,7 +129,7 @@ class AvailableheroController extends Controller
     {
         $repository= new AHController();
         $repository->delete($id);
-        //return $this->redirect(['index']);
+        return $this->redirect(['index']);
     }
 
     /**

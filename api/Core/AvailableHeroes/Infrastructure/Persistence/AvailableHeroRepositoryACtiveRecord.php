@@ -27,7 +27,6 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
 {
     public function getbyId(int $id): ?AvailableHero
     {
-        codecept_debug("entro en id?");
         $availableHeroId = new AvailableHeroId($id);
         $availableHeroModel = AvailableHeroModel::findOne($availableHeroId);
         if (!$availableHeroModel) {
@@ -143,8 +142,6 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
 
     public function getByrarity(int $rarity): AvailableHeroes
     {
-        codecept_debug("entro en rarity?");
-
         $availableHeroes = AvailableHeroModel::findAll(['rarity_id' => $rarity]);
         return new AvailableHeroes($availableHeroes);
     }
@@ -158,26 +155,12 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
             $availableHeroModel = AvailableHeroMapper::toModel($availableHero);
             if ($availableHeroModel->validate()) {
                 $deleted = $availableHeroModel->delete();
-                try {
-                    $deleted = $availableHeroModel->delete();
-                    if ($deleted) {
-                        var_dump("El modelo se eliminó exitosamente", 'app\models\availablehero');
-                    } else {
-                        var_dump("La eliminación del modelo falló: " . print_r($availableHeroModel->getErrors(), true), 'app\models\availablehero');
-                    }
-                } catch (\Exception $e) {
-                    var_dump("Error durante la eliminación del modelo: " . $e->getMessage(), 'app\models\availablehero');
-                }
-            } else {
-                // Manejar los errores de validación
             }
         }
     }
 
     public function save(AvailableHero $availableHero): void
     {
-        codecept_debug("entro en save?");
-
         $model = AvailableHeroMapper::toModel($availableHero);
         $model->save();
     }

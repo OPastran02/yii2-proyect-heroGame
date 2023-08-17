@@ -17,13 +17,18 @@ return [
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
+            'enableSchemaCache' => true, // Opcional, para mejorar el rendimiento
+            'enableLogging' => true,    // Habilitar el registro de consultas SQL
+            'enableProfiling' => true,  // Habilitar el perfilado de consultas
         ],
         'log' => [
             'targets' => [
                 // ...
                 [
                     'class' => 'yii\log\DbTarget',
-                    'levels' => ['info'], // Puedes ajustar los niveles de registro según tus necesidades
+                    'levels' => ['error', 'warning', 'info', 'trace'],
+                    'categories' => ['yii\db\*'],
+                    'logVars' => [],
                 ],
             ],
         ],
