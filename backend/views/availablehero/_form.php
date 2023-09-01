@@ -30,30 +30,10 @@ use mihaildev\ckeditor\CKEditor;
             <?= $form->field($model, 'world')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="row">            
-            <?= $form->field($model, 'avatar',[
-                'template' => '
-                    <div class="custom-file">
-                        {input}
-                        {label}
-                        {error}
-                    </div>
-                ',
-                'labelOptions' => ['class' => 'custom-file-label'],
-                'inputOptions' => ['class' => 'custom-file-input'],
-            ])->textInput(['type' => 'file']) ?>
+            <?= $form->field($model, 'avatar')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="row"> 
-            <?= $form->field($model, 'avatarBlock',[
-                'template' => '
-                    <div class="custom-file">
-                        {input}
-                        {label}
-                        {error}
-                    </div>
-                ',
-                'labelOptions' => ['class' => 'custom-file-label'],
-                'inputOptions' => ['class' => 'custom-file-input'],
-            ])->textInput(['type' => 'file']) ?>        
+            <?= $form->field($model, 'avatarBlock')->textInput(['maxlength' => true]) ?>        
         </div>
         <div class="row">  
             <div class="col">

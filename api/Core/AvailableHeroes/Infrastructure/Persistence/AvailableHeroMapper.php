@@ -25,7 +25,7 @@ final class AvailableHeroMapper
     {
         //$user=User::findId($availableHero->createdBy()->value());
         $model = new AvailableHeroModel();
-        $model->id = $availableHero->id()->value();
+        $model->id = $availableHero->id() ? $availableHero->id()->value() : null;
         $model->name = $availableHero->name()->value();
         $model->description = $availableHero->description()->value();
         $model->world = $availableHero->world()->value();
@@ -72,10 +72,10 @@ final class AvailableHeroMapper
         $model->b_wooding_min = $availableHero->bWoodingMin()->value();
         $model->b_wooding_max = $availableHero->bWoodingMax()->value();
         $model->available = $availableHero->available() ? 1 : 0;
-        $model->created_at = (int) $availableHero->createdAt()->getTimestamp();;
-        $model->updated_at = (int) $availableHero->createdAt()->getTimestamp();;
-        $model->created_by = $availableHero->createdBy()->value();
-        $model->updated_by = $availableHero->createdBy()->value();
+        $model->created_at = $availableHero->createdAt() ? (int) $availableHero->createdAt()->getTimestamp() : null;
+        $model->updated_at = $availableHero->updatedAt() ? (int) $availableHero->updatedAt()->getTimestamp() : null;
+        $model->created_by = $availableHero->createdBy() ? $availableHero->createdBy()->value() : null;
+        $model->updated_by = $availableHero->updatedBy() ? $availableHero->updatedBy()->value() : null;
         //codecept_debug($model);
 
         return $model;
@@ -84,7 +84,7 @@ final class AvailableHeroMapper
     public static function toDomain(AvailableHeroModel $model): AvailableHero
     {
         $availableHero = AvailableHero::create(
-            new AvailableHeroId((int)$model->id),
+            $model->id ? (int)$model->id : null,
             new AvailableHeroName((string)$model->name),
             new AvailableHeroDescription((string)$model->description),
             new AvailableHeroWorld((string)$model->world),
@@ -131,10 +131,10 @@ final class AvailableHeroMapper
             new Boost((int)$model->b_wooding_min),
             new Boost((int)$model->b_wooding_max),
             (int)$model->available,
-            new DateTime('@' . $model->created_at),
-            new DateTime('@' . $model->updated_at),
-            new UUID($model->created_by),
-            new UUID($model->created_by)
+            $model->created_at ? new DateTime($model->created_at) : null,
+            $model->updated_at ? new DateTime($model->updated_at) : null,
+            $model->created_by ? new UUID($model->created_by) : null,
+            $model->updated_by ? new UUID($model->updated_by) : null,
         );
 
         return $availableHero;

@@ -20,12 +20,12 @@ use DateTime;
 final class AvailableHero //extends AggregateRoot
 {
     public function __construct(
-        private AvailableHeroId $id,
+        private ?AvailableHeroId $id = null,
         private AvailableHeroName $name,
         private AvailableHeroDescription $description,
         private AvailableHeroWorld $world,
         private Avatar $avatar,
-        private Avatar $avatarBlock,//
+        private Avatar $avatarBlock,
         private FkId $race_id,
         private FkId $rarity_id,
         private FkId $nature_id,
@@ -33,50 +33,50 @@ final class AvailableHero //extends AggregateRoot
         private Stats $attack_min,
         private Stats $attack_max,
         private Boost $b_attack_min,
-        private Boost $b_Battack_max,//
+        private Boost $b_Battack_max,
         private Stats $defense_min,
         private Stats $defense_max,
         private Boost $b_defense_min,
-        private Boost $b_defense_max,//
+        private Boost $b_defense_max,
         private Stats $hp_min,
         private Stats $hp_max,
         private Boost $b_hp_min,
-        private Boost $b_hp_max,//
+        private Boost $b_hp_max,
         private Stats $sp_attack_min,
         private Stats $sp_attack_max,
         private Boost $b_sp_attack_min,
-        private Boost $b_sp_attack_max,//
+        private Boost $b_sp_attack_max,
         private Stats $sp_defense_min,
         private Stats $sp_defense_max,
         private Boost $b_sp_defense_min,
-        private Boost $b_sp_defense_max,//
+        private Boost $b_sp_defense_max,
         private Stats $speed_min,
         private Stats $speed_max,
         private Boost $b_speed_min,
-        private Boost $b_speed_max,//
+        private Boost $b_speed_max,
         private Stats $farming_min,
         private Stats $farming_max,
         private Boost $b_farming_min,
-        private Boost $b_farming_max,//
+        private Boost $b_farming_max,
         private Stats $steeling_min,
         private Stats $steeling_max,
         private Boost $b_steeling_min,
-        private Boost $b_steeling_max,//
+        private Boost $b_steeling_max,
         private Stats $wooding_min,
         private Stats $wooding_max,
         private Boost $b_wooding_min,
         private Boost $b_wooding_max,
         private int $available,
-        private readonly DateTime $created_at,
-        private readonly DateTime $updated_at,
-        private readonly UUID $created_by,
-        private readonly UUID $updated_by
+        private readonly ?DateTime $created_at = null,
+        private readonly ?DateTime $updated_at = null,
+        private readonly ?UUID $created_by = null,
+        private readonly ?UUID $updated_by = null
     ){
     
     }
 
     public static function create( 
-        AvailableHeroId $id,
+        ?AvailableHeroId $id = null,
         AvailableHeroName $name,
         AvailableHeroDescription $description,
         AvailableHeroWorld $world,
@@ -123,10 +123,10 @@ final class AvailableHero //extends AggregateRoot
         Boost $b_wooding_min,
         Boost $b_wooding_max,
         int $available,
-        DateTime $created_at,
-        DateTime $updated_at,
-        UUID $created_by,
-        UUID $updated_by
+        ?DateTime $created_at = null,
+        ?DateTime $updated_at = null,
+        ?UUID $created_by = null,
+        ?UUID $updated_by = null
     ): self {
         $availableHero = new self(
             $id,
@@ -241,7 +241,7 @@ final class AvailableHero //extends AggregateRoot
     }
 
     //todos los getters y setters excepto los readOnly
-    public function id(): AvailableHeroId
+    public function id(): ?AvailableHeroId
     {
         return $this->id;
     }
@@ -476,22 +476,22 @@ final class AvailableHero //extends AggregateRoot
         return $this->available;
     }
 
-    public function createdAt(): DateTime
+    public function createdAt(): ?DateTime
     {
         return $this->created_at;
     }
 
-    public function updatedAt(): DateTime
+    public function updatedAt(): ?DateTime
     {
         return $this->updated_at;
     }
 
-    public function createdBy(): UUID
+    public function createdBy(): ?UUID
     {
         return $this->created_by;
     }
 
-    public function updatedBy(): UUID
+    public function updatedBy(): ?UUID
     {
         return $this->updated_by;
     }

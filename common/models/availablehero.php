@@ -71,6 +71,14 @@ class availablehero extends \yii\db\ActiveRecord
         return 'availableheroes';
     }
 
+    public function behaviors()
+    {
+        return [
+            \yii\behaviors\TimestampBehavior::class,
+            \yii\behaviors\BlameableBehavior::class,
+        ];
+    }
+    
     /**
      * {@inheritdoc}
      */
