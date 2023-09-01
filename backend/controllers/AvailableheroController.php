@@ -77,7 +77,7 @@ class AvailableheroController extends Controller
      */
     public function actionView($id)
     {
-        $model = $this->ahController->getById($id);
+        $model = AvailableHeroMapper::toModel($this->ahController->getById($id));
         return $this->render('view', ['model' => $model]);
     }
 
@@ -92,10 +92,9 @@ class AvailableheroController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $availableHeroDom = AvailableHeroMapper::toDomain($model);
-                if ($this->ahController->save($availableHeroDom)) {
-
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }
+                if($id = $this->ahController->save($availableHeroDom)){
+                    return $this->redirect(['view', 'id' => $id]);
+                }     
             }
         } else {
             $model->loadDefaultValues();

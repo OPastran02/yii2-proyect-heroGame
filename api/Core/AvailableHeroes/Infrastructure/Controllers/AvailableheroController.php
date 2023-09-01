@@ -53,7 +53,7 @@ class AvailableHeroController
         $this->AvailableHeroesDelete->__invoke($id);
     }
 
-    public function save(AvailableHeroesModel $availableHeroModel):void
+    public function save(AvailableHeroesModel $availableHeroModel):?int
     {
         $availableHero = AvailableHeroMapper::toDomain($availableHeroModel);
         $this->AvailableHeroesSave->__invoke($availableHero);

@@ -16,5 +16,5 @@ interface AvailableHeroesRepositoryInterface
 
     public function delete(int $id): void;  
 
-    public function save(AvailableHero $availableHeroes): void;
+    public function save(AvailableHero $availableHeroes): ?int;
 }

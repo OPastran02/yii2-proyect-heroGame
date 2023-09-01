@@ -157,9 +157,11 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
         }
     }
 
-    public function save(AvailableHero $availableHero): void
+    public function save(AvailableHero $availableHero): ?int
     {
         $model = AvailableHeroMapper::toModel($availableHero);
-        $model->save();
+        if ($model->save()) {
+            return $model->getPrimaryKey(); // Aquí obtienes el ID generado
+        }
     }
 }
