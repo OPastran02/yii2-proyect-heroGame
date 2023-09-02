@@ -92,9 +92,7 @@ class AvailableheroController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $availableHeroDom = AvailableHeroMapper::toDomain($model);
-                if($id = $this->ahController->save($availableHeroDom)){
-                    return $this->redirect(['view', 'id' => $id]);
-                }     
+                if($id = $this->ahController->save($availableHeroDom)) return $this->redirect(['view', 'id' => $id]);          
             }
         } else {
             $model->loadDefaultValues();
