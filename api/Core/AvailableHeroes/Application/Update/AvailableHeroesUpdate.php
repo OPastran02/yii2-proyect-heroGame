@@ -31,7 +31,7 @@ final class AvailableHeroesUpdate
     public function __invoke(
         AvailableHero $availableHero
     ){
-        $this->repository->save($availableHero);
+        $this->repository->update($availableHero);
         //$this->bus->publish(...$availableHero->pullDomainEvents());
     }
 }
