@@ -92,7 +92,9 @@ class AvailableheroController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $availableHeroDom = AvailableHeroMapper::toDomain($model);
-                if($id = $this->ahController->save($availableHeroDom)) return $this->redirect(['view', 'id' => $id]);          
+                if($id = $this->ahController->save($availableHeroDom)){
+                    return $this->redirect(['view', 'id' => $id]);   
+                }        
             }
         } else {
             $model->loadDefaultValues();
@@ -106,16 +108,16 @@ class AvailableheroController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException if the model cannot be found0.
      */
     public function actionUpdate($id)
     {
-        $model = new availablehero();
-
+        $dom= $this->ahController->getById($id);
+        $model = AvailableHeroMapper::toModel($dom);
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                if ($this->ahController->save($model)) {
-                    return $this->redirect(['view', 'id' => $model->id]);
+                if($id = $this->ahController->save($dom)) {
+                    return $this->redirect(['view', 'id' => $id]);
                 }
             }
         } else {
