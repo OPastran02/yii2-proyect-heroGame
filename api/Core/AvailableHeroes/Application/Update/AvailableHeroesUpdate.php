@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace api\Core\AvailableHeroes\Application\Create;
+namespace api\Core\AvailableHeroes\Application\Update;
 
 use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
 use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
@@ -30,7 +30,7 @@ final class AvailableHeroesUpdate
     }
 
     public function __invoke(){
-        $this->repository->save($this->availableHero);
+        $this->repository->update($this->availableHero);
         //por ahora no por que no lo entiendo
         //$this->bus->publish(...$availableHero->pullDomainEvents());
     }
