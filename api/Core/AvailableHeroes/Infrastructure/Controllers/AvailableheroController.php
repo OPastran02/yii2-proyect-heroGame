@@ -35,38 +35,33 @@ class AvailableHeroController
     {
         $this->availableHeroesRepository = new AvailableHeroRepositoryACtiveRecord(); // Corregir el nombre de la clase
         $this->AvailableHeroesSave = new AvailableHeroesSave($this->availableHeroesRepository);
-        $this->AvailableHeroesGetbyId = new AvailableHeroesGetbyId($this->availableHeroesRepository);
-        $this->AvailableHeroesGetByrarity = new AvailableHeroesGetByrarity($this->availableHeroesRepository);
-        $this->AvailableHeroesDelete = new AvailableHeroesDelete($this->availableHeroesRepository);
         $this->AvailableHeroesUpdate = new AvailableHeroesUpdate($this->availableHeroesRepository);
 
     }
 
     public function getbyId(int $id): ?availableheroDom
     {    
-        return $this->AvailableHeroesGetbyId->__invoke($id);
+        return new AvailableHeroesGetbyId($this->availableHeroesRepository, $id);
     }
 
     public function getByrarity(int $id): AvailableHeroes
     {
-        return $this->AvailableHeroesGetByrarity->__invoke($id);
+        return new AvailableHeroesGetByrarity($this->availableHeroesRepository,$id);
     }
 
     public function delete(int $id): void
     { 
-        $this->AvailableHeroesDelete->__invoke($id);
+        new AvailableHeroesDelete($this->availableHeroesRepository,$id);
     }
 
     public function save(AvailableHeroesModel $availableHeroModel):?int
     {
-        $availableHero = AvailableHeroMapper::toDomain($availableHeroModel);
-        $this->AvailableHeroesSave->__invoke($availableHero);
+        return new AvailableHeroesSave($this->availableHeroesRepository,AvailableHeroMapper::toDomain($availableHeroModel));
     }
 
     public function update(AvailableHeroesModel $availableHeroModel):?int
     {
-        $availableHero = AvailableHeroMapper::toDomain($availableHeroModel);
-        $this->AvailableHeroesUpdate->__invoke($availableHero);
+        return new AvailableHeroesUpdate($this->availableHeroesRepository,AvailableHeroMapper::toDomain($availableHeroModel));
     }
 
 }  

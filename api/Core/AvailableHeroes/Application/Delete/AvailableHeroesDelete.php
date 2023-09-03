@@ -12,15 +12,17 @@ use api\Core\AvailableHeroes\Domain\Exceptions\AvailableHeroesNotFound;
 final class AvailableHeroesDelete
 { 
     private AvailableHeroesRepositoryInterface $repository;
-    
-    public function __construct(AvailableHeroesRepositoryInterface $repository){
+    private int $id;
+
+    public function __construct(AvailableHeroesRepositoryInterface $repository,$id){
         $this->repository = $repository;
+        $this->id=$id;
     }
 
-    public function __invoke(int $id): void
+    public function __invoke(): void
     {
-        $availableHero = $this->repository->getbyId($id);
-        if (null === $availableHero) throw new AvailableHeroNotFound($id);
-        $this->repository->delete($id); 
+        $availableHero = $this->repository->getbyId($this->id);
+        if (null === $availableHero) throw new AvailableHeroNotFound($this->id);
+        $this->repository->delete($this->id); 
     }
 }

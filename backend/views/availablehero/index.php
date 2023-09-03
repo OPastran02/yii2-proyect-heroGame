@@ -27,18 +27,52 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
-            'description:ntext',
-            'world:ntext',
-            'avatar',
-            //'avatarBlock',
-            //'race_id',
-            //'rarity_id',
-            //'nature_id',
-            //'type_id',
+            [
+                'attribute'=>'id',
+                'contentOptions' => ['style' => 'width: 50px; text-align: center;']
+            ],
+            [
+                'attribute'=>'name',
+                'contentOptions' => ['style' => 'width: 200px; text-align: center;']
+            ],
+            [
+                'attribute'=>'world',
+                'contentOptions' => ['style' => 'width: 200px; text-align: center;']
+            ],
+            [
+                'attribute'=>'avatar',
+                'contentOptions' => ['style' => 'width: 50px; text-align: center;']
+            ],
+            [
+                'attribute'=>'avatarBlock',
+                'contentOptions' => ['style' => 'width: 50px; text-align: center;']
+            ],
+            [
+                'attribute'=>'race_id',
+                'contentOptions' => ['style' => 'width: 200px; text-align: center;']
+            ],
+            [
+                'attribute'=>'rarity_id',
+                'contentOptions' => ['style' => 'width: 200px; text-align: center;']
+            ],
+            [
+                'attribute'=>'nature_id',
+                'contentOptions' => ['style' => 'width: 200px; text-align: center;']
+            ],
+            [
+                'attribute'=>'type_id',
+                'contentOptions' => ['style' => 'width: 200px; text-align: center;']
+            ],
+            [
+                'attribute' => 'available',
+                'contentOptions' => ['style' => 'width: 50px; text-align: center;'],
+                'content' => function($model){
+                    /** @var \common\models\Product $model*/
+                    return Html::tag('span', $model->available ? 'Active' : 'Inactive', [
+                        'class' => $model->available ? 'badge badge-success' : 'badge badge-danger'
+                    ]);
+                }
+            ],
             //'attack_min',
             //'attack_max',
             //'b_attack_min',

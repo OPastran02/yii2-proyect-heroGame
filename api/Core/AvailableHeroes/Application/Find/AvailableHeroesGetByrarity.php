@@ -13,15 +13,17 @@ use api\Core\AvailableHeroes\Domain\Exceptions\AvailableHeroesNotFound;
 final class AvailableHeroesGetByrarity
 {
     private AvailableHeroesRepositoryInterface $repository;
-    
+    private int $id;
+
     public function __construct(AvailableHeroesRepositoryInterface $repository){
         $this->repository = $repository;
+        $this->id = $id;
     }
 
-    public function __invoke(int $id): AvailableHeroes
+    public function __invoke(): AvailableHeroes
     {
-        $availableHeroes = $this->repository->getByrarity($id);
-        if (empty($availableHeroes)) throw new AvailableHeroNotFound("No heroes found for Rarity ID: " . $id);
+        $availableHeroes = $this->repository->getByrarity($this->id);
+        if (empty($availableHeroes)) throw new AvailableHeroNotFound("No heroes found for Rarity ID: " . $this->id );
         
         return $availableHeroes;
     }

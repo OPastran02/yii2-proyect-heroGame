@@ -112,11 +112,15 @@ class AvailableheroController extends Controller
      */
     public function actionUpdate($id)
     {
+
         $dom= $this->ahController->getById($id);
         $model = AvailableHeroMapper::toModel($dom);
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                if($id = $this->ahController->save($dom)) {
+                $model->updated_at=time();
+                $availableHeroDom = AvailableHeroMapper::toDomain($model);
+                if($id = $this->ahController->update($availableHeroDom)) {
                     return $this->redirect(['view', 'id' => $id]);
                 }
             }

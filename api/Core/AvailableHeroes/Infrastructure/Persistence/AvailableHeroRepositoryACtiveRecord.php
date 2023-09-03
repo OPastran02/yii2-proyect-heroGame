@@ -168,8 +168,10 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
     public function update(AvailableHero $availableHero): ?int
     {
         $model = AvailableHeroMapper::toModel($availableHero);
-        if ($model->save()) {
+        if ($model->update()) {
             return $model->getPrimaryKey(); // Aquí obtienes el ID generado
+        }else{
+            return 0;
         }
     }
 }

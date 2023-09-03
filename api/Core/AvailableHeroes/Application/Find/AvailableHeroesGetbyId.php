@@ -12,15 +12,18 @@ use api\Core\AvailableHeroes\Domain\Exceptions\AvailableHeroesNotFound;
 final class AvailableHeroesGetbyId
 {
     private AvailableHeroesRepositoryInterface $repository;
-    
-    public function __construct(AvailableHeroesRepositoryInterface $repository){
+    private int $id;
+
+    public function __construct(AvailableHeroesRepositoryInterface $repository, int $id)
+    {
         $this->repository = $repository;
+        $this->id = $id;
     }
 
-    public function __invoke(int $id): AvailableHero
+    public function __invoke(): AvailableHero
     {
-        $availableHero = $this->repository->getbyId($id);
-        if (null === $availableHero) throw new AvailableHeroNotFound($id);
+        $availableHero = $this->repository->getbyId($this->id);
+        if (null === $availableHero) throw new AvailableHeroNotFound($this->id);
 
         return $availableHero;
     }

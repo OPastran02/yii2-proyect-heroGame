@@ -78,7 +78,7 @@ class availablehero extends \yii\db\ActiveRecord
             \yii\behaviors\BlameableBehavior::class,
         ];
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -173,6 +173,14 @@ class availablehero extends \yii\db\ActiveRecord
         Yii::$app->db->createCommand($sql, [':id' => $id])->execute();
 
         parent::delete(); // Llama al método delete original para realizar la eliminación
+    }
+
+    public function update($runValidation = true, $attributeNames = null)
+    {
+        $id = $this->id;
+        $condition = ['id' => $id]; 
+    
+        return static::updateAll($this->attributes, $condition);
     }
 
 }

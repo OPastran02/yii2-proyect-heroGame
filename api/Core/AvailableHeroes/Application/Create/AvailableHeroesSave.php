@@ -22,16 +22,16 @@ use DateTime;
 final class AvailableHeroesSave
 {
     private AvailableHeroesRepositoryInterface $repository;
+    private AvailableHero $availableHero;
 
-
-    public function __construct(AvailableHeroesRepositoryInterface $repository){
+    public function __construct(AvailableHeroesRepositoryInterface $repository,AvailableHero $availableHero){
         $this->repository = $repository;
+        $this->availableHero = $availableHero;
     }
 
-    public function __invoke(
-        AvailableHero $availableHero
-    ){
-        $this->repository->save($availableHero);
+    public function __invoke(){
+        $this->repository->save($this->availableHero);
+        //por ahora no por que no lo entiendo
         //$this->bus->publish(...$availableHero->pullDomainEvents());
     }
 }

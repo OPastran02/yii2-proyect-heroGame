@@ -84,7 +84,7 @@ final class AvailableHeroMapper
     public static function toDomain(AvailableHeroModel $model): AvailableHero
     {
         $availableHero = AvailableHero::create(
-            $model->id ? (int)$model->id : null,
+            $model->id ? new AvailableHeroId($model->id) : null,
             new AvailableHeroName((string)$model->name),
             new AvailableHeroDescription((string)$model->description),
             new AvailableHeroWorld((string)$model->world),
@@ -131,8 +131,8 @@ final class AvailableHeroMapper
             new Boost((int)$model->b_wooding_min),
             new Boost((int)$model->b_wooding_max),
             (int)$model->available,
-            $model->created_at ? new DateTime($model->created_at) : null,
-            $model->updated_at ? new DateTime($model->updated_at) : null,
+            $model->created_at ? new DateTime('@' . $model->created_at) : null,
+            $model->updated_at ? new DateTime('@' . $model->updated_at) : null,
             $model->created_by ? new UUID($model->created_by) : null,
             $model->updated_by ? new UUID($model->updated_by) : null,
         );
