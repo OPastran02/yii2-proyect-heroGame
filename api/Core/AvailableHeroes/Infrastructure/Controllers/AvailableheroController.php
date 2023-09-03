@@ -15,6 +15,7 @@ use api\Core\AvailableHeroes\Application\Create\AvailableHeroesSave;
 use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetbyId;
 use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetByrarity;
 use api\Core\AvailableHeroes\Application\Delete\AvailableHeroesDelete;
+use api\Core\AvailableHeroes\Application\Update\AvailableHeroesUpdate;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use common\models\availablehero as AvailableHeroesModel;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroMapper;    
@@ -28,6 +29,7 @@ class AvailableHeroController
     private $AvailableHeroesGetbyId;
     private $AvailableHeroesGetByrarity;
     private $AvailableHeroesDelete;
+    private $AvailableHeroesUpdate;
 
     public function __construct()
     {
@@ -36,6 +38,8 @@ class AvailableHeroController
         $this->AvailableHeroesGetbyId = new AvailableHeroesGetbyId($this->availableHeroesRepository);
         $this->AvailableHeroesGetByrarity = new AvailableHeroesGetByrarity($this->availableHeroesRepository);
         $this->AvailableHeroesDelete = new AvailableHeroesDelete($this->availableHeroesRepository);
+        $this->AvailableHeroesUpdate = new AvailableHeroesUpdate($this->availableHeroesRepository);
+
     }
 
     public function getbyId(int $id): ?availableheroDom
@@ -57,6 +61,12 @@ class AvailableHeroController
     {
         $availableHero = AvailableHeroMapper::toDomain($availableHeroModel);
         $this->AvailableHeroesSave->__invoke($availableHero);
+    }
+
+    public function update(AvailableHeroesModel $availableHeroModel):?int
+    {
+        $availableHero = AvailableHeroMapper::toDomain($availableHeroModel);
+        $this->AvailableHeroesUpdate->__invoke($availableHero);
     }
 
 }  
