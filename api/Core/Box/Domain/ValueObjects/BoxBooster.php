@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace api\Core\BoxRatios\Domain\ValueObjects;
+namespace api\Core\Box\Domain\ValueObjects;
 
 use api\Shared\Domain\ValueObject\Primitives\StringValueObject;
 
-final class BoxRatioDescription extends StringValueObject
+final class BoxBooster extends StringValueObject
 {
 
     protected string $value;

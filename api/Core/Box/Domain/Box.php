@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace api\Core\BoxRatios\Domain;
+namespace api\Core\Box\Domain;
 
-use api\core\BoxRatios\Domain\ValueObjects\BoxRatioName;
-use api\core\BoxRatios\Domain\ValueObjects\BoxRatioDescription;
-use api\core\BoxRatios\Domain\ValueObjects\BoxRatioBooster;
+use api\core\Box\Domain\ValueObjects\BoxRatioName;
+use api\core\Box\Domain\ValueObjects\BoxRatioDescription;
+use api\core\Box\Domain\ValueObjects\BoxRatioBooster;
 use api\Shared\Domain\ValueObject\FkId;
 use api\Shared\Domain\ValueObject\UUID;
 use api\Shared\Domain\ValueObject\Primitives\StringValueObject;
 use api\Shared\Domain\Aggregate\AggregateRoot;
 use DateTime;
 
-final class BoxRatio //extends AggregateRoot
+final class Box //extends AggregateRoot
 {
     public function __construct(
         private FkId|null $id,
@@ -68,17 +68,17 @@ final class BoxRatio //extends AggregateRoot
         return $boxRatio;
     }
 
-    public function getId(): FkId|null
+    public function id(): FkId|null
     {
         return $this->id;
     }
 
-    public function getName(): BoxRatioName
+    public function name(): BoxRatioName
     {
         return $this->name;
     }
 
-    public function getDescription(): BoxRatioDescription
+    public function description(): BoxRatioDescription
     {
         return $this->description;
     }
@@ -88,52 +88,52 @@ final class BoxRatio //extends AggregateRoot
         return $this->race_id;
     }
 
-    public function getBooster(): BoxRatioBooster
+    public function booster(): BoxRatioBooster
     {
         return $this->booster;
     }
 
-    public function getModifiers(): int|null
+    public function modifiers(): int|null
     {
         return $this->modifiers;
     }
 
-    public function getCrystals(): int|null
+    public function crystals(): int|null
     {
         return $this->crystals;
     }
 
-    public function getDiamonds(): int|null
+    public function diamonds(): int|null
     {
         return $this->diamonds;
     }
 
-    public function getCoins(): int|null
+    public function coins(): int|null
     {
         return $this->coins;
     }
 
-    public function getAvailable(): int
+    public function available(): int
     {
         return $this->available;
     }
     
-    public function getCreatedAt(): DateTime|null
+    public function createdAt(): DateTime|null
     {
         return $this->created_at;
     }
 
-    public function getUpdatedAt(): DateTime|null
+    public function updatedAt(): DateTime|null
     {
         return $this->updated_at;
     }
 
-    public function getCreatedBy(): UUID|null
+    public function createdBy(): UUID|null
     {
         return $this->created_by;
     }
 
-    public function getUpdatedBy(): UUID|null
+    public function updatedBy(): UUID|null
     {
         return $this->updated_by;
     }
