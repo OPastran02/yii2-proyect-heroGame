@@ -76,7 +76,7 @@ final class AvailableHero //extends AggregateRoot
     }
 
     public static function create( 
-        ?AvailableHeroId $id = null,
+        AvailableHeroId|null $id,
         AvailableHeroName $name,
         AvailableHeroDescription $description,
         AvailableHeroWorld $world,
@@ -123,10 +123,10 @@ final class AvailableHero //extends AggregateRoot
         Boost $b_wooding_min,
         Boost $b_wooding_max,
         int $available,
-        ?DateTime $created_at = null,
-        ?DateTime $updated_at = null,
-        ?UUID $created_by = null,
-        ?UUID $updated_by = null
+        DateTime|null $created_at,
+        DateTime|null $updated_at,
+        UUID|null $created_by,
+        UUID|null $updated_by
     ): self {
         $availableHero = new self(
             $id,
