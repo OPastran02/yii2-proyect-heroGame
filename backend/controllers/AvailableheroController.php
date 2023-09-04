@@ -77,7 +77,7 @@ class AvailableheroController extends Controller
      */
     public function actionView($id)
     {
-        $model = AvailableHeroMapper::toModel($this->ahController->getById($id));
+        $model = $this->ahController->getById($id);
         return $this->render('view', ['model' => $model]);
     }
 
