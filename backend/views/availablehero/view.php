@@ -219,12 +219,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->available()
             ],
             [
+                'attribute' => 'created_at',
+                'value' => $model->createdAt()->format('Y-m-d H:i:s')
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => $model->updatedAt()->format('Y-m-d H:i:s')
+            ],
+            [
                 'attribute' => 'created_by',
-                'value' => $model->createdBy()->value()
+                'value' => (string)$model->createdBy()
             ],
             [
                 'attribute' => 'updated_by',
-                'value' => $model->updatedBy()->value()
+                'value' => (string)$model->updatedBy()
             ],
         ],
     ]) ?>

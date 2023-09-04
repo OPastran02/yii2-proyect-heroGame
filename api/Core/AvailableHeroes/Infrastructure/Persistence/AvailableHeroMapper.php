@@ -140,4 +140,64 @@ final class AvailableHeroMapper
         return $availableHero;
     }
 
+    public static function PostToDomain($arr): AvailableHero
+    {
+        $array = $arr["availablehero"];
+        $availableHero = AvailableHero::create(
+            isset($array["id"]) ? new AvailableHeroId($array["id"]) : null,
+            new AvailableHeroName((string)$array["name"]),
+            new AvailableHeroDescription((string)$array["description"]),
+            new AvailableHeroWorld((string)$array["world"]),
+            new Avatar((string)$array["avatar"]),
+            new Avatar((string)$array["avatarBlock"]),
+            new FkId((int)$array["race_id"]),
+            new FkId((int)$array["rarity_id"]),
+            new FkId((int)$array["nature_id"]),
+            new FkId((int)$array["type_id"]),
+            new Stats((int)$array["attack_min"]),
+            new Stats((int)$array["attack_max"]),
+            new Boost((int)$array["b_attack_min"]),
+            new Boost((int)$array["b_Battack_max"]),
+            new Stats((int)$array["defense_min"]),
+            new Stats((int)$array["defense_max"]),
+            new Boost((int)$array["b_defense_min"]),
+            new Boost((int)$array["b_defense_max"]),
+            new Stats((int)$array["hp_min"]),
+            new Stats((int)$array["hp_max"]),
+            new Boost((int)$array["b_hp_min"]),
+            new Boost((int)$array["b_hp_max"]),
+            new Stats((int)$array["sp_attack_min"]),
+            new Stats((int)$array["sp_attack_max"]),
+            new Boost((int)$array["b_sp_attack_min"]),
+            new Boost((int)$array["b_sp_attack_max"]),
+            new Stats((int)$array["sp_defense_min"]),
+            new Stats((int)$array["sp_defense_max"]),
+            new Boost((int)$array["b_sp_defense_min"]),
+            new Boost((int)$array["b_sp_defense_max"]),
+            new Stats((int)$array["speed_min"]),
+            new Stats((int)$array["speed_max"]),
+            new Boost((int)$array["b_speed_min"]),
+            new Boost((int)$array["b_speed_max"]),
+            new Stats((int)$array["farming_min"]),
+            new Stats((int)$array["farming_max"]),
+            new Boost((int)$array["b_farming_min"]),
+            new Boost((int)$array["b_farming_max"]),
+            new Stats((int)$array["steeling_min"]),
+            new Stats((int)$array["steeling_max"]),
+            new Boost((int)$array["b_steeling_min"]),
+            new Boost((int)$array["b_steeling_max"]),
+            new Stats((int)$array["wooding_min"]),
+            new Stats((int)$array["wooding_max"]),
+            new Boost((int)$array["b_wooding_min"]),
+            new Boost((int)$array["b_wooding_max"]),
+            (int)$array["available"],
+            isset($array["created_at"]) ? new DateTime('@' . $array["created_at"]) : null,
+            isset($array["updated_at"]) ? new DateTime('@' . $array["updated_at"]) : null,
+            isset($array["created_by"]) ? new UUID($array["created_by"]) : null,
+            isset($array["updated_by"]) ? new UUID($array["updated_by"]) : null,
+        );
+
+        return $availableHero;
+    }
+
 }

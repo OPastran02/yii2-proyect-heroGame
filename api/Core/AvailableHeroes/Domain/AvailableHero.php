@@ -20,7 +20,7 @@ use DateTime;
 final class AvailableHero //extends AggregateRoot
 {
     public function __construct(
-        private ?AvailableHeroId $id = null,
+        private AvailableHeroId|null $id,
         private AvailableHeroName $name,
         private AvailableHeroDescription $description,
         private AvailableHeroWorld $world,
@@ -67,10 +67,10 @@ final class AvailableHero //extends AggregateRoot
         private Boost $b_wooding_min,
         private Boost $b_wooding_max,
         private int $available,
-        private readonly ?DateTime $created_at = null,
-        private readonly ?DateTime $updated_at = null,
-        private readonly ?UUID $created_by = null,
-        private readonly ?UUID $updated_by = null
+        private readonly DateTime|null $created_at,
+        private readonly DateTime|null $updated_at,
+        private readonly UUID|null $created_by,
+        private readonly UUID|null $updated_by
     ){
     
     }
@@ -494,6 +494,11 @@ final class AvailableHero //extends AggregateRoot
     public function updatedBy(): ?UUID
     {
         return $this->updated_by;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = new AvailableHeroId((int)$id);
     }
 
     public function setName(AvailableHeroName $name): void
