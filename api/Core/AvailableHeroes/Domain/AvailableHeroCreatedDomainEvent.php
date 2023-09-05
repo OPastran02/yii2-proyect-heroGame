@@ -11,7 +11,7 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
 {
 
     public function __construct(
-        int $id,
+        ?int $id,
         private readonly string $name,
         private readonly string $description,
         private readonly string $world,
@@ -57,11 +57,11 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
         private readonly int $wooding_max,
         private readonly int $b_wooding_min,
         private readonly int $b_wooding_max,
-        private readonly bool $available,
-        private readonly DateTime $created_at,
-        private readonly DateTime $updated_at,
-        private readonly string $created_by,
-        private readonly string $updated_by,
+        private readonly int $available,
+        private readonly ?DateTime $created_at,
+        private readonly ?DateTime $updated_at,
+        private readonly ?string $created_by,
+        private readonly ?string $updated_by,
         string $eventId = null,
         string $occurredOn = null
     ) {

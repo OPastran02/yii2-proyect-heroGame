@@ -10,8 +10,8 @@ use DateTime;
 
 abstract class DomainEvent
 {
-    private readonly string $eventId;
-    private readonly string $occurredOn;
+    private readonly ?string $eventId;
+    private readonly ?string $occurredOn;
     
     public function __construct(
         private readonly int $aggregateId,
