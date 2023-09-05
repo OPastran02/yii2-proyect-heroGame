@@ -14,7 +14,7 @@ interface IBoxRepository
 
     public function delete(int $id): void;  
 
-    public function save(Box $availableHeroes): ?int;
+    public function save(Box $box): ?int;
 
-    public function update(Box $availableHeroes): ?int;
+    public function update(Box $box): ?int;
 }

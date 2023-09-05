@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace api\Core\Box\Application\Update;
 
-use api\Core\Box\Domain\Repository\IBoxesRepository;
+use api\Core\Box\Domain\Repository\IBoxRepository;
 use api\core\Box\Domain\ValueObjects\BoxBooster;
 use api\core\Box\Domain\ValueObjects\BoxDescription;
 use api\core\Box\Domain\ValueObjects\BoxName;
@@ -15,17 +15,17 @@ use common\models\boxratio as BoxModel;
 
 use DateTime;
 
-final class BoxesUpdate
+final class BoxUpdate
 {
-    private IBoxesRepository $repository;
-    private Box $availableHero;
+    private IBoxRepository $repository;
+    private Box $box;
 
-    public function __construct(IBoxesRepository $repository,Box $availableHero){
+    public function __construct(IBoxRepository $repository,Box $box){
         $this->repository = $repository;
-        $this->availableHero = $availableHero;
+        $this->box = $box;
     }
 
     public function __invoke(){
-        $this->repository->update($this->availableHero);
+        $this->repository->update($this->box);
     }
 }

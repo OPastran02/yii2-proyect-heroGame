@@ -13,10 +13,10 @@ use api\Core\Box\Domain\Repository\IBoxRepository;
 
 use api\Core\Box\Infrastructure\Persistence\BoxActiveRecord;
 use api\Core\Box\Application\Create\BoxSave;
-use api\Core\Box\Application\Find\BoxesGetById;
-use api\Core\Box\Application\Find\BoxesGetAll;
-use api\Core\Box\Application\Delete\BoxesDelete;
-use api\Core\Box\Application\Update\BoxesUpdate;
+use api\Core\Box\Application\Find\BoxGetById;
+use api\Core\Box\Application\Find\BoxGetAll;
+use api\Core\Box\Application\Delete\BoxDelete;
+use api\Core\Box\Application\Update\BoxUpdate;
 
 use api\Shared\Domain\ValueObject\FkId;
 use api\Core\Box\Infrastructure\Persistence\BoxMapper;    
@@ -35,17 +35,17 @@ class BoxController
 
     public function getbyId(int $id): ?Box
     {    
-        return new BoxesGetById($this->repository, $id);
+        return new BoxGetById($this->repository, $id);
     }
 
     public function getAll(int $id): Boxes
     {
-        return new BoxesGetAll($this->repository,$id);
+        return new BoxGetAll($this->repository,$id);
     }
 
     public function delete(int $id): void
     { 
-        new BoxesDelete($this->repository,$id);
+        new BoxDelete($this->repository,$id);
     }
 
     public function save(boxratio $model):?int
@@ -55,7 +55,7 @@ class BoxController
 
     public function update(boxratio $model):?int
     {
-        return new BoxesUpdate($this->repository,BoxMapper::toDomain($model));
+        return new BoxUpdate($this->repository,BoxMapper::toDomain($model));
     }
 
 }  

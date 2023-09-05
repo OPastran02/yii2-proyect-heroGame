@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace api\Core\Boxes\Domain\Exceptions;
+namespace api\Core\Box\Domain\Exceptions;
 
 use api\Shared\Domain\DomainError;
 
-final class BoxesNotFound extends DomainError
+final class BoxNotFound extends DomainError
 {
     public function __construct ()
     {
@@ -20,6 +20,6 @@ final class BoxesNotFound extends DomainError
 
     protected function errorMessage(): string
     {
-        return sprintf('The boxes has not been found');
+        return sprintf('The box has not been found');
     }
 }

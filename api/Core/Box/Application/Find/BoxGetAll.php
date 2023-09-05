@@ -6,9 +6,9 @@ namespace api\Core\Box\Application\Find;
 
 use api\Core\Box\Domain\Boxes;
 use api\Core\Box\Domain\Repository\IBoxrepository;
-use api\Core\Box\Domain\Exceptions\AvailableHeroesNotFound;
+use api\Core\Box\Domain\Exceptions\BoxNotFound;
 
-final class BoxesGetAll
+final class BoxGetAll
 {
     private IBoxrepository $repository;
 
@@ -19,7 +19,7 @@ final class BoxesGetAll
     public function __invoke(): boxes
     {
         $boxes = $this->repository->getAll();
-        if (empty($boxes)) throw new BoxesNotFound();
+        if (empty($boxes)) throw new BoxNotFound();
         
         return $boxes;
     }

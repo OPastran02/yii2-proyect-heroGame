@@ -6,11 +6,11 @@ namespace api\Core\Box\Application\Find;
 
 use api\Core\Box\Domain\Box;
 use api\Core\Box\Domain\Repository\IBoxRepository;
-use api\Core\Box\Domain\Exceptions\BoxesNotFound;
+use api\Core\Box\Domain\Exceptions\BoxNotFound;
 
 use api\Shared\Domain\ValueObject\FkId;
 
-final class BoxesGetById
+final class BoxGetById
 {
     private IBoxRepository $repository;
     private int $id;
@@ -24,7 +24,7 @@ final class BoxesGetById
     public function __invoke(): Box
     {
         $box = $this->repository->getbyId($this->id);
-        if (!$box) throw new BoxesNotFound($this->id);
+        if (!$box) throw new BoxNotFound($this->id);
 
         return $box;
     }
