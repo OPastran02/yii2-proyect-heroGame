@@ -25,11 +25,16 @@ use api\Shared\Domain\Bus\Event\EventBus;
 class AvailableHeroController
 {
     private $availableHeroesRepository;
-
+    private $AvailableHeroesSave;
+    private $AvailableHeroesGetbyId;
+    private $AvailableHeroesGetByrarity;
+    private $AvailableHeroesDelete;
+    private $AvailableHeroesUpdate;
 
     public function __construct()
     {
-        $this->availableHeroesRepository = new AvailableHeroRepositoryACtiveRecord(); // Corregir el nombre de la clase
+        $this->availableHeroesRepository = new AvailableHeroRepositoryACtiveRecord(); 
+
     }
 
     public function getbyId(int $id): ?availableheroDom

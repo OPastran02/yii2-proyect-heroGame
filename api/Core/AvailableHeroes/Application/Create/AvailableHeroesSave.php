@@ -24,14 +24,13 @@ final class AvailableHeroesSave
     private AvailableHeroesRepositoryInterface $repository;
     private AvailableHero $availableHero;
 
-    public function __construct(AvailableHeroesRepositoryInterface $repository,AvailableHero $availableHero){
+    public function __construct(AvailableHeroesRepositoryInterface $repository,AvailableHero $availableHero, private readonly EventBus $bus){
         $this->repository = $repository;
         $this->availableHero = $availableHero;
     }
 
     public function __invoke(){
         $this->repository->save($this->availableHero);
-        //por ahora no por que no lo entiendo
-        //$this->bus->publish(...$availableHero->pullDomainEvents());
+        $this->bus->publish(...$availableHero->pullDomainEvents());
     }
 }

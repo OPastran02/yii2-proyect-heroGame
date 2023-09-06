@@ -65,7 +65,7 @@ final class AvailableHeroCreatedDomainEvent extends DomainEvent
         string $eventId = null,
         string $occurredOn = null
     ) {
-        parent::__construct($id, $eventId, $occurredOn);
+        parent::__construct(0, $eventId, $occurredOn);
     }
 
     public static function eventName(): string

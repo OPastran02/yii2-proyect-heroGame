@@ -127,7 +127,8 @@ final class AvailableHero extends AggregateRoot
         DateTime|null $updated_at,
         UUID|null $created_by,
         UUID|null $updated_by
-    ): self {
+    ): self 
+    {
         $availableHero = new self(
             $id,
             $name,
@@ -184,7 +185,7 @@ final class AvailableHero extends AggregateRoot
 
         $availableHero->record(
             new AvailableHeroCreatedDomainEvent(
-                $id,
+                $id->value(),
                 $name->value(),
                 $description->value(),
                 $world->value(),
@@ -231,12 +232,13 @@ final class AvailableHero extends AggregateRoot
                 $b_wooding_min->value(),
                 $b_wooding_max->value(),
                 $available,
-                $created_at,
-                $updated_at,
-                $created_by,
-                $updated_by
+                isset($created_at) ? $created_at : null,
+                isset($updated_at) ? $updated_at : null,
+                isset($created_by) ? $created_by->value() : null,
+                isset($updated_by) ? $updated_by->value() : null,
                 )
             );
+            
         return $availableHero;
     }
 

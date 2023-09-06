@@ -43,7 +43,6 @@ class AvailableHeroRepositoryTest extends TestCase
     
     public function testGetById()
     {
-        $id = new AvailableHeroId(1);
 
         $availableHero = $this->controller->getById(1);
         $this->assertInstanceOf(AvailableHero::class, $availableHero);

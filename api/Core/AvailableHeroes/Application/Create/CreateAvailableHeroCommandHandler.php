@@ -15,9 +15,9 @@ use api\Shared\Domain\ValueObject\FkId;
 use api\Shared\Domain\Bus\command\CommandHandler;
 use DateTime;
 
-final class CreateAvailableHeroCommandHandler implements Command
+final class CreateAvailableHeroCommandHandler implements CommandHandler
 {
-    public function __construct()
+    public function __construct(private readonly AvailableHeroesSave $creator)
     {
     }
 
