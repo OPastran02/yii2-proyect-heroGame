@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace api\Core\AvailableHeroes\Application\Update;
+namespace api\Core\AvailableHeroes\Application\Command;
 
 use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
 use api\core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
@@ -19,19 +19,17 @@ use common\models\availablehero as AvailableHeroModel;
 
 use DateTime;
 
-final class AvailableHeroesUpdate
+final class AvailableHeroesSave
 {
     private AvailableHeroesRepositoryInterface $repository;
     private AvailableHero $availableHero;
 
-    public function __construct(AvailableHeroesRepositoryInterface $repository,AvailableHero $availableHero){
+    public function __construct(AvailableHeroesRepositoryInterface $repository,AvailableHero $availableHero, private readonly EventBus $bus){
         $this->repository = $repository;
         $this->availableHero = $availableHero;
     }
 
     public function __invoke(){
-        $this->repository->update($this->availableHero);
-        //por ahora no por que no lo entiendo
-        //$this->bus->publish(...$availableHero->pullDomainEvents());
+        $this->repository->save($this->availableHero);
     }
 }

@@ -83,59 +83,55 @@ class AvailableheroController extends Controller
     {
         $model = new availablehero();
         
-        if ($this->request->isPost && $array=$this->request->post()["availablehero"]) {
-            $model = availableheroDom::create(
-                new AvailableHeroId(0),
-                new AvailableHeroName($array["name"]),
-                new AvailableHeroDescription($array["description"]),
-                new AvailableHeroWorld($array["world"]),
-                new Avatar($array["avatar"]),
-                new Avatar($array["avatarBlock"]),
-                new FkId((int)$array["race_id"]),
-                new FkId((int)$array["rarity_id"]),
-                new FkId((int)$array["nature_id"]),
-                new FkId((int)$array["type_id"]),
-                new Stats((int)$array["attack_min"]),
-                new Stats((int)$array["attack_max"]),
-                new Boost((int)$array["b_attack_min"]),
-                new Boost((int)$array["b_Battack_max"]),
-                new Stats((int)$array["defense_min"]),
-                new Stats((int)$array["defense_max"]),
-                new Boost((int)$array["b_defense_min"]),
-                new Boost((int)$array["b_defense_max"]),
-                new Stats((int)$array["hp_min"]),
-                new Stats((int)$array["hp_max"]),
-                new Boost((int)$array["b_hp_min"]),
-                new Boost((int)$array["b_hp_max"]),
-                new Stats((int)$array["sp_attack_min"]),
-                new Stats((int)$array["sp_attack_max"]),
-                new Boost((int)$array["b_sp_attack_min"]),
-                new Boost((int)$array["b_sp_attack_max"]),
-                new Stats((int)$array["sp_defense_min"]),
-                new Stats((int)$array["sp_defense_max"]),
-                new Boost((int)$array["b_sp_defense_min"]),
-                new Boost((int)$array["b_sp_defense_max"]),
-                new Stats((int)$array["speed_min"]),
-                new Stats((int)$array["speed_max"]),
-                new Boost((int)$array["b_speed_min"]),
-                new Boost((int)$array["b_speed_max"]),
-                new Stats((int)$array["farming_min"]),
-                new Stats((int)$array["farming_max"]),
-                new Boost((int)$array["b_farming_min"]),
-                new Boost((int)$array["b_farming_max"]),
-                new Stats((int)$array["steeling_min"]),
-                new Stats((int)$array["steeling_max"]),
-                new Boost((int)$array["b_steeling_min"]),
-                new Boost((int)$array["b_steeling_max"]),
-                new Stats((int)$array["wooding_min"]),
-                new Stats((int)$array["wooding_max"]),
-                new Boost((int)$array["b_wooding_min"]),
-                new Boost((int)$array["b_wooding_max"]),
-                (int)$array["available"],
-                isset($array["created_at"]) ? new DateTime('@' . $array["created_at"]) : null,
-                isset($array["updated_at"]) ? new DateTime('@' . $array["updated_at"]) : null,
-                isset($array["created_by"]) ? new UUID($array["created_by"]) : null,
-                isset($array["updated_by"]) ? new UUID($array["updated_by"]) : null
+        if ($this->request->isPost && $array = $this->request->post()["availablehero"]) {
+            $model::fromPrimitives(
+                null,
+                $array['name'],  
+                $array['description'],
+                $array['world'],  
+                $array['avatar'],  
+                $array['avatarBlock'],  
+                $array['race_id'],  
+                $array['rarity_id'],  
+                $array['nature_id'],  
+                $array['type_id'],  
+                $array['attack_min'],  
+                $array['attack_max'],  
+                $array['b_attack_min'],  
+                $array['b_Battack_max'],  
+                $array['defense_min'],  
+                $array['defense_max'],  
+                $array['b_defense_min'],  
+                $array['b_defense_max'],  
+                $array['hp_min'],  
+                $array['hp_max'],  
+                $array['b_hp_min'],  
+                $array['b_hp_max'],  
+                $array['sp_attack_min'],  
+                $array['sp_attack_max'],  
+                $array['b_sp_attack_min'],  
+                $array['b_sp_attack_max'],  
+                $array['sp_defense_min'],  
+                $array['sp_defense_max'],  
+                $array['b_sp_defense_min'],  
+                $array['b_sp_defense_max'],  
+                $array['speed_min'],  
+                $array['speed_max'],  
+                $array['b_speed_min'],  
+                $array['b_speed_max'],  
+                $array['farming_min'],  
+                $array['farming_max'],  
+                $array['b_farming_min'],  
+                $array['b_farming_max'],  
+                $array['steeling_min'],  
+                $array['steeling_max'],  
+                $array['b_steeling_min'],  
+                $array['b_steeling_max'],  
+                $array['wooding_min'],  
+                $array['wooding_max'],  
+                $array['b_wooding_min'],  
+                $array['b_wooding_max'],  
+                $array['available'],  
             );
             if($id = $this->ahController->save($model)){
                 return $this->redirect(['view', 'id' => $id]);   
@@ -152,14 +148,11 @@ class AvailableheroController extends Controller
     {
 
         $dom = $this->ahController->getById($id);
-        $model = $dom->toPrimitives();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $availableHero = $this->controller->getById($id);
-                if($id = $this->ahController->update($availableHeroDom)) {
-                    return $this->redirect(['view', 'id' => $id]);
-                }
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $availableHero = $this->controller->getById($id);
+            if($id = $this->ahController->update($availableHeroDom)) {
+                return $this->redirect(['view', 'id' => $id]);
             }
         } else {
             $model->loadDefaultValues();

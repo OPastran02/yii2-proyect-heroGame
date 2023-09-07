@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace api\Core\AvailableHeroes\Application\Find;
+namespace api\Core\AvailableHeroes\Application\Query;
 
 use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;

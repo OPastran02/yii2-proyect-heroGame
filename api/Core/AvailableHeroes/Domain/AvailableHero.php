@@ -129,64 +129,62 @@ final class AvailableHero extends AggregateRoot
         UUID|null $updated_by
     ): self 
     {
-        $availableHero = new AvailableHero();
-        
-        $availableHero->id;
-        $availableHero->name;
-        $availableHero->description;
-        $availableHero->world;
-        $availableHero->avatar;
-        $availableHero->avatarBlock;
-        $availableHero->race_id;
-        $availableHero->rarity_id;
-        $availableHero->nature_id;
-        $availableHero->type_id;
-        $availableHero->attack_min;
-        $availableHero->attack_max;
-        $availableHero->b_attack_min;
-        $availableHero->b_Battack_max;
-        $availableHero->defense_min;
-        $availableHero->defense_max;
-        $availableHero->b_defense_min;
-        $availableHero->b_defense_max;
-        $availableHero->hp_min;
-        $availableHero->hp_max;
-        $availableHero->b_hp_min;
-        $availableHero->b_hp_max;
-        $availableHero->sp_attack_min;
-        $availableHero->sp_attack_max;
-        $availableHero->b_sp_attack_min;
-        $availableHero->b_sp_attack_max;
-        $availableHero->sp_defense_min;
-        $availableHero->sp_defense_max;
-        $availableHero->b_sp_defense_min;
-        $availableHero->b_sp_defense_max;
-        $availableHero->speed_min;
-        $availableHero->speed_max;
-        $availableHero->b_speed_min;
-        $availableHero->b_speed_max;
-        $availableHero->farming_min;
-        $availableHero->farming_max;
-        $availableHero->b_farming_min;
-        $availableHero->b_farming_max;
-        $availableHero->steeling_min;
-        $availableHero->steeling_max;
-        $availableHero->b_steeling_min;
-        $availableHero->b_steeling_max;
-        $availableHero->wooding_min;
-        $availableHero->wooding_max;
-        $availableHero->b_wooding_min;
-        $availableHero->b_wooding_max;
-        $availableHero->available;
-        $availableHero->created_at;
-        $availableHero->updated_at;
-        $availableHero->created_by;
-        $availableHero->updated_by;
-
-        return $availableHero;
+        return $availableHero = new AvailableHero(
+            $id,
+            $name,
+            $description,
+            $world,
+            $avatar,
+            $avatarBlock,
+            $race_id,
+            $rarity_id,
+            $nature_id,
+            $type_id,
+            $attack_min,
+            $attack_max,
+            $b_attack_min,
+            $b_Battack_max,
+            $defense_min,
+            $defense_max,
+            $b_defense_min,
+            $b_defense_max,
+            $hp_min,
+            $hp_max,
+            $b_hp_min,
+            $b_hp_max,
+            $sp_attack_min,
+            $sp_attack_max,
+            $b_sp_attack_min,
+            $b_sp_attack_max,
+            $sp_defense_min,
+            $sp_defense_max,
+            $b_sp_defense_min,
+            $b_sp_defense_max,
+            $speed_min,
+            $speed_max,
+            $b_speed_min,
+            $b_speed_max,
+            $farming_min,
+            $farming_max,
+            $b_farming_min,
+            $b_farming_max,
+            $steeling_min,
+            $steeling_max,
+            $b_steeling_min,
+            $b_steeling_max,
+            $wooding_min,
+            $wooding_max,
+            $b_wooding_min,
+            $b_wooding_max,
+            $available,
+            $created_at,
+            $updated_at,
+            $created_by,
+            $updated_by
+        );
     }
 
-    public static function fromPrimitive(
+    public static function fromPrimitives(
         ?int $id,
         string $name,
         string $description,
@@ -240,61 +238,116 @@ final class AvailableHero extends AggregateRoot
         ?string $updated_by,
     ): self
     {
-        $availableHero = new AvailableHero();
-        
-        $availableHero->id                  ?      new AvailableHeroId($id):   null;
-        $availableHero->name                =      new AvailableHeroName($name);
-        $availableHero->description         =      new AvailableHeroDescription($description);
-        $availableHero->world               =      new AvailableHeroWorld($world);
-        $availableHero->avatar              =      new Avatar($avatar);
-        $availableHero->avatarBlock         =      new Avatar($avatarBlock);
-        $availableHero->race_id             =      new FkId($race_id);
-        $availableHero->rarity_id           =      new FkId($rarity_id);
-        $availableHero->nature_id           =      new FkId($nature_id);
-        $availableHero->type_id             =      new FkId($type_id);
-        $availableHero->attack_min          =      new Stats($attack_min);
-        $availableHero->attack_max          =      new Stats($attack_max);
-        $availableHero->b_attack_min        =      new Boost($b_attack_min);
-        $availableHero->b_Battack_max       =      new Boost($b_Battack_max);
-        $availableHero->defense_min         =      new Stats($defense_min);
-        $availableHero->defense_max         =      new Stats($defense_max);
-        $availableHero->b_defense_min       =      new Boost($b_defense_min);
-        $availableHero->b_defense_max       =      new Boost($b_defense_max);
-        $availableHero->hp_min              =      new Stats($hp_min);
-        $availableHero->hp_max              =      new Stats($hp_max);
-        $availableHero->b_hp_min            =      new Boost($b_hp_min);
-        $availableHero->b_hp_max            =      new Boost($b_hp_max);
-        $availableHero->sp_attack_min       =      new Stats($sp_attack_min);
-        $availableHero->sp_attack_max       =      new Stats($sp_attack_max);
-        $availableHero->b_sp_attack_min     =      new Boost($b_sp_attack_min);
-        $availableHero->b_sp_attack_max     =      new Boost($b_sp_attack_max);
-        $availableHero->sp_defense_min      =      new Stats($sp_defense_min);
-        $availableHero->sp_defense_max      =      new Stats($sp_defense_max);
-        $availableHero->b_sp_defense_min    =      new Boost($b_sp_defense_min);
-        $availableHero->b_sp_defense_max    =      new Boost($b_sp_defense_max);
-        $availableHero->speed_min           =      new Stats($speed_min);
-        $availableHero->speed_max           =      new Stats($speed_max);
-        $availableHero->b_speed_min         =      new Boost($b_speed_min);
-        $availableHero->b_speed_max         =      new Boost($b_speed_max);
-        $availableHero->farming_min         =      new Stats($farming_min);
-        $availableHero->farming_max         =      new Stats($farming_max);
-        $availableHero->b_farming_min       =      new Boost($b_farming_min);
-        $availableHero->b_farming_max       =      new Boost($b_farming_max);
-        $availableHero->steeling_min        =      new Stats($steeling_min);
-        $availableHero->steeling_max        =      new Stats($steeling_max);
-        $availableHero->b_steeling_min      =      new Boost($b_steeling_min);
-        $availableHero->b_steeling_max      =      new Boost($b_steeling_max);
-        $availableHero->wooding_min         =      new Stats($wooding_min);
-        $availableHero->wooding_max         =      new Stats($wooding_max);
-        $availableHero->b_wooding_min       =      new Boost($b_wooding_min);
-        $availableHero->b_wooding_max       =      new Boost($b_wooding_max);
-        $availableHero->available           =      $available;
-        $availableHero->created_at          ?      new DateTime('@' . $created_at)  :   null;
-        $availableHero->updated_at          ?      new DateTime('@' . $updated_at)  :   null;
-        $availableHero->created_by          ?      new DateTime('@' . $created_by)  :   null;
-        $availableHero->updated_by          ?      new DateTime('@' . $updated_by)  :   null;
+        return new AvailableHero(
+            isset($id) ? new AvailableHeroId($id):   null,
+            new AvailableHeroName($name),
+            new AvailableHeroDescription($description),
+            new AvailableHeroWorld($world),
+            new Avatar($avatar),
+            new Avatar($avatarBlock),
+            new FkId($race_id),
+            new FkId($rarity_id),
+            new FkId($nature_id),
+            new FkId($type_id),
+            new Stats($attack_min),
+            new Stats($attack_max),
+            new Boost($b_attack_min),
+            new Boost($b_Battack_max),
+            new Stats($defense_min),
+            new Stats($defense_max),
+            new Boost($b_defense_min),
+            new Boost($b_defense_max),
+            new Stats($hp_min),
+            new Stats($hp_max),
+            new Boost($b_hp_min),
+            new Boost($b_hp_max),
+            new Stats($sp_attack_min),
+            new Stats($sp_attack_max),
+            new Boost($b_sp_attack_min),
+            new Boost($b_sp_attack_max),
+            new Stats($sp_defense_min),
+            new Stats($sp_defense_max),
+            new Boost($b_sp_defense_min),
+            new Boost($b_sp_defense_max),
+            new Stats($speed_min),
+            new Stats($speed_max),
+            new Boost($b_speed_min),
+            new Boost($b_speed_max),
+            new Stats($farming_min),
+            new Stats($farming_max),
+            new Boost($b_farming_min),
+            new Boost($b_farming_max),
+            new Stats($steeling_min),
+            new Stats($steeling_max),
+            new Boost($b_steeling_min),
+            new Boost($b_steeling_max),
+            new Stats($wooding_min),
+            new Stats($wooding_max),
+            new Boost($b_wooding_min),
+            new Boost($b_wooding_max),
+            $available,
+            isset($created_at) ? new DateTime('@' . $created_at):null,
+            isset($updated_at) ? new DateTime('@' . $updated_at):null,
+            isset($created_by) ? new UUID($created_by):null,
+            isset($updated_by) ? new UUID($updated_by):null,
+        );
+    }
 
-        return $availableHero;
+    public function toPrimitives(): array
+    {
+        return [
+            'id'                    =>          $this->id,
+            'name'                  =>          $this->name,
+            'description'           =>          $this->description,
+            'world'                 =>          $this->world,
+            'avatar'                =>          $this->avatar,
+            'avatarBlock'           =>          $this->avatarBlock,
+            'race_id'               =>          $this->race_id,
+            'rarity_id'             =>          $this->rarity_id,
+            'nature_id'             =>          $this->nature_id,
+            'type_id'               =>          $this->type_id,
+            'attack_min'            =>          $this->attack_min,
+            'attack_max'            =>          $this->attack_max,
+            'b_attack_min'          =>          $this->b_attack_min,
+            'b_Battack_max'         =>          $this->b_Battack_max,
+            'defense_min'           =>          $this->defense_min,
+            'defense_max'           =>          $this->defense_max,
+            'b_defense_min'         =>          $this->b_defense_min,
+            'b_defense_max'         =>          $this->b_defense_max,
+            'hp_min'                =>          $this->hp_min,
+            'hp_max'                =>          $this->hp_max,
+            'b_hp_min'              =>          $this->b_hp_min,
+            'b_hp_max'              =>          $this->b_hp_max,
+            'sp_attack_min'         =>          $this->sp_attack_min,
+            'sp_attack_max'         =>          $this->sp_attack_max,
+            'b_sp_attack_min'       =>          $this->b_sp_attack_min,
+            'b_sp_attack_max'       =>          $this->b_sp_attack_max,
+            'sp_defense_min'        =>          $this->sp_defense_min,
+            'sp_defense_max'        =>          $this->sp_defense_max,
+            'b_sp_defense_min'      =>          $this->b_sp_defense_min,
+            'b_sp_defense_max'      =>          $this->b_sp_defense_max,
+            'speed_min'             =>          $this->speed_min,
+            'speed_max'             =>          $this->speed_max,
+            'b_speed_min'           =>          $this->b_speed_min,
+            'b_speed_max'           =>          $this->b_speed_max,
+            'farming_min'           =>          $this->farming_min,
+            'farming_max'           =>          $this->farming_max,
+            'b_farming_min'         =>          $this->b_farming_min,
+            'b_farming_max'         =>          $this->b_farming_max,
+            'steeling_min'          =>          $this->steeling_min,
+            'steeling_max'          =>          $this->steeling_max,
+            'b_steeling_min'        =>          $this->b_steeling_min,
+            'b_steeling_max'        =>          $this->b_steeling_max,
+            'wooding_min'           =>          $this->wooding_min,
+            'wooding_max'           =>          $this->wooding_max,
+            'b_wooding_min'         =>          $this->b_wooding_min,
+            'b_wooding_max'         =>          $this->b_wooding_max,
+            'available'             =>          $this->available,
+            'created_at'            =>          $this->created_at,
+            'updated_at'            =>          $this->updated_at,
+            'created_by'            =>          $this->created_by,
+            'updated_by'            =>          $this->updated_by,
+        ];
     }
 
 
