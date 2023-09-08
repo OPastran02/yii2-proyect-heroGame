@@ -1,5 +1,6 @@
-<?php
 
+<?php
+/*
 namespace api\Core\AvailableHeroes\Infrastructure\Controllers;
 
 
@@ -28,11 +29,10 @@ class AvailableHeroController
             $hero = (new GetAHeroByIdHandler($this->availableHeroesRepository))(
                 new GetAHeroByIdRequest($request)
             );
-
             $response = JsonResponse([
                 'status' => 'ok',
                 'hits' => [
-                    $hero
+                    $hero->toPrimitives()
                 ]
             ],200);
         }catch(InvalidRequestValueException $e){
@@ -46,4 +46,4 @@ class AvailableHeroController
     }
 
 }  
-
+*/

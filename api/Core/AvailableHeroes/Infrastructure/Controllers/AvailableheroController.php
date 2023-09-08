@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use api\Core\AvailableHeroes\Domain\AvailableHero as availableheroDom;
-use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
+use api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryACtiveRecord;
 use api\Core\AvailableHeroes\Application\Create\AvailableHeroesSave;
@@ -29,12 +29,29 @@ class AvailableHeroController
     public function __construct()
     {
         $this->availableHeroesRepository = new AvailableHeroRepositoryACtiveRecord(); 
-
     }
 
     public function getbyId(int $id): ?availableheroDom
     {    
-        return new AvailableHeroesGetbyId($this->availableHeroesRepository, $id);
+        try{
+            $hero = (new GetAHeroByIdHandler($this->availableHeroesRepository))(
+                new GetAHeroByIdRequest($request)
+            );
+            $response = JsonResponse([
+                'status' => 'ok',
+                'hits' => [
+                    $hero->toPrimitives()
+                ]
+            ],200);
+        }catch(InvalidRequestValueException $e){
+            $response = JsonResponse([
+                'status' => 'error',
+                'errorMessage' => 'errorazo'
+            ],500);
+        }   
+        var_dump($response);
+        exit();
+        return $response;
     }
 
     public function getByrarity(int $id): AvailableHeroes

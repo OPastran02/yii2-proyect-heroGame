@@ -12,11 +12,11 @@ interface AvailableHeroesRepositoryInterface
 {
     public function getbyId(int $id): ?AvailableHero;
     
-    //public function getByrarity(int $id): AvailableHeroes;
+    public function getByrarity(int $id): AvailableHeroes;
 
-    //public function delete(int $id): void;  
+    public function delete(int $id): void;  
 
-    //public function save(AvailableHero $availableHeroes): ?int;
+    public function save(AvailableHero $availableHeroes): ?int;
 
-    //public function update(AvailableHero $availableHeroes): ?int;
+    public function update(AvailableHero $availableHeroes): ?int;
 }

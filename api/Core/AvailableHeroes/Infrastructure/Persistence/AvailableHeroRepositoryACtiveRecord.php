@@ -31,7 +31,7 @@ class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryIn
         if (!$model) {
             return null;
         }else{
-            return AvailableHeroMapper::toDomain($model);
+            return AvailableHero::fromPrimitives(...$model["attributes"]);
         }
     }
 
