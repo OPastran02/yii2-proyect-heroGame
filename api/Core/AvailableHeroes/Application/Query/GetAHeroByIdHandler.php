@@ -18,10 +18,8 @@ class GetAHeroByIdHandler
         $this->repository = $repository;
     }
  
-    public function __invoke(GetAHeroByIdRequest $handler): AvailableHero
+    public function __invoke(int $id): ?AvailableHero
     {
-        return $this->repository->getbyId(
-            new AvailableHeroId($handler->id())
-        );
+        return $this->repository->getbyId($id);
     }
 }

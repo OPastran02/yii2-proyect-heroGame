@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace api\Core\AvailableHeroes\Infrastructure\Ui\Http\Controller;
+namespace api\Core\AvailableHeroes\Infrastructure\Yii;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -29,29 +29,10 @@ class GetAHeroByIdController
     {    
         try{
             $hero = ($this->handler)($id);
-
-            $data = [
-                'status' => 'ok',
-                'hits' => [
-                    $hero->toPrimitives()
-                ]
-            ];
-            $response = Yii::$app->response;
-            $response->format = Response::FORMAT_JSON;
-            $response->data = $data; 
-
+            return $hero->toPrimitives();
         }catch(InvalidRequestValueException $e){
-            $errorData = [
-                'status' => 'error',
-                'errorMessage' => 'errorazo'
-            ];
-            $response = Yii::$app->response;
-            $response->format = Response::FORMAT_JSON;
-            $response->data = $errorData;
-            $response->setStatusCode(400);
+            return $e;
         }   
-
-        return $response;
     }
 
 }  

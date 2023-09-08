@@ -1,7 +1,8 @@
 <?php
 
-namespace api\Core\AvailableHeroes\Infrastructure\Persistence;
+declare(strict_types=1);
 
+namespace api\Core\AvailableHeroes\Infrastructure\Persistence;
 
 use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
@@ -28,11 +29,13 @@ class AvailableHeroRepositoryACtiveRecord implements IAvailableHeroRepository
     public function getbyId(int $id): ?AvailableHero
     {
         $model = AvailableHeroModel::findOne($id);
+        
         if (!$model) {
             return null;
         }else{
             return AvailableHero::fromPrimitives(...$model["attributes"]);
         }
+        
     }
 
     public function getByrarity(int $rarity): AvailableHeroes

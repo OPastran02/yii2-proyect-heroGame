@@ -10,23 +10,9 @@ use yii\filters\VerbFilter;
 use api\Core\AvailableHeroes\Domain\AvailableHero as availableheroDom;
 use api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
-use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
-use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
-use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroWorld;
-use api\Shared\Domain\ValueObject\Avatar;
-use api\Shared\Domain\ValueObject\Boost;
-use api\Shared\Domain\ValueObject\FkId;
-use api\Shared\Domain\ValueObject\Stats;
-use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryACtiveRecord;
-use api\Core\AvailableHeroes\Application\Create\AvailableHeroesSave;
-use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetbyId;
-use api\Core\AvailableHeroes\Application\Find\AvailableHeroesGetByrarity;
-use api\Core\AvailableHeroes\Application\Delete\AvailableHeroesDelete;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use common\models\availablehero as AvailableHeroesModel;
-use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroMapper;    
-use api\Shared\Domain\Bus\Event\EventBus;
-use api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableHeroController as AHController;
+use api\Core\AvailableHeroes\Infrastructure\Yii\GetAHeroByIdController;
 use Yii;
 
 /**
@@ -34,12 +20,12 @@ use Yii;
  */
 class AvailableheroController extends Controller
 {
-    public $ahController;
+    private $GetAHeroByIdController;
 
-    public function __construct($id, $module, IAvailableHeroRepository $ahController, $config = [])
+    public function __construct($id, $module, GetAHeroByIdController $GetAHeroByIdController ,$config = [])
     {
-        $this->ahController = $ahController;
         parent::__construct($id, $module, $config);
+        $this->GetAHeroByIdController=$GetAHeroByIdController;
     }
 
     /**
@@ -75,8 +61,7 @@ class AvailableheroController extends Controller
 
     public function actionView($id)
     {
-        $model = $this->ahController->getById($id);
-        
+        $model = $this->GetAHeroByIdController->getById($id);
         return $this->render('view', ['model' => $model]);
     }
 

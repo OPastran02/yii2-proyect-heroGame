@@ -40,6 +40,10 @@ return [
             'class' => 'api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableHeroController',
             // Otras configuraciones
         ],
+        'GetAHeroByIdController' => [
+            'class' => 'api\Core\AvailableHeroes\Infrastructure\Yii\GetAHeroByIdController',
+            // Otras configuraciones
+        ],
     
         'errorHandler' => [
             'errorAction' => 'site/error',

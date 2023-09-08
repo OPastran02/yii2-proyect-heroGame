@@ -22,8 +22,7 @@ final class AvailableHeroesGetbyId
 
     public function __invoke(): AvailableHero
     {
-        var_dump("hola?");
-        exit();
+
         $availableHero = $this->repository->getbyId($this->id);
         if (null === $availableHero) throw new AvailableHeroNotFound($this->id);
 
