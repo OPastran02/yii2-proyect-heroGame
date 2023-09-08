@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace api\Core\AvailableHeroes\Application\Query;
 
 use api\Core\AvailableHeroes\Domain\AvailableHero;
+use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
 use api\Core\AvailableHeroes\Domain\Exceptions\AvailableHeroesNotFound;
 
-class GetAHeroByIdHandler
+class GetAHeroByRarityHandler
 {
     private IAvailableHeroRepository $repository;
 
@@ -18,9 +19,9 @@ class GetAHeroByIdHandler
         $this->repository = $repository;
     }
  
-    public function __invoke(int $id): ?AvailableHero
+    public function __invoke(int $rarity): ?AvailableHeroes
     {
-        $hero = $this->repository->getbyId($id);
-        return $hero;
+        $heroes = $this->repository->getByrarity($id);
+        return $heroes;
     }
 }

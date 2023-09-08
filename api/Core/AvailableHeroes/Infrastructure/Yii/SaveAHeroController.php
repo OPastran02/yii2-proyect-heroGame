@@ -10,26 +10,24 @@ use yii\filters\VerbFilter;
 use api\Core\AvailableHeroes\Domain\AvailableHero; 
 use api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryACtiveRecord;
-use api\Core\AvailableHeroes\Application\Query\GetAHeroByIdHandler;
+use api\Core\AvailableHeroes\Application\Query\GetAHeroByRarityHandler;
 use yii\helpers\Json;
 use yii\web\Response;
 use Yii;
 
-class GetAHeroByIdController
+class SaveAHeroController
 {
-    private GetAHeroByIdHandler $handler;
+    private GetAHeroByRarityHandler $handler;
 
     public function __construct()
     { 
         $repository = new availableHeroRepositoryACtiveRecord();
-        $this->handler = new GetAHeroByIdHandler($repository);
+        $this->handler = new GetAHeroByRarityHandler($repository);
     }
 
-    public function __invoke(int $id)
+    public function __invoke($rarity)
     {    
-            $hero = ($this->handler)($id);
-            return $hero->toPrimitives();
+
     }
 
 }  
-

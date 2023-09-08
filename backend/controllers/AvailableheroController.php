@@ -20,12 +20,10 @@ use Yii;
  */
 class AvailableheroController extends Controller
 {
-    private $GetAHeroByIdController;
 
-    public function __construct($id, $module, GetAHeroByIdController $GetAHeroByIdController ,$config = [])
+    public function __construct($id, $module,$config = [])
     {
         parent::__construct($id, $module, $config);
-        $this->GetAHeroByIdController=$GetAHeroByIdController;
     }
 
     /**
@@ -61,7 +59,7 @@ class AvailableheroController extends Controller
 
     public function actionView($id)
     {
-        $model = $this->GetAHeroByIdController->getById($id);
+        $model = (new GetAHeroByIdController())($id);
         return $this->render('view', ['model' => $model]);
     }
 
