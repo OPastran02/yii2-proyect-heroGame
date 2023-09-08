@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use api\Core\AvailableHeroes\Domain\AvailableHero as availableheroDom;
-use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
+use api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroDescription;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroName;
@@ -36,7 +36,7 @@ class AvailableheroController extends Controller
 {
     public $ahController;
 
-    public function __construct($id, $module, AvailableHeroesRepositoryInterface $ahController, $config = [])
+    public function __construct($id, $module, IAvailableHeroRepository $ahController, $config = [])
     {
         $this->ahController = $ahController;
         parent::__construct($id, $module, $config);

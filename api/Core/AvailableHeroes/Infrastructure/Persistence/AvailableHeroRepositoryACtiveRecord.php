@@ -5,7 +5,7 @@ namespace api\Core\AvailableHeroes\Infrastructure\Persistence;
 
 use api\Core\AvailableHeroes\Domain\AvailableHero;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
-use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
+use api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository;
 use common\models\availablehero as AvailableHeroModel;
 use api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroMapper;    
 
@@ -23,7 +23,7 @@ use api\Shared\Domain\ValueObject\UUID;
 use Yii;
 use DateTime;
 
-class AvailableHeroRepositoryACtiveRecord implements AvailableHeroesRepositoryInterface
+class AvailableHeroRepositoryACtiveRecord implements IAvailableHeroRepository
 {
     public function getbyId(int $id): ?AvailableHero
     {

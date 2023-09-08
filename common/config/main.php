@@ -12,7 +12,7 @@ return [
     ],
     'container' => [
         'definitions' => [
-            \api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface::class =>
+            \api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository::class =>
                 \api\Core\AvailableHeroes\Infrastructure\Persistence\AvailableHeroRepositoryActiveRecord::class,
         ],
     ],

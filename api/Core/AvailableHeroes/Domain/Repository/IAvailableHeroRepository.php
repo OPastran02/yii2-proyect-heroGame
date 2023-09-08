@@ -8,7 +8,7 @@ use api\Core\AvailableHeroes\Domain\AvailableHeroes;
 use api\Shared\Domain\ValueObject\FkId;
 use common\models\availablehero as AvailableHeroModel;
 
-interface AvailableHeroesRepositoryInterface
+interface IAvailableHeroRepository
 {
     public function getbyId(int $id): ?AvailableHero;
     
