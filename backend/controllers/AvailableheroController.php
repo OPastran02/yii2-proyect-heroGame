@@ -11,8 +11,10 @@ use api\Core\AvailableHeroes\Domain\AvailableHero as availableheroDom;
 use api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository;
 use api\Core\AvailableHeroes\Domain\ValueObjects\AvailableHeroId;
 use api\Core\AvailableHeroes\Domain\AvailableHeroes;
-use common\models\availablehero as AvailableHeroesModel;
-use api\Core\AvailableHeroes\Infrastructure\Yii\GetAHeroByIdController;
+use api\Core\AvailableHeroes\Infrastructure\Controllers\GetAHeroByIdController;
+use api\Core\AvailableHeroes\Infrastructure\Controllers\GetAHeroByRarityController;
+use api\Core\AvailableHeroes\Infrastructure\Controllers\SaveAHeroController;
+
 use Yii;
 
 /**
@@ -57,6 +59,7 @@ class AvailableheroController extends Controller
     }
 
 
+    //buscar AvailableHero por id
     public function actionView($id)
     {
         $model = (new GetAHeroByIdController())($id);
@@ -66,58 +69,9 @@ class AvailableheroController extends Controller
     public function actionCreate()
     {
         $model = new availablehero();
-        
-        if ($this->request->isPost && $array = $this->request->post()["availablehero"]) {
-            $model::fromPrimitives(
-                null,
-                $array['name'],  
-                $array['description'],
-                $array['world'],  
-                $array['avatar'],  
-                $array['avatarBlock'],  
-                $array['race_id'],  
-                $array['rarity_id'],  
-                $array['nature_id'],  
-                $array['type_id'],  
-                $array['attack_min'],  
-                $array['attack_max'],  
-                $array['b_attack_min'],  
-                $array['b_Battack_max'],  
-                $array['defense_min'],  
-                $array['defense_max'],  
-                $array['b_defense_min'],  
-                $array['b_defense_max'],  
-                $array['hp_min'],  
-                $array['hp_max'],  
-                $array['b_hp_min'],  
-                $array['b_hp_max'],  
-                $array['sp_attack_min'],  
-                $array['sp_attack_max'],  
-                $array['b_sp_attack_min'],  
-                $array['b_sp_attack_max'],  
-                $array['sp_defense_min'],  
-                $array['sp_defense_max'],  
-                $array['b_sp_defense_min'],  
-                $array['b_sp_defense_max'],  
-                $array['speed_min'],  
-                $array['speed_max'],  
-                $array['b_speed_min'],  
-                $array['b_speed_max'],  
-                $array['farming_min'],  
-                $array['farming_max'],  
-                $array['b_farming_min'],  
-                $array['b_farming_max'],  
-                $array['steeling_min'],  
-                $array['steeling_max'],  
-                $array['b_steeling_min'],  
-                $array['b_steeling_max'],  
-                $array['wooding_min'],  
-                $array['wooding_max'],  
-                $array['b_wooding_min'],  
-                $array['b_wooding_max'],  
-                $array['available'],  
-            );
-            if($id = $this->ahController->save($model)){
+
+        if ($this->request->isPost && $array = $this->request->post()['availablehero']) {
+            if($id = (new SaveAHeroController())($array)){
                 return $this->redirect(['view', 'id' => $id]);   
             }        
         } else {
@@ -131,7 +85,7 @@ class AvailableheroController extends Controller
     public function actionUpdate($id)
     {
 
-        $dom = $this->ahController->getById($id);
+        $model = (new GetAHeroByIdController())($id);
 
         if ($this->request->isPost && $model->load($this->request->post())) {
             $availableHero = $this->controller->getById($id);

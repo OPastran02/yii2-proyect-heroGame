@@ -36,15 +36,13 @@ return [
                 ],
             ],
         ],
-        'ahController' => [
-            'class' => 'api\Core\AvailableHeroes\Infrastructure\Controllers\AvailableHeroController',
-            // Otras configuraciones
-        ],
         'GetAHeroByIdController' => [
-            'class' => 'api\Core\AvailableHeroes\Infrastructure\Yii\GetAHeroByIdController',
-            // Otras configuraciones
+            'class' => 'api\Core\AvailableHeroes\Infrastructure\Controllers\GetAHeroByIdController',
         ],
-    
+        'SaveAHeroController' => [
+            'class' => 'api\Core\AvailableHeroes\Infrastructure\Controllers\SaveAHeroController',
+        ],
+        
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use api\Core\AvailableHeroes\Domain\AvailableHero; 
 use api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository;
-use api\Core\AvailableHeroes\Infrastructure\Persistence\availableHeroRepositoryACtiveRecord;
+use api\Core\AvailableHeroes\Infrastructure\Persistence\ActiveRecord\AvailableHeroRepositoryActiveRecord;
 use api\Core\AvailableHeroes\Application\Query\GetAHeroByIdHandler;
 use yii\helpers\Json;
 use yii\web\Response;

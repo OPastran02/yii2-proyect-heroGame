@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace api\Core\AvailableHeroes\Application\Command;
 
-use api\Core\AvailableHeroes\Domain\Repository\AvailableHeroesRepositoryInterface;
+use api\Core\AvailableHeroes\Domain\Repository\IAvailableHeroRepository;
 use api\Core\AvailableHeroes\Domain\AvailableHero;
 
 
@@ -12,15 +12,14 @@ use DateTime;
 
 final class SaveAHeroHandler
 {
-    private AvailableHeroesRepositoryInterface $repository;
-    private AvailableHero $availableHero;
+    private IAvailableHeroRepository $repository;
 
-    public function __construct(AvailableHeroesRepositoryInterface $repository,AvailableHero $availableHero, private readonly EventBus $bus){
+    public function __construct(IAvailableHeroRepository $repository){
         $this->repository = $repository;
-        $this->availableHero = $availableHero;
     }
 
-    public function __invoke(){
-        $this->repository->save($this->availableHero);
+    public function __invoke($arr){
+        $id=$this->repository->save($arr);
+        return $id;
     }
 }
