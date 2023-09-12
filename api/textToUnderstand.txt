@@ -1,0 +1,130 @@
+players (todos son shared)
+
+id                api\Shared\Domain\ValueObject\UUID 
+idwallet          api\Shared\Domain\ValueObject\UUID Obj: wallets
+idavatar          api\Shared\Domain\ValueObject\UUID Obj: avatars
+idmetrics         api\Shared\Domain\ValueObject\UUID Obj: metrics
+idrankedMetrics   api\Shared\Domain\ValueObject\UUID Obj: rankedMetrics
+idstatus          api\Shared\Domain\ValueObject\UUID Obj: status
+idland            api\Shared\Domain\ValueObject\UUID Obj: lands
+experience        api\Shared\Domain\ValueObject\Experience
+level             api\Shared\Domain\ValueObject\Level
+available         api\Shared\Domain\ValueObject\Available   
+createdAt         api\Shared\Domain\ValueObject\Timestamp
+updatedAt         api\Shared\Domain\ValueObject\Timestamp
+createdBy         api\Shared\Domain\ValueObject\UUID  Obj: user
+updatedBy         api\Shared\Domain\ValueObject\UUID  Obj: user
+
+status (4 core)
+
+id                api\Shared\Domain\ValueObject\UUID
+honor             api\Core\status\Domain\ValueObject\MetricsHonor 
+lastLogin         api\Shared\Domain\ValueObject\Timestamp
+battlePass        api\Core\status\Domain\ValueObject\BattlePass
+ultraPass         api\Core\status\Domain\ValueObject\UltraPass
+dailyAdsViewed    api\Core\status\Domain\ValueObject\DailyAdsViewed
+adsViewed         api\Core\status\Domain\ValueObject\AdsViewed
+active            api\Shared\Domain\ValueObject\Active
+available         api\Shared\Domain\ValueObject\Available   
+createdAt         api\Shared\Domain\ValueObject\Timestamp
+updatedAt         api\Shared\Domain\ValueObject\Timestamp
+createdBy         api\Shared\Domain\ValueObject\UUID Obj: user
+updatedBy         api\Shared\Domain\ValueObject\UUID Obj: user
+
+metrics (4 core)
+
+id                api\Shared\Domain\ValueObject\UUID
+honor             api\Core\status\Domain\ValueObject\MetricsHonor  
+win               api\Shared\Domain\ValueObject\Win
+loss              api\Shared\Domain\ValueObject\Loss
+Handicap          api\Shared\Domain\ValueObject\Handicap
+timePlayed        api\Shared\Domain\ValueObject\timePlayed  
+maxPoints         api\Shared\Domain\ValueObject\Primitives\IntValueObject 
+damageDealt       api\Shared\Domain\ValueObject\Primitives\IntValueObject 
+landsDestroyed    api\Shared\Domain\ValueObject\Primitives\IntValueObject 
+mobskilled        api\Shared\Domain\ValueObject\Primitives\IntValueObject 
+available         api\Shared\Domain\ValueObject\Available   
+createdAt         api\Shared\Domain\ValueObject\Timestamp
+updatedAt         api\Shared\Domain\ValueObject\Timestamp
+createdBy         api\Shared\Domain\ValueObject\UUID Obj: user
+updatedBy         api\Shared\Domain\ValueObject\UUID Obj: user
+
+rankedMetrics
+
+id                api\Shared\Domain\ValueObject\UUID
+win               api\Shared\Domain\ValueObject\Win
+loss              api\Shared\Domain\ValueObject\Loss
+Handicap          api\Shared\Domain\ValueObject\Handicap
+timePlayed        api\Shared\Domain\ValueObject\timePlayed 
+rank              api\Shared\Domain\ValueObject\id Obj: ranks
+maxPosition       api\Shared\Domain\ValueObject\Primitives\IntValueObject 
+maxPoints         api\Shared\Domain\ValueObject\Primitives\IntValueObject 
+damageDealt       api\Shared\Domain\ValueObject\Primitives\IntValueObject 
+landsDestroyed    api\Shared\Domain\ValueObject\Primitives\IntValueObject 
+mobskilled        api\Shared\Domain\ValueObject\Primitives\IntValueObject 
+available         api\Shared\Domain\ValueObject\Available   
+createdAt         api\Shared\Domain\ValueObject\Timestamp
+updatedAt         api\Shared\Domain\ValueObject\Timestamp
+createdBy         api\Shared\Domain\ValueObject\UUID Obj: user
+updatedBy         api\Shared\Domain\ValueObject\UUID Obj: user
+
+ranks
+
+id                api\Shared\Domain\ValueObject\UUID
+name              api\Shared\Domain\ValueObject\GameText   
+description       api\Shared\Domain\ValueObject\GameText  
+color             api\Shared\Domain\ValueObject\Color    
+model             api\Shared\Domain\ValueObject\Model 
+image             api\Shared\Domain\ValueObject\Image 
+available         api\Shared\Domain\ValueObject\Available   
+createdAt         api\Shared\Domain\ValueObject\Timestamp
+updatedAt         api\Shared\Domain\ValueObject\Timestamp
+createdBy         api\Shared\Domain\ValueObject\UUID Obj: user
+updatedBy         api\Shared\Domain\ValueObject\UUID Obj: user
+
+wallets
+
+id                api\Shared\Domain\ValueObject\UUID
+bronze            api\Shared\Domain\ValueObject\Bronze     
+silver            api\Shared\Domain\ValueObject\Silver 
+gold              api\Shared\Domain\ValueObject\Gold 
+crystal           api\Shared\Domain\ValueObject\Crystal   
+available         api\Shared\Domain\ValueObject\Available   
+createdAt         api\Shared\Domain\ValueObject\Timestamp
+updatedAt         api\Shared\Domain\ValueObject\Timestamp
+createdBy         api\Shared\Domain\ValueObject\UUID Obj: user
+updatedBy         api\Shared\Domain\ValueObject\UUID Obj: user
+
+avatars
+
+id                api\Shared\Domain\ValueObject\UUID
+model             api\Shared\Domain\ValueObject\Model 
+image             api\Shared\Domain\ValueObject\Image 
+image             api\Shared\Domain\ValueObject\Image 
+available         api\Shared\Domain\ValueObject\Available   
+createdAt         api\Shared\Domain\ValueObject\Timestamp
+updatedAt         api\Shared\Domain\ValueObject\Timestamp
+createdBy         api\Shared\Domain\ValueObject\UUID Obj: user
+updatedBy         api\Shared\Domain\ValueObject\UUID Obj: user
+
+heroes
+
+id                api\Shared\Domain\ValueObject\UUID
+idPlayer          api\Shared\Domain\ValueObject\UUID  Obj: players 
+name              api\Shared\Domain\ValueObject\GameText   
+description       api\Shared\Domain\ValueObject\GameText
+rarity
+nature
+type
+race
+abilities
+stats
+experience
+level
+isLanded
+land
+available
+createdAt
+updatedAt
+createdBy
+updatedBy

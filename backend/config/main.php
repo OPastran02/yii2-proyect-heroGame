@@ -36,6 +36,8 @@ return [
                 ],
             ],
         ],
+
+        /*aca van los controller!!*/
         'GetAHeroByIdController' => [
             'class' => 'api\Core\AvailableHeroes\Infrastructure\Controllers\GetAHeroByIdController',
         ],
