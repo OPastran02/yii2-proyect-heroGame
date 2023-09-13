@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace api\Shared\Domain\ValueObject;
+namespace api\Core\Shared\Domain\ValueObject;
 
-use api\Shared\Domain\ValueObject\Primitives\intvalueObject;
-use Error;
+use api\Shared\Domain\ValueObject\Primitives\IntValueObject;
 
-final class FkId extends intvalueObject
+final class Wood extends IntValueObject
 {
+
     protected int $value;
 
-    private const MIN_VALUE = 1;
-    private const MAX_VALUE = 99;
+    private const MIN_VALUE = 0;
+    private const MAX_VALUE = 4000000;    
 
-    public function __construct(int $value)
+    public function __construct( int $value)
     {
         parent::__construct($value);
         $this->ensureIsBetweenAcceptedValues($value);
@@ -24,7 +24,7 @@ final class FkId extends intvalueObject
     public function ensureIsBetweenAcceptedValues(int $value): void
     {
         if ($value < self::MIN_VALUE || $value > self::MAX_VALUE) {
-            throw new Error(
+            throw new DomainException(
                 sprintf(
                     'The value (%s) must be between %s and %s',
                     $value,
@@ -39,5 +39,4 @@ final class FkId extends intvalueObject
     {
         return $this->value;
     }
-
 }
