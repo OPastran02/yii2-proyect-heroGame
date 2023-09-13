@@ -48,7 +48,9 @@
             "backend\\tests\\": ["backend/tests/", "backend/tests/_support"],
             "frontend\\tests\\": ["frontend/tests/", "frontend/tests/_support"],
             "api\\": ["api/"], 
-            "console\\": ["console/"] 
+            "console\\": ["console/"], 
+            "valueObject\\Shared\\" : ["api/Shared/Domain/ValueObject/"], 
+            "core\\" : ["api/Core"] 
         }
     },
     "config": {
