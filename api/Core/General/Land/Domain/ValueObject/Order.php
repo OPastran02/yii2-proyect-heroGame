@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace api\Core\Box\Box\Domain\ValueObject;
+namespace api\Core\General\Land\Domain\ValueObject;
 
-use api\Shared\Domain\ValueObject\Primitives\StringValueObject;
+use api\Shared\Domain\ValueObject\Primitives\intValueObject;
 use Error;
 
-final class Booster extends StringValueObject
+final class Order extends intValueObject
 {
     protected string $value;
 

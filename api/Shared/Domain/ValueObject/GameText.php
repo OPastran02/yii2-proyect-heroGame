@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace api\Core\Box\Box\Domain\ValueObject;
+namespace api\Shared\Domain\ValueObject;
 
 use api\Shared\Domain\ValueObject\Primitives\StringValueObject;
 use Error;
 
-final class Booster extends StringValueObject
+final class GameText extends StringValueObject
 {
     protected string $value;
 
