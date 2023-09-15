@@ -7,7 +7,7 @@ namespace api\Shared\Domain\ValueObject;
 use api\Shared\Domain\ValueObject\Primitives\intvalueObject;
 use Error;
 
-final class Id extends intvalueObject
+final class NID extends intvalueObject
 {
     protected int $value;
 
