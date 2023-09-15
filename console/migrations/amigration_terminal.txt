@@ -1,34 +1,10 @@
-php yii migrate/create create_stats_table --fields="id:string(36):notNull:foreignKey(heroes),attack:int(10):notNull,defense:int(10):notNull,hp:int(10):notNull,sp_attack:int(10):notNull,sp_defense:int(10):notNull,speed:int(10):notNull,farming:int(10):notNull,steeling:int(10):notNull,wooding:int(10):notNull,attackBst:int(3):notNull,defenseBst:int(3):notNull,hpBst:int(3):notNull,sp_attackBst:int(3):notNull,sp_defenseBst:int(3):notNull,speedBst:int(3):notNull,farmingBst:int(3):notNull,steelingBst:int(3):notNull,woodingBst:int(3):notNull,created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_race_table --fields="id:int(8):primaryKey,name:string(255):primaryKey,description:text(),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_rarity_table --fields="id:int(8):primaryKey,name:string(255):primaryKey,description:text(),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_type_table --fields="id:int(8):primaryKey,name:string(255):primaryKey,horoscope:string(15),description:text(),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_nature_table --fields="id:int(8):primaryKey,name:string(255),description:text(),boost_attack:integer(15),boost_defense:integer(15),boost_hp:integer(15),boost_sp_attack:integer(15),boost_sp_defense:integer(15),boost_speed:integer(15),boost_farming:integer(15),boost_steeling:integer(15),boost_wooding:integer(15),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_heroes_table --fields="id:string(36):primaryKey,player_id:string(36):foreignKey(player),name:string(255),description:text,rarity_id:integer(8):foreignKey(rarity),nature_id:integer(8):foreignKey(nature),type_id:integer(8):foreignKey(type),stats_id:integer(36):foreignKey(stats),race_id:integer(36):foreignKey(race),experience:integer(11),level:integer(11),placement_id:integer(11),isInQueue:boolean,orderInGeneralTeam:integer(1),orderInRaceTeam:integer(1),avatar:string(8),accesories_id:integer(11):foreignKey(accesories),accesories_id1:integer(11):foreignKey(accesories),accesories_id2:integer(11):foreignKey(accesories),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_accesories_table --fields="id:integer(11):primaryKey,name:string(255),description:text,rarity_id:integer(8):foreignKey(rarity),orderInGeneralTeam:integer(1),boost_attack:integer(8),boost_defense:integer(8),boost_hp:integer(8),boost_sp_attack:integer(8),boost_sp_defense:integer(8),boost_speedinteger(8),boost_farming:integer(8),boost_steeling:integer(8),boost_wooding:integer(8),power_points:integer(8),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_guilds_table --fields="id:integer(11):primaryKey,name:string(255),description:text,experience:integer(20),level:integer(5),wood:integer(10),steel:integer(10),food:integer(10),gold:integer(10),castle_id:string(36):foreignKey(castle),quantity:integer(4),avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_guilds_players_table --fields="id:integer(11):primaryKey,guild_id:string(36):foreignKey(guilds),player_id:string(36):foreignKey(player),title:string(255),wood:integer(10),steel:integer(10),food:integer(10),gold:integer(10),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_mobs_table --fields="id:integer(11):primaryKey,wave_id:string(36):foreignKey(waves),order:integer(10),name:string(255),attack:integer(10),defense:integer(10),hp:integer(10),sp_attack:integer(10),sp_defense:integer(10),speed:integer(10),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_waves_table --fields="id:integer(11):primaryKey,mundo_id:integer(11):foreignKey(worlds),wave:integer(10),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_worlds_table --fields="id:integer(11):primaryKey,race_id:string(36):foreignKey(race),chapter:integer(10),description:text,avatar:string(8),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_rewards_table --fields="id:integer(11):primaryKey,worlds_id:integer(11):foreignKey(worlds),item_id:integer(11):foreignKey(worlds),quantity:integer(10),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_players_worlds_table --fields="id:integer(11):primaryKey,player_id:string(36):foreignKey(player),worlds_id:integer(11):foreignKey(worlds),avatar:string(8),stars:integer(1),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_players_table --fields="id:string(36):primaryKey():foreignKey(user),phrase:string(255),title:string(255),coins:integer(10),diamonds:integer(10),crystals:integer(10),experience:integer(10),level:integer(10),loginDays:integer(10),avatar:string(10),isActive:integer(1),lastLogin:integer(11),playerType:integer(1),adsViewed:integer(2),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-php yii migrate/create create_availableHeroes_table --fields="id:string(36):primaryKey,name:string(255),description:text,world:text,avatar:string(8),avatarBlock:string(8),race_id:int(2),rarity_id:int(2),nature_id:int(2),type_id:int(2),attack_min:int(10):notNull,attack_max:int(10):notNull,b_attack_min:int(10):notNull,b_Battack_max:int(10):notNull,defense_min:int(10):notNull,defense_max:int(10):notNull,b_defense_min:int(10):notNull,b_defense_max:int(10):notNull,hp_min:int(10):notNull,hp_max:int(10):notNull,b_hp_min:int(10):notNull,b_hp_max:int(10):notNull,sp_attack_min:int(10):notNull,sp_attack_max:int(10):notNull,b_sp_attack_min:int(10):notNull,b_sp_attack_max:int(10):notNull,sp_defense_min:int(10):notNull,sp_defense_max:int(10):notNull,b_sp_defense_min:int(10):notNull,b_sp_defense_max:int(10):notNull,speed_min:int(10):notNull,speed_max:int(10):notNull,b_speed_min:int(10):notNull,b_speed_max:int(10):notNull,farming_min:int(10):notNull,farming_max:int(10):notNull,b_farming_min:int(10):notNull,b_farming_max:int(10):notNull,steeling_min:int(10):notNull,steeling_max:int(10):notNull,b_steeling_min:int(10):notNull,b_steeling_max:int(10):notNull,wooding_min:int(10):notNull,wooding_max:int(10):notNull,b_wooding_min:int(10):notNull,b_wooding_max:int(10):notNull,available:int(10):notNull,created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
-
-
-php yii migrate/create create_boxRatios_table --fields="id:string(36):primaryKey,name:string(255),description:text,race_id:int(2),booster:string(255),modifiers:int(2),crystals:int(2),diamonds:int(2),coins:int(2),created_at:integer(11),updated_at:integer(11),created_by:string(36):foreignKey(user),updated_by:string(36):foreignKey(user)"
+php yii migrate/create create_objects_table --fields="
+id:primaryKey, name:string(14):notNull:defaultValue('no name'), 
+description:string(14):notNull:defaultValue('no description'), 
+color:string(6):notNull:defaultValue('FFFFFF'), 
+model:string(18):notNull:comment('code models'), 
+image:string(18):notNull:comment('code models'), 
+available:integer(1):notNull:defaultValue(1), 
+createdAt:timestamp, 
+updatedAt:timestamp, 
+createdBy:string(36):comment('relacion con usuario'), updatedBy:string(36):comment('relacion con usuario')"
